@@ -4,11 +4,11 @@ export type SidebarTheme = {
 }
 
 export const lightTheme: SidebarTheme = {
-  text: '#363537',
+  text: '#313133',
   sidebarBackground: '#fff'
 }
 
 export const darkTheme: SidebarTheme = {
-  sidebarBackground: '#1e1d26',
+  sidebarBackground: '#313133',
   text: '#FAFAFA'
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 
-import { lightTheme, darkTheme } from './utils/globalTheme'
+import { lightTheme, darkTheme } from './utils/global.theme'
 import { GlobalStyles } from './global'
 import { LIGHT } from './utils/constants'
 import Sidebar from 'components/layout/sidebar/Sidebar'
