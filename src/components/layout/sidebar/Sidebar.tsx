@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 
-import { StyledSidebarContainer, StyledList, StyledListItem, StyledListItemText } from './sidebar.style'
+import { StyledSidebarContainer, StyledList, StyledLinkListItem, StyledListItemText } from './sidebar.style'
 import { lightTheme, darkTheme } from './sidebar.theme'
 
 import { NAVBAR_ITEMS } from './sidebar.items'
@@ -33,19 +33,19 @@ const Sidebar: React.FC<ComponentProps> = ({ theme, setLightTheme, setDarkTheme 
           {
             NAVBAR_ITEMS.map(({ label, name, subItems }) => (
               <Fragment key={name}>
-                <StyledListItem>
+                <StyledLinkListItem to={`2`}>
                   <StyledListItemText>{label}</StyledListItemText>
-                </StyledListItem>
+                </StyledLinkListItem>
                 {
                   !!subItems && (
                     <StyledList>
                       {
                         subItems.map((subItem) => (
-                          <StyledListItem key={subItem.name}>
+                          <StyledLinkListItem key={subItem.name} to={``}>
                             <StyledListItemText className="sidebar-item-text">
                               {subItem.label}
                             </StyledListItemText>
-                          </StyledListItem>
+                          </StyledLinkListItem>
                         ))
                       }
                     </StyledList>

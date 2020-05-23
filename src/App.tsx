@@ -8,6 +8,11 @@ import { LIGHT } from './utils/constants'
 import Sidebar from 'components/layout/sidebar/Sidebar'
 import { AppState } from 'store/configureStore'
 import { Theme } from 'types/theme/Theme'
+import { Route, Switch } from 'react-router-dom'
+import HomeView from 'components/views/Home.view'
+import SellsView from 'components/views/Sells.view'
+import ProvidersView from 'components/views/Providers.view'
+import StatsView from 'components/views/Stats.view'
 
 interface ComponentProps {
   theme: Theme
@@ -19,12 +24,12 @@ const App: React.FC<ComponentProps> = ({ theme }) => {
       <Sidebar />
       <ThemeProvider theme={theme === LIGHT ? lightTheme : darkTheme}>
         <GlobalStyles />
-        {
-          theme === LIGHT ?
-            <h1>¡Es un tema claro!</h1>
-            :
-            <h1>¡Es un tema oscuro!</h1>
-        }
+        <Switch>
+          <Route exact path='/' component={HomeView} />
+          <Route exact path='/ventas' component={SellsView} />
+          <Route exact path='/proveedores' component={ProvidersView} />
+          <Route exact path='/estadisticas' component={StatsView} />
+        </Switch>
       </ThemeProvider>
     </>
   )

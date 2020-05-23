@@ -12,6 +12,7 @@ export const NAVBAR_ITEMS: SidebarItem[] = [
     ]
   },
   { name: 'sells', label: 'Ventas' },
+  { name: 'clients', label: 'Clientes' },
   { name: 'providers', label: 'Proveedores' },
   { name: 'stats', label: 'Estadísticas' },
 ]

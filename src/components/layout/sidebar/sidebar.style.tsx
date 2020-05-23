@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { SidebarTheme } from './sidebar.theme'
+import { Link } from 'react-router-dom'
 
 type Props = {
   theme: SidebarTheme
@@ -21,7 +22,7 @@ export const StyledList = styled.ul`
   list-style: none;
 `
 
-export const StyledListItem = styled.li`
+export const StyledLinkListItem = styled(Link)`
   padding: 1rem 0;
   
   &:hover {
