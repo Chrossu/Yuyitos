@@ -1,25 +1,23 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
+import { GlobalTheme } from 'utils/globalTheme'
 
-interface Props {
-  theme: {
-    body: string
-    text: string
-    toggleBorder: string
-    gradient: string
-  }
+type Props = {
+  theme: GlobalTheme
 }
 
 export const GlobalStyles = createGlobalStyle`
   *,
   *::after,
   *::before {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
   }
-
+  
   body {
     align-items: center;
     background: ${({ theme }: Props) => theme.body};
-    color: ${({ theme }: Props) => theme.text};
+    color: ${({ theme }) => theme.text};
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,4 +27,4 @@ export const GlobalStyles = createGlobalStyle`
     font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     transition: all 0.25s linear;
   }
-`;
+`

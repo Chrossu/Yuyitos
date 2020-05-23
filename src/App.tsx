@@ -1,27 +1,37 @@
-import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from './utils/theme'
+import React from 'react'
+import { connect } from 'react-redux'
+import { ThemeProvider } from 'styled-components'
+
+import { lightTheme, darkTheme } from './utils/globalTheme'
 import { GlobalStyles } from './global'
-import { LIGHT, DARK } from './utils/constants'
+import { LIGHT } from './utils/constants'
+import Sidebar from 'components/layout/sidebar/Sidebar'
+import { AppState } from 'store/configureStore'
+import { Theme } from 'types/theme/Theme'
 
-const App: React.FC = props => {
-  const [theme, setTheme] = React.useState<string>(LIGHT)
-  
-  const handleSetTheme = () => {
-    setTheme(() => theme === LIGHT ? DARK : LIGHT)
-  }
-
-  return (
-    <ThemeProvider theme={theme === LIGHT ? lightTheme : darkTheme}>
-      <>
-        <GlobalStyles />
-        <button onClick={handleSetTheme}>Toggle theme</button>
-        <h1>It's a light theme!</h1>
-        <footer>
-        </footer>
-      </>
-    </ThemeProvider>
-  );
+interface ComponentProps {
+  theme: Theme
 }
 
-export default App;
+const App: React.FC<ComponentProps> = ({ theme }) => {
+  return (
+    <>
+      <Sidebar />
+      <ThemeProvider theme={theme === LIGHT ? lightTheme : darkTheme}>
+        <GlobalStyles />
+        {
+          theme === LIGHT ?
+            <h1>¡Es un tema claro!</h1>
+            :
+            <h1>¡Es un tema oscuro!</h1>
+        }
+      </ThemeProvider>
+    </>
+  )
+}
+
+const mapStateToProps = (state: AppState) => ({
+  theme: state.theme
+})
+
+export default connect(mapStateToProps)(App)
