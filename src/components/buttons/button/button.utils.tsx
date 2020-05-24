@@ -2,7 +2,7 @@ import { ButtonProps } from './Button'
 
 export const setBackgroundColor = ({ disabled, hollow, color, theme }: ButtonProps) => {
   if (disabled)
-    return theme?.buttonTheme.disabledColor
+    return theme.buttonTheme.disabledColor
 
   if (hollow) {
     return 'transparent'
@@ -10,41 +10,41 @@ export const setBackgroundColor = ({ disabled, hollow, color, theme }: ButtonPro
 
   switch (color) {
     case 'primary':
-      return theme?.primaryColor
+      return theme.primaryColor
     case 'secondary':
-      return theme?.secondaryColor
+      return theme.secondaryColor
   }
 }
 
 export const setBorderColor = ({ color, disabled, theme }: ButtonProps) => {
   if (disabled)
-    return theme?.buttonTheme.disabledBorder
+    return theme.buttonTheme.disabledBorder
 
   switch (color) {
     case 'primary':
-      return theme?.primaryColor
+      return theme.primaryColor
     case 'secondary':
-      return theme?.secondaryColor
+      return theme.secondaryColor
   }
 }
 
 export const setTextColor = ({ disabled, hollow, color, theme }: ButtonProps) => {
   if (disabled)
-    return theme?.buttonTheme.disabledText
+    return theme.buttonTheme.disabledText
 
   if (hollow) {
     switch (color) {
       case 'primary':
-        return theme?.primaryColor
+        return theme.primaryColor
       case 'secondary':
-        return theme?.secondaryColor
+        return theme.secondaryColor
     }
   }
 
   switch (color) {
     case 'primary':
-      return theme?.textWithPrimary
+      return theme.textWithPrimary
     case 'secondary':
-      return theme?.textWithSecondary
+      return theme.textWithSecondary
   }
 }

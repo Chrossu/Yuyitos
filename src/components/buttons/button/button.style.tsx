@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { setTextColor } from './button.utils'
+import { setTextColor, setBackgroundColor } from './button.utils'
 
 import { ButtonProps } from './Button'
 
@@ -13,8 +13,10 @@ export const StyledButton = styled.button`
   border-radius: 3px;
   cursor: pointer;
   font-size: 1rem;
-  color: ${setTextColor};
   transition: all 0.25s linear;
+  border: none;
+  background: ${setBackgroundColor};
+  color: ${setTextColor};
   height: ${({ customHeight }: ButtonProps) => customHeight ? customHeight : 'fit-content'};
   margin: ${({ margin }: ButtonProps) => margin ? margin : '0'};
   ${({ width }: ButtonProps) => width && `width: ${width};`}
