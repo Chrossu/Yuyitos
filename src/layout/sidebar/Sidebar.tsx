@@ -30,9 +30,10 @@ const Sidebar: React.FC<ComponentProps> = ({ theme, setLightTheme, setDarkTheme 
     <StyledSidebarContainer>
       <StyledList>
         {
-          NAVBAR_ITEMS.map(({ label, url, subItems }) => (
+          NAVBAR_ITEMS.map(({ label, url, subItems, svg }) => (
             <Fragment key={url}>
               <StyledLinkListItem to={url}>
+                {svg}
                 <StyledListItemText>{label}</StyledListItemText>
               </StyledLinkListItem>
               {

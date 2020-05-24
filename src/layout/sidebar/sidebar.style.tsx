@@ -8,6 +8,9 @@ type Props = {
 }
 
 export const StyledSidebarContainer = styled.aside`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: absolute;
   top: 0;
   left: 0;
@@ -15,7 +18,9 @@ export const StyledSidebarContainer = styled.aside`
   background: ${({ theme }: Props) => theme.sidebarTheme.background};
   color: ${({ theme }: Props) => theme.sidebarTheme.text};
   height: 100vh;
+  border-right: 3px solid ${({ theme }: Props) => theme.lightBorder};
   padding: 1rem 0.5rem;
+  font-weight: 500;
   transition: all 0.25s linear;
 `
 
@@ -24,16 +29,25 @@ export const StyledList = styled.ul`
 `
 
 export const StyledLinkListItem = styled(Link)`
+  display: flex;
+  align-items: center;
   padding: 1rem 0;
   text-decoration: none;
-`
-
-export const StyledListItemText = styled.p`
-  padding: 1.5rem 1.25rem;
   border-radius: 8px;
-  color: ${({ theme }: Props) => theme.sidebarTheme.text};
+  padding: 1.5rem 1.25rem;
+
+  svg {
+    height: 23px;
+    width: 23px;
+    margin-right: 14px;
+    fill: ${(({ theme }: Props) => theme.defaultText)};
+  }
 
   &:hover {
     background: ${({ theme }: Props) => theme.sidebarTheme.hover};
   }
+`
+
+export const StyledListItemText = styled.p`
+  color: ${({ theme }: Props) => theme.sidebarTheme.text};
 `

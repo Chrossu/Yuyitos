@@ -10,12 +10,13 @@ import { AppState } from 'store/configureStore'
 import { Theme } from 'types/theme/Theme'
 import { LIGHT } from './utils/constants'
 
-import Sidebar from 'components/layout/sidebar/Sidebar'
-import HomeView from 'components/views/Home.view'
-import SellsView from 'components/views/Sells.view'
-import ClientsView from 'components/views/Clients'
-import ProvidersView from 'components/views/Providers.view'
-import StatsView from 'components/views/Stats.view'
+import Sidebar from 'layout/sidebar/Sidebar'
+import SellsView from 'views/Sells.view'
+import ClientsView from 'views/Clients'
+import ProductsView from 'views/Products.view'
+import ProvidersView from 'views/Providers.view'
+import StatsView from 'views/Stats.view'
+import { MainContainer } from 'components/cards/mainContainer/MainContainer'
 
 interface ComponentProps {
   theme: Theme
@@ -24,16 +25,18 @@ interface ComponentProps {
 const App: React.FC<ComponentProps> = ({ theme }) => {
   return (
     <>
-      <ThemeProvider theme={theme === LIGHT ? lightTheme : darkTheme}>
+      <ThemeProvider theme={theme !== LIGHT ? lightTheme : darkTheme}>
         <Sidebar />
         <GlobalStyles />
-        <Switch>
-          <Route exact path='/' component={HomeView} />
-          <Route exact path='/ventas' component={SellsView} />
-          <Route exact path='/clientes' component={ClientsView} />
-          <Route exact path='/proveedores' component={ProvidersView} />
-          <Route exact path='/estadisticas' component={StatsView} />
-        </Switch>
+        <MainContainer>
+          <Switch>
+            <Route exact path='/' component={SellsView} />
+            <Route exact path='/clientes' component={ClientsView} />
+            <Route exact path='/productos' component={ProductsView} />
+            <Route exact path='/proveedores' component={ProvidersView} />
+            <Route exact path='/estadisticas' component={StatsView} />
+          </Switch>
+        </MainContainer>
       </ThemeProvider>
     </>
   )
