@@ -6,7 +6,7 @@ type Props = {
 }
 
 export const MainContainer = styled.div`
-  padding: 5rem;
+  padding: 2rem 0;
   height: 100vh;
   width: 100vw;
   background: ${(({ theme}: Props) => theme.defaultHollowBackground)};
