@@ -1,18 +1,18 @@
 export type SidebarItem = {
-  name: string
+  url: string
   label: string
   subItems?: SidebarItem[]
 }
 
 export const NAVBAR_ITEMS: SidebarItem[] = [
   {
-    name: 'home', label: 'Inicio', subItems: [
-      // { name: 'statements', label: 'Statements' },
-      // { name: 'reports', label: 'Reports' },
+    url: '/', label: 'Inicio', subItems: [
+      // { url: 'statements', label: 'Statements' },
+      // { url: 'reports', label: 'Reports' },
     ]
   },
-  { name: 'sells', label: 'Ventas' },
-  { name: 'clients', label: 'Clientes' },
-  { name: 'providers', label: 'Proveedores' },
-  { name: 'stats', label: 'Estadísticas' },
+  { url: '/ventas', label: 'Ventas' },
+  { url: 'clientes', label: 'Clientes' },
+  { url: 'proveedores', label: 'Proveedores' },
+  { url: 'estadisticas', label: 'Estadísticas' },
 ]

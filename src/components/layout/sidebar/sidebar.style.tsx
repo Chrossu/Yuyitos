@@ -11,10 +11,10 @@ export const StyledSidebarContainer = styled.aside`
   top: 0;
   left: 0;
   max-width: 250px;
-  background: ${({ theme }: Props) => theme.sidebarBackground};
+  background: ${({ theme }: Props) => theme.background};
   color: ${({ theme }: Props) => theme.text};
   height: 100vh;
-  padding: 1.5rem;
+  padding: 1rem 0.5rem;
   transition: all 0.25s linear;
 `
 
@@ -24,12 +24,15 @@ export const StyledList = styled.ul`
 
 export const StyledLinkListItem = styled(Link)`
   padding: 1rem 0;
-  
-  &:hover {
-    background: ${({ theme }: Props) => theme.sidebarBackground}
-  }
+  text-decoration: none;
 `
 
 export const StyledListItemText = styled.p`
-  
+  padding: 1.5rem 1.25rem;
+  border-radius: 8px;
+  color: ${({ theme }: Props) => theme.text};
+
+  &:hover {
+    background: ${({ theme }: Props) => theme.hover};
+  }
 `

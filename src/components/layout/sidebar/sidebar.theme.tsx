@@ -1,14 +1,17 @@
 export type SidebarTheme = {
-  sidebarBackground: string
+  background: string
   text: string
+  hover: string
 }
 
 export const lightTheme: SidebarTheme = {
   text: '#313133',
-  sidebarBackground: '#fff'
+  background: '#fff',
+  hover: '#efefef'
 }
 
 export const darkTheme: SidebarTheme = {
-  sidebarBackground: '#313133',
-  text: '#FAFAFA'
+  text: '#efefef',
+  background: '#313133',
+  hover: '#3d3d40'
 }

@@ -10,6 +10,7 @@ import { AppState } from 'store/configureStore'
 import { LIGHT, DARK } from 'utils/constants'
 import { setLightTheme, setDarkTheme } from 'store/actions/theme.actions'
 import { Theme } from 'types/theme/Theme'
+import Button from 'components/buttons/button/Button'
 
 interface ComponentProps {
   theme: Theme
@@ -31,9 +32,9 @@ const Sidebar: React.FC<ComponentProps> = ({ theme, setLightTheme, setDarkTheme 
       <StyledSidebarContainer>
         <StyledList>
           {
-            NAVBAR_ITEMS.map(({ label, name, subItems }) => (
-              <Fragment key={name}>
-                <StyledLinkListItem to={`2`}>
+            NAVBAR_ITEMS.map(({ label, url, subItems }) => (
+              <Fragment key={url}>
+                <StyledLinkListItem to={url}>
                   <StyledListItemText>{label}</StyledListItemText>
                 </StyledLinkListItem>
                 {
@@ -41,8 +42,8 @@ const Sidebar: React.FC<ComponentProps> = ({ theme, setLightTheme, setDarkTheme 
                     <StyledList>
                       {
                         subItems.map((subItem) => (
-                          <StyledLinkListItem key={subItem.name} to={``}>
-                            <StyledListItemText className="sidebar-item-text">
+                          <StyledLinkListItem key={subItem.url} to={``}>
+                            <StyledListItemText>
                               {subItem.label}
                             </StyledListItemText>
                           </StyledLinkListItem>
@@ -55,7 +56,7 @@ const Sidebar: React.FC<ComponentProps> = ({ theme, setLightTheme, setDarkTheme 
             ))
           }
         </StyledList>
-        <button onClick={toggleTheme}>Pulsa para cambiar tema</button>
+        <Button onClick={toggleTheme}>Pulsa para cambiar tema</Button>
       </StyledSidebarContainer>
     </ThemeProvider>
   )
