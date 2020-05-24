@@ -10,6 +10,7 @@ import { AppState } from 'store/configureStore'
 import { LIGHT, DARK } from 'utils/constants'
 import { setLightTheme, setDarkTheme } from 'store/actions/theme.actions'
 import { Theme } from 'types/theme/Theme'
+
 import Button from 'components/buttons/button/Button'
 
 interface ComponentProps {
@@ -56,7 +57,7 @@ const Sidebar: React.FC<ComponentProps> = ({ theme, setLightTheme, setDarkTheme 
             ))
           }
         </StyledList>
-        <Button onClick={toggleTheme}>Pulsa para cambiar tema</Button>
+        <Button color='primary' onClick={toggleTheme}>Pulsa para cambiar tema</Button>
       </StyledSidebarContainer>
     </ThemeProvider>
   )

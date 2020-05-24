@@ -17,7 +17,7 @@ export const GlobalStyles = createGlobalStyle`
   body {
     align-items: center;
     background: ${({ theme }: Props) => theme.body};
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.defaultText};
     display: flex;
     flex-direction: column;
     justify-content: center;

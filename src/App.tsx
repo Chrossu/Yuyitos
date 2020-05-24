@@ -24,8 +24,8 @@ interface ComponentProps {
 const App: React.FC<ComponentProps> = ({ theme }) => {
   return (
     <>
-      <Sidebar />
       <ThemeProvider theme={theme === LIGHT ? lightTheme : darkTheme}>
+        <Sidebar />
         <GlobalStyles />
         <Switch>
           <Route exact path='/' component={HomeView} />
