@@ -5,7 +5,7 @@ import {
   LIGHT_TEXT_DISABLED, LIGHT_TEXT_WITH_PRIMARY, LIGHT_TEXT_WITH_SECONDARY, DARK_SIDEBAR_BACKGROUND, DARK_SIDEBAR_HOVER, LIGHT_SIDEBAR_BACKGROUND,
   LIGHT_SIDEBAR_HOVER, LIGHT_DEFAULT_TEXT_ACTIVE, DARK_DEFAULT_TEXT_ACTIVE, LIGHT_LIGHT_BORDER, DARK_LIGHT_BORDER, DARK_DEFAULT_SECONDARY_BACKGROUND,
   LIGHT_DEFAULT_SECONDARY_BACKGROUND, DARK_INPUT_BACKGROUND, DARK_INPUT_BORDER, LIGHT_INPUT_BACKGROUND, LIGHT_INPUT_BORDER, LIGHT_SIDEBAR_BORDER,
-  DARK_SIDEBAR_BORDER
+  DARK_SIDEBAR_BORDER, LIGHT_TEXT_PLACEHOLDER, DARK_TEXT_PLACEHOLDER
 } from './colorConstants'
 
 export type GlobalTheme = {
@@ -19,6 +19,7 @@ export type GlobalTheme = {
   secondaryColor: string
   textWithPrimary: string
   textWithSecondary: string
+  placeholderTextColor: string
   buttonTheme: ButtonTheme
   inputTheme: InputTheme
   sidebarTheme: SidebarTheme
@@ -55,6 +56,7 @@ export const lightTheme: GlobalTheme = {
   secondaryColor: LIGHT_SECONDARY_COLOR,
   textWithPrimary: LIGHT_TEXT_WITH_PRIMARY,
   textWithSecondary: LIGHT_TEXT_WITH_SECONDARY,
+  placeholderTextColor: LIGHT_TEXT_PLACEHOLDER,
   // Buton theme
   buttonTheme: {
     disabledBackground: LIGHT_DISABLED_BACKGROUND,
@@ -88,6 +90,7 @@ export const darkTheme: GlobalTheme = {
   secondaryColor: DARK_SECONDARY_COLOR,
   textWithPrimary: DARK_TEXT_WITH_PRIMARY,
   textWithSecondary: DARK_TEXT_WITH_SECONDARY,
+  placeholderTextColor: DARK_TEXT_PLACEHOLDER,
   // Button theme
   buttonTheme: {
     disabledBackground: DARK_DISABLED_BACKGROUND,

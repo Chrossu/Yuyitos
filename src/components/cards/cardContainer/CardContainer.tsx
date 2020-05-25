@@ -3,6 +3,7 @@ import { withTheme } from 'styled-components'
 
 import { StyledCardContainer } from './cardContainer.style'
 import { GlobalTheme } from 'utils/global.theme'
+import { FlexDirectionTypes, AlignItemsTypes, JustifyContentTypes } from 'types/cssTypes'
 
 interface NewCardProps {
   theme: GlobalTheme
@@ -12,9 +13,9 @@ interface NewCardProps {
   header?: boolean
   padding?: string
   flex?: boolean
-  flexDirection?: string
-  alignItems?: string
-  justifyContent?: string
+  flexDirection?: FlexDirectionTypes
+  alignItems?: AlignItemsTypes
+  justifyContent?: JustifyContentTypes
   minHeight?: string
   maxHeight?: string
   margin?: string

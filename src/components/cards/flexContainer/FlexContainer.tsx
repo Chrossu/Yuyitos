@@ -2,7 +2,7 @@ import React from 'react'
 
 import { StyledFlexContainer } from './flexContainer.style'
 
-import { JustifyContentTypes, AlignItemsTypes, FlexDirectionTypes, TextAlignTypes } from './flexContainer.types'
+import { JustifyContentTypes, AlignItemsTypes, FlexDirectionTypes, TextAlignTypes } from 'types/cssTypes'
 
 export type FlexContainerProps = {
   flexDirection?: FlexDirectionTypes

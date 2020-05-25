@@ -9,6 +9,7 @@ export const LIGHT_SECONDARY_COLOR = 'red'
 // Text colors
 export const LIGHT_TEXT_WITH_PRIMARY = '#ffffff'
 export const LIGHT_TEXT_WITH_SECONDARY = ''
+export const LIGHT_TEXT_PLACEHOLDER = '#efefef'
 export const LIGHT_TEXT_DISABLED = '#999999'
 
 // Utilities colors
@@ -42,6 +43,7 @@ export const DARK_SECONDARY_COLOR = 'red'
 // Text colors
 export const DARK_TEXT_WITH_PRIMARY = '#ffffff'
 export const DARK_TEXT_WITH_SECONDARY = ''
+export const DARK_TEXT_PLACEHOLDER = '#efefef'
 export const DARK_TEXT_DISABLED = '#999999'
 
 // Utilities colors

@@ -18,6 +18,7 @@ export type ButtonProps = {
   marginBottom?: string
   noWrap?: boolean
   hollow?: boolean
+  svg?: JSX.Element
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
@@ -31,6 +32,7 @@ const Button: React.FC<ButtonProps> = (props) => {
         disabled={props.disabled}
         {...props}
       >
+        {props.svg}
         {props.children}
       </StyledButton>
     </>
