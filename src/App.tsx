@@ -25,7 +25,7 @@ interface ComponentProps {
 const App: React.FC<ComponentProps> = ({ theme }) => {
   return (
     <>
-      <ThemeProvider theme={theme !== LIGHT ? lightTheme : darkTheme}>
+      <ThemeProvider theme={theme === LIGHT ? lightTheme : darkTheme}>
         <Sidebar />
         <GlobalStyles />
         <MainContainer>

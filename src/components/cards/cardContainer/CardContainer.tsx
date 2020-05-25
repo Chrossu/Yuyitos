@@ -6,7 +6,10 @@ import { GlobalTheme } from 'utils/global.theme'
 
 interface NewCardProps {
   theme: GlobalTheme
+  width?: string
   height?: string
+  fontSize?: string
+  header?: boolean
   padding?: string
   flex?: boolean
   flexDirection?: string

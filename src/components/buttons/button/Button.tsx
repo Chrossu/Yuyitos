@@ -22,9 +22,18 @@ export type ButtonProps = {
 
 const Button: React.FC<ButtonProps> = (props) => {
   return (
-    <StyledButton color='primary' margin='auto 0 0 0' onClick={props.onClick} style={props.style} disabled={props.disabled} {...props}>
-      {props.children}
-    </StyledButton>
+    <>
+      <StyledButton
+        color='primary'
+        margin='auto 0 0 0'
+        onClick={props.onClick}
+        style={props.style}
+        disabled={props.disabled}
+        {...props}
+      >
+        {props.children}
+      </StyledButton>
+    </>
   )
 }
 

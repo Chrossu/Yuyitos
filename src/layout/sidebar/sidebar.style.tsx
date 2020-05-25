@@ -18,7 +18,7 @@ export const StyledSidebarContainer = styled.aside`
   background: ${({ theme }: Props) => theme.sidebarTheme.background};
   color: ${({ theme }: Props) => theme.sidebarTheme.text};
   height: 100vh;
-  border-right: 3px solid ${({ theme }: Props) => theme.lightBorder};
+  border-right: 2px solid ${({ theme }: Props) => theme.lightBorder};
   padding: 1rem 0.5rem;
   font-weight: 500;
   transition: all 0.25s linear;

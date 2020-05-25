@@ -1,13 +1,14 @@
 import * as React from 'react'
+import AddProduct from 'layout/products/addProduct/AddProduct'
 
 
 interface ComponentProps {
-  
+
 }
 
 const ProductsView: React.FC<ComponentProps> = props => {
   return (
-    <h1>Productos</h1>
+    <AddProduct />
   )
 }
 
