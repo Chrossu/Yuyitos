@@ -5,7 +5,7 @@ import { StyledSidebarContainer, StyledList, StyledLinkListItem, StyledListItemT
 
 import { NAVBAR_ITEMS } from './sidebar.items'
 import { AppState } from 'store/configureStore'
-import { LIGHT, DARK } from 'utils/constants'
+import { LIGHT, DARK } from 'utils/generalConstants'
 import { setLightTheme, setDarkTheme } from 'store/actions/theme.actions'
 import { Theme } from 'types/theme/Theme'
 

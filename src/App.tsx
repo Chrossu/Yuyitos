@@ -8,7 +8,7 @@ import { lightTheme, darkTheme } from './utils/global.theme'
 import { GlobalStyles } from './global'
 import { AppState } from 'store/configureStore'
 import { Theme } from 'types/theme/Theme'
-import { LIGHT } from './utils/constants'
+import { LIGHT } from './utils/generalConstants'
 
 import Sidebar from 'layout/sidebar/Sidebar'
 import SellsView from 'views/Sells.view'

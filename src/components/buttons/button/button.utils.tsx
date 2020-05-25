@@ -2,7 +2,7 @@ import { ButtonProps } from './Button'
 
 export const setBackgroundColor = ({ disabled, hollow, color, theme }: ButtonProps) => {
   if (disabled)
-    return theme.buttonTheme.disabledColor
+    return theme.buttonTheme.disabledBackground
 
   if (hollow) {
     return 'transparent'

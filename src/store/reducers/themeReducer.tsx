@@ -1,4 +1,4 @@
-import { LIGHT, DARK } from "utils/constants"
+import { LIGHT, DARK } from "utils/generalConstants"
 import { Theme } from "types/theme/Theme"
 import { ThemeActions, SET_LIGHT_THEME, SET_DARK_THEME } from "types/theme/theme.actions"
 

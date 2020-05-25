@@ -28,4 +28,11 @@ export const GlobalStyles = createGlobalStyle`
     font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     transition: all 0.25s linear;
   }
+
+  input:focus {
+    border-color: ${({ theme }) => theme.primaryColor};
+    box-shadow: 0 0 0.1rem ${({ theme }) => theme.primaryColor}54;
+    outline: transparent;
+  }
+  }
 `
