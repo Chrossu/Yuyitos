@@ -17,6 +17,7 @@ export type ButtonProps = {
   marginLeft?: string
   marginBottom?: string
   noWrap?: boolean
+  padding?: string
   hollow?: boolean
   svg?: JSX.Element
 }

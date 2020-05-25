@@ -9,10 +9,10 @@ export const StyledButton = styled.button`
   opacity: 0.8;
   justify-content: center;
   align-items: center;
-  padding: 0.75rem 1rem;
+  padding: ${(({ padding }: Props) => padding ? padding : '0.75rem 1rem')};
   border-radius: 3px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.9rem;
   transition: all 0.25s linear;
   border: none;
   background: ${setBackgroundColor};
@@ -25,8 +25,8 @@ export const StyledButton = styled.button`
   ${({ noWrap }: Props) => noWrap && 'white-space: nowrap;'}
 
   svg {
-    height: 20px;
-    width: 20px;
+    height: 18px;
+    width: 18px;
     margin-right: 0.5rem;
     fill: ${setTextColor};
   }
