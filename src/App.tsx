@@ -7,7 +7,9 @@ import { Route, Switch } from 'react-router-dom'
 import { lightTheme, darkTheme } from './utils/global.theme'
 import { GlobalStyles } from './global'
 import { AppState } from 'store/configureStore'
-import { Theme } from 'types/theme/Theme'
+
+import { Theme } from 'types/theme/theme.type'
+import { User } from 'types/user/User.type'
 import { LIGHT } from './utils/generalConstants'
 
 import { MainContainer } from 'components/cards/mainContainer/MainContainer'
@@ -19,25 +21,30 @@ import ClientsView from 'views/Clients'
 import ProductsView from 'views/Products.view'
 import ProvidersView from 'views/Providers.view'
 import StatsView from 'views/Stats.view'
+import ProtectedRoute from 'utils/HOCs/ProtectedRouteHOC'
+
 
 interface ComponentProps {
   theme: Theme
+  user: User
 }
 
-const App: React.FC<ComponentProps> = ({ theme }) => {
+const App: React.FC<ComponentProps> = ({ theme, user }) => {
+  const isUser = user.id !== ''
+
   return (
     <>
       <ThemeProvider theme={theme === LIGHT ? lightTheme : darkTheme}>
-        <Sidebar />
+        <Sidebar isUser={isUser} />
         <GlobalStyles />
-        <MainContainer>
+        <MainContainer isUser={isUser}>
           <Switch>
-            <Route exact path='/' component={SellsView} />
             <Route exact path='/login' component={LoginView} />
-            <Route exact path='/clientes' component={ClientsView} />
-            <Route exact path='/productos' component={ProductsView} />
-            <Route exact path='/proveedores' component={ProvidersView} />
-            <Route exact path='/estadisticas' component={StatsView} />
+            <ProtectedRoute isAuthenticated={isUser} exact path='/' component={SellsView} />
+            <ProtectedRoute isAuthenticated={isUser} exact path='/clientes' component={ClientsView} />
+            <ProtectedRoute isAuthenticated={isUser} exact path='/productos' component={ProductsView} />
+            <ProtectedRoute isAuthenticated={isUser} exact path='/proveedores' component={ProvidersView} />
+            <ProtectedRoute isAuthenticated={isUser} exact path='/estadisticas' component={StatsView} />
           </Switch>
         </MainContainer>
       </ThemeProvider>
@@ -46,7 +53,8 @@ const App: React.FC<ComponentProps> = ({ theme }) => {
 }
 
 const mapStateToProps = (state: AppState) => ({
-  theme: state.theme
+  theme: state.theme,
+  user: state.user
 })
 
 export default connect(mapStateToProps)(App)

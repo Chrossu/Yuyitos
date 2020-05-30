@@ -7,17 +7,18 @@ import { NAVBAR_ITEMS } from './sidebar.items'
 import { AppState } from 'store/configureStore'
 import { LIGHT, DARK } from 'utils/generalConstants'
 import { setLightTheme, setDarkTheme } from 'store/actions/theme.actions'
-import { Theme } from 'types/theme/Theme'
+import { Theme } from 'types/theme/theme.type'
 
 import Button from 'components/buttons/button/Button'
 
 interface ComponentProps {
   theme: Theme
+  isUser: boolean
   setLightTheme: () => void
   setDarkTheme: () => void
 }
 
-const Sidebar: React.FC<ComponentProps> = ({ theme, setLightTheme, setDarkTheme }) => {
+const Sidebar: React.FC<ComponentProps> = ({ theme, isUser, setLightTheme, setDarkTheme }) => {
   const toggleTheme = () => {
     switch (theme) {
       case LIGHT:
@@ -26,7 +27,7 @@ const Sidebar: React.FC<ComponentProps> = ({ theme, setLightTheme, setDarkTheme 
         return setLightTheme()
     }
   }
-  return (
+  if (isUser) return (
     <StyledSidebarContainer>
       <StyledList>
         {
@@ -58,6 +59,7 @@ const Sidebar: React.FC<ComponentProps> = ({ theme, setLightTheme, setDarkTheme 
       <Button color='primary' onClick={toggleTheme}>Pulsa para cambiar tema</Button>
     </StyledSidebarContainer>
   )
+  else return null
 }
 
 const mapStateToProps = (state: AppState) => ({

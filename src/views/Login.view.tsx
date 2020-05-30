@@ -8,9 +8,7 @@ interface ComponentProps {
 
 const LoginView: React.FC<ComponentProps> = props => {
   return (
-    <>
     <Login />
-    </>
   )
 }
 

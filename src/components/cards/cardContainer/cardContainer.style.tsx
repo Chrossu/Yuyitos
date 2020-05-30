@@ -44,7 +44,7 @@ export const StyledCardContainer = styled.div`
   ${({ justifyContent }: Props) => justifyContent && `justify-content: ${justifyContent};`}
   ${({ minHeight }: Props) => minHeight && `min-height: ${minHeight};`}
   ${({ maxHeight }: Props) => maxHeight && `max-height: ${maxHeight};`}
-  transition: all 0.25s linear;
+  transition: background 0.25s linear, color 0.25s linear, border 0.25s linear;
 
   ${checkIfHeader}
 
