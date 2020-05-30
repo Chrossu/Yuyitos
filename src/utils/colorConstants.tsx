@@ -58,7 +58,7 @@ export const DARK_DEFAULT_PRIMARY_BACKGROUND = '#111c33'
 export const DARK_DEFAULT_SECONDARY_BACKGROUND = '#15192b'
 export const DARK_DEFAULT_HOLLOW_BACKGROUND = '#0a131e'
 export const DARK_DEFAULT_TEXT = '#a6b2b7'
-export const DARK_DEFAULT_TEXT_ACTIVE = '#fffffff'
+export const DARK_DEFAULT_TEXT_ACTIVE = '#ffffff'
 
 // Sidebar colors
 export const DARK_SIDEBAR_BACKGROUND = '#0e1627'
