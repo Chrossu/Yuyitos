@@ -4,6 +4,7 @@ import * as React from 'react'
 
 import CardContainer from 'components/cards/cardContainer/CardContainer'
 import FlexContainer from 'components/cards/flexContainer/FlexContainer'
+import { EmptyContainerMsg } from 'components/cards'
 
 interface ComponentProps {
 
@@ -47,7 +48,7 @@ const ProviderItemsForm: React.FC<ComponentProps> = props => {
           Producto
         </CardContainer>
         <CardContainer>
-          <h1>list</h1>
+          <EmptyContainerMsg message='No se han encontrado productos.' />
         </CardContainer>
       </FlexContainer>
       <FlexContainer flexDirection='column' width='48%'>
@@ -56,7 +57,7 @@ const ProviderItemsForm: React.FC<ComponentProps> = props => {
           <p>Precio</p>
         </CardContainer>
         <CardContainer>
-          <h1>list</h1>
+          <EmptyContainerMsg />
         </CardContainer>
       </FlexContainer>
     </FlexContainer>

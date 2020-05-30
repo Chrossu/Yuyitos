@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
-
 import { Route, Switch } from 'react-router-dom'
 
 import { lightTheme, darkTheme } from './utils/global.theme'
@@ -12,17 +11,12 @@ import { Theme } from 'types/theme/theme.type'
 import { User } from 'types/user/User.type'
 import { LIGHT } from './utils/generalConstants'
 
-import { MainContainer } from 'components/cards/mainContainer/MainContainer'
+import { MainContainer } from 'components/cards'
+import { ProtectedRouteHOC as ProtectedRoute } from 'utils/HOCs'
 
 import Sidebar from 'layout/sidebar/Sidebar'
-import SellsView from 'views/Sells.view'
-import LoginView from 'views/Login.view'
-import ClientsView from 'views/Clients'
-import ProductsView from 'views/Products.view'
-import ProvidersView from 'views/Providers.view'
+import { SellsView, LoginView, ClientsView, ProductsView, ProvidersView } from 'views'
 import StatsView from 'views/Stats.view'
-import ProtectedRoute from 'utils/HOCs/ProtectedRouteHOC'
-
 
 interface ComponentProps {
   theme: Theme
@@ -30,25 +24,23 @@ interface ComponentProps {
 }
 
 const App: React.FC<ComponentProps> = ({ theme, user }) => {
-  const isUser = user.id !== ''
+  const isUser = !!user.id
 
   return (
-    <>
-      <ThemeProvider theme={theme === LIGHT ? lightTheme : darkTheme}>
-        <Sidebar isUser={isUser} />
-        <GlobalStyles />
-        <MainContainer isUser={isUser}>
-          <Switch>
-            <Route exact path='/login' component={LoginView} />
-            <ProtectedRoute isAuthenticated={isUser} exact path='/' component={SellsView} />
-            <ProtectedRoute isAuthenticated={isUser} exact path='/clientes' component={ClientsView} />
-            <ProtectedRoute isAuthenticated={isUser} exact path='/productos' component={ProductsView} />
-            <ProtectedRoute isAuthenticated={isUser} exact path='/proveedores' component={ProvidersView} />
-            <ProtectedRoute isAuthenticated={isUser} exact path='/estadisticas' component={StatsView} />
-          </Switch>
-        </MainContainer>
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={theme !== LIGHT ? lightTheme : darkTheme}>
+      <Sidebar isUser={isUser} />
+      <GlobalStyles />
+      <MainContainer isUser={isUser}>
+        <Switch>
+          <Route exact path='/login' component={LoginView} />
+          <ProtectedRoute isAuthenticated={isUser} exact path='/' component={SellsView} />
+          <ProtectedRoute isAuthenticated={isUser} exact path='/clientes' component={ClientsView} />
+          <ProtectedRoute isAuthenticated={isUser} exact path='/productos' component={ProductsView} />
+          <ProtectedRoute isAuthenticated={isUser} exact path='/proveedores' component={ProvidersView} />
+          <ProtectedRoute isAuthenticated={isUser} exact path='/estadisticas' component={StatsView} />
+        </Switch>
+      </MainContainer>
+    </ThemeProvider>
   )
 }
 

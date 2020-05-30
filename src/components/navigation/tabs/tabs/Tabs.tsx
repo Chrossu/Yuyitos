@@ -7,10 +7,9 @@ type ComponentProps = {
 }
 
 const Tabs: React.FC<ComponentProps> = ({ children }) => {
-  console.log(children)
   // Set initial state
   const [activeTab, setActiveTab] = React.useState(children[0].props.label)
-  console.log(activeTab)
+
   const onClickTabItem = (tab: string) => {
     setActiveTab(tab)
   }
