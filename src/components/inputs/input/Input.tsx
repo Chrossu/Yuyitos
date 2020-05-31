@@ -5,7 +5,7 @@ import Label from 'components/texts/label/Label'
 import FlexContainer from 'components/cards/flexContainer/FlexContainer'
 
 type ComponentProps = {
-  id: string
+  id?: string
   name?: string
   placeholder: string
   value: string

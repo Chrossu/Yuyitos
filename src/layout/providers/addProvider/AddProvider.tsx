@@ -4,8 +4,6 @@ import ProviderItemsForm from './providerItemsForm.tsx'
 import { ProviderFormState } from 'types/provider'
 import { Product } from 'types/product'
 
-
-
 interface ComponentProps {
 
 }
@@ -21,7 +19,7 @@ const AddProvider: React.FC<ComponentProps> = props => {
 
   // Original items from data fetching request
   const [productsDataArray, setProductsDataArray] = React.useState<Product[]>([])
-  
+
   // Original items from data fetching request
   const [productsArray, setProductsArray] = React.useState<Product[]>([])
 
@@ -175,10 +173,18 @@ const AddProvider: React.FC<ComponentProps> = props => {
     setProductsDataArray(mockData)
   }, [])
 
+  const setSelectedProduct = (selectedProduct: Product) => {
+    setSelectedProductsArray([...selectedProductsArray, selectedProduct])
+  }
+  console.log(selectedProductsArray)
   return (
     <>
       <ProviderDataForm providerFormState={providerForm} setProviderFormState={setProviderForm} />
-      <ProviderItemsForm productsArray={productsDataArray} />
+      <ProviderItemsForm
+        productsArray={productsDataArray}
+        selectedProductsArray={selectedProductsArray}
+        setSelectedProduct={setSelectedProduct}
+      />
     </>
   )
 }

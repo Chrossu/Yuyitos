@@ -12,16 +12,26 @@ import { ReactTable } from 'components/tables'
 
 interface ComponentProps {
   productsArray: Product[]
+  selectedProductsArray: Product[]
+  setSelectedProduct: (p: Product) => void
 }
 
-const ProviderItemsForm: React.FC<ComponentProps> = ({ productsArray }) => {
+const ProviderItemsForm: React.FC<ComponentProps> = props => {
+  const { productsArray, selectedProductsArray, setSelectedProduct } = props
+
   const [filterValue, setFilterValue] = React.useState<string>('')
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilterValue(e.currentTarget.value)
   }
 
-  const columns = [
+  const handleSelectedProduct = (rowInfo: any) => {
+    const product = { ...rowInfo.original, price: '' }
+
+    setSelectedProduct(product)
+  }
+
+  const leftTableColumns = [
     {
       Header: 'ID',
       accessor: 'id',
@@ -35,10 +45,35 @@ const ProviderItemsForm: React.FC<ComponentProps> = ({ productsArray }) => {
     },
     {
       Header: 'Acciones',
-      Cell: (rowInfo: any) => <Button color='primary' width='100%' customHeight='32px'>Seleccionar</Button>,
+      Cell: (rowInfo: any) => (
+        <Button color='primary' width='100%' customHeight='32px' onClick={() => handleSelectedProduct(rowInfo)}>
+          Seleccionar
+        </Button>
+      ),
       width: 135
     }
   ]
+
+  const rightTableColumns = [
+    {
+      Header: 'Producto',
+      accessor: 'productName',
+      style: { margin: 'auto' }
+    },
+    {
+      Header: 'Precio',
+      accessor: 'price',
+      Cell: (rowInfo: any) => {
+        return (
+          // <Input value={rowInfo.price} />
+          <h1>asd</h1>
+        )
+      },
+      style: { margin: 'auto' },
+      width: 200
+    }
+  ]
+
   return (
     <FlexContainer marginTop='30px' justifyContent='space-between'>
       <FlexContainer flexDirection='column' width='48%'>
@@ -60,7 +95,7 @@ const ProviderItemsForm: React.FC<ComponentProps> = ({ productsArray }) => {
             productsArray.length === 0 ?
               <EmptyContainerMsg message='No se han encontrado productos.' />
               :
-              <ReactTable data={productsArray} columns={columns} />
+              <ReactTable data={productsArray} columns={leftTableColumns} />
           }
         </CardContainer>
       </FlexContainer>
@@ -69,7 +104,12 @@ const ProviderItemsForm: React.FC<ComponentProps> = ({ productsArray }) => {
           Productos a proveer
         </CardContainer>
         <CardContainer>
-          <EmptyContainerMsg message='Aún no se han seleccionado productos' />
+          <ReactTable
+            data={selectedProductsArray}
+            columns={rightTableColumns}
+            defaultPageSize={5}
+            noDataText='Sin productos seleccionados'
+          />
         </CardContainer>
       </FlexContainer>
     </FlexContainer>
