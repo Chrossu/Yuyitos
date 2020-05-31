@@ -17,7 +17,7 @@ export const StyledSidebarContainer = styled.aside`
   max-width: 250px;
   background: ${({ theme }: Props) => theme.sidebarTheme.background};
   color: ${({ theme }: Props) => theme.sidebarTheme.text};
-  height: 100vh;
+  height: 100%;
   border-right: 2px solid ${({ theme }: Props) => theme.sidebarTheme.border};
   padding: 1rem 0.5rem;
   font-weight: 500;

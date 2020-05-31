@@ -20,19 +20,20 @@ const AddProvider: React.FC<ComponentProps> = props => {
   // Original items from data fetching request
   const [productsDataArray, setProductsDataArray] = React.useState<Product[]>([])
 
-  // Original items from data fetching request
+  // Items on left table that are filtered depending on user actions
   const [productsArray, setProductsArray] = React.useState<Product[]>([])
 
-
+  // Items that provider will provide on right table
   const [selectedProductsArray, setSelectedProductsArray] = React.useState<Product[]>([])
 
   React.useEffect(() => {
     const mockData: Product[] = [
       {
         id: '1',
-        price: '200',
         productName: 'Pan',
         stockQuantity: '20',
+        productBuyPrice: '',
+        productSellPrice: '900',
         productType: {
           idType: '1',
           productTypeName: 'Abarrote'
@@ -44,9 +45,10 @@ const AddProvider: React.FC<ComponentProps> = props => {
       },
       {
         id: '2',
-        price: '900',
         productName: 'Leche Nestlé',
         stockQuantity: '38',
+        productBuyPrice: '',
+        productSellPrice: '900',
         productType: {
           idType: '1',
           productTypeName: 'Abarrote'
@@ -58,9 +60,10 @@ const AddProvider: React.FC<ComponentProps> = props => {
       },
       {
         id: '3',
-        price: '1400',
         productName: 'Mantequilla Colún 200g',
         stockQuantity: '9',
+        productBuyPrice: '',
+        productSellPrice: '900',
         productType: {
           idType: '1',
           productTypeName: 'Abarrote'
@@ -72,9 +75,10 @@ const AddProvider: React.FC<ComponentProps> = props => {
       },
       {
         id: '4',
-        price: '1200',
         productName: 'Bebida desechable 1.5 lts. Sprite',
         stockQuantity: '12',
+        productBuyPrice: '',
+        productSellPrice: '900',
         productType: {
           idType: '1',
           productTypeName: 'Abarrote'
@@ -86,9 +90,10 @@ const AddProvider: React.FC<ComponentProps> = props => {
       },
       {
         id: '5',
-        price: '900',
         productName: 'Saco de papas 1kg',
         stockQuantity: '18',
+        productBuyPrice: '',
+        productSellPrice: '900',
         productType: {
           idType: '1',
           productTypeName: 'Abarrote'
@@ -100,9 +105,10 @@ const AddProvider: React.FC<ComponentProps> = props => {
       },
       {
         id: '6',
-        price: '900',
         productName: 'Saco de papas 1kg',
         stockQuantity: '18',
+        productBuyPrice: '',
+        productSellPrice: '900',
         productType: {
           idType: '1',
           productTypeName: 'Abarrote'
@@ -114,9 +120,10 @@ const AddProvider: React.FC<ComponentProps> = props => {
       },
       {
         id: '7',
-        price: '900',
         productName: 'Saco de papas 1kg',
         stockQuantity: '18',
+        productBuyPrice: '',
+        productSellPrice: '900',
         productType: {
           idType: '1',
           productTypeName: 'Abarrote'
@@ -128,9 +135,10 @@ const AddProvider: React.FC<ComponentProps> = props => {
       },
       {
         id: '7',
-        price: '900',
         productName: 'Saco de papas 1kg',
         stockQuantity: '18',
+        productBuyPrice: '',
+        productSellPrice: '900',
         productType: {
           idType: '1',
           productTypeName: 'Abarrote'
@@ -142,9 +150,10 @@ const AddProvider: React.FC<ComponentProps> = props => {
       },
       {
         id: '7',
-        price: '900',
         productName: 'Saco de papas 1kg',
         stockQuantity: '18',
+        productBuyPrice: '',
+        productSellPrice: '900',
         productType: {
           idType: '1',
           productTypeName: 'Abarrote'
@@ -156,9 +165,10 @@ const AddProvider: React.FC<ComponentProps> = props => {
       },
       {
         id: '7',
-        price: '900',
         productName: 'Saco de papas 1kg',
         stockQuantity: '18',
+        productBuyPrice: '',
+        productSellPrice: '900',
         productType: {
           idType: '1',
           productTypeName: 'Abarrote'
@@ -176,7 +186,15 @@ const AddProvider: React.FC<ComponentProps> = props => {
   const setSelectedProduct = (selectedProduct: Product) => {
     setSelectedProductsArray([...selectedProductsArray, selectedProduct])
   }
-  console.log(selectedProductsArray)
+
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>, rowInfo: any) => {
+    const { index } = rowInfo
+    let newSelectedProductsArray = [...selectedProductsArray]
+    newSelectedProductsArray[index].productBuyPrice = e.currentTarget.value
+
+    setSelectedProductsArray(newSelectedProductsArray)
+  }
+  
   return (
     <>
       <ProviderDataForm providerFormState={providerForm} setProviderFormState={setProviderForm} />
@@ -184,6 +202,7 @@ const AddProvider: React.FC<ComponentProps> = props => {
         productsArray={productsDataArray}
         selectedProductsArray={selectedProductsArray}
         setSelectedProduct={setSelectedProduct}
+        handlePriceChange={handlePriceChange}
       />
     </>
   )

@@ -14,10 +14,11 @@ interface ComponentProps {
   productsArray: Product[]
   selectedProductsArray: Product[]
   setSelectedProduct: (p: Product) => void
+  handlePriceChange: (e: React.ChangeEvent<HTMLInputElement>, ri: any) => void
 }
 
 const ProviderItemsForm: React.FC<ComponentProps> = props => {
-  const { productsArray, selectedProductsArray, setSelectedProduct } = props
+  const { productsArray, selectedProductsArray, setSelectedProduct, handlePriceChange } = props
 
   const [filterValue, setFilterValue] = React.useState<string>('')
 
@@ -62,13 +63,10 @@ const ProviderItemsForm: React.FC<ComponentProps> = props => {
     },
     {
       Header: 'Precio',
-      accessor: 'price',
-      Cell: (rowInfo: any) => {
-        return (
-          // <Input value={rowInfo.price} />
-          <h1>asd</h1>
-        )
-      },
+      accessor: 'productBuyPrice',
+      Cell: (rowInfo: any) => (
+        <Input value={rowInfo.original.productBuyPrice} onChange={(e: React.ChangeEvent<HTMLInputElement>) => handlePriceChange(e, rowInfo)} />
+      ),
       style: { margin: 'auto' },
       width: 200
     }

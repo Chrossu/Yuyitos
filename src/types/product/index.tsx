@@ -2,9 +2,11 @@ export type ProductFormState = {
   id: string
   productName: string
   stockQuantity: string
-  price: string
   productType: ProductType
   brand: BrandType
+  productBuyPrice: string
+  productSellPrice: string
+  providerID?: string
 }
 
 export type ProductType = {
