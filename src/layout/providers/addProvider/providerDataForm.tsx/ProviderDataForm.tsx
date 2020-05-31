@@ -12,7 +12,6 @@ interface ComponentProps {
 }
 
 const AddProvider: React.FC<ComponentProps> = ({ providerFormState, setProviderFormState }) => {
-
   const { providerName, address, rut, phoneNumber } = providerFormState
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +43,7 @@ const AddProvider: React.FC<ComponentProps> = ({ providerFormState, setProviderF
             <Input
               value={rut}
               id='rut'
-              label='Rut'
+              label='Rut proveedor'
               placeholder='Ingresa rut de proveedor'
               width='80%'
               onChange={handleChange}
@@ -64,7 +63,7 @@ const AddProvider: React.FC<ComponentProps> = ({ providerFormState, setProviderF
             <Input
               value={phoneNumber}
               id='phoneNumber'
-              label='Fono de contacto'
+              label='Fono contacto'
               placeholder='Ingresa fono'
               width='80%'
               onChange={handleChange}

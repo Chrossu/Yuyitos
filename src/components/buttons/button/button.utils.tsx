@@ -16,9 +16,18 @@ export const setBackgroundColor = ({ disabled, hollow, color, theme }: ButtonPro
   }
 }
 
-export const setBorderColor = ({ color, disabled, theme }: ButtonProps) => {
+export const setBorderColor = ({ color, hollow, disabled, theme }: ButtonProps) => {
   if (disabled)
     return theme.buttonTheme.disabledBorder
+
+  if (hollow) {
+    switch (color) {
+      case 'primary':
+        return theme.primaryColor
+      case 'secondary':
+        return theme.secondaryColor
+    }
+  }
 
   switch (color) {
     case 'primary':

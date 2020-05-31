@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { setTextColor, setBackgroundColor } from './button.utils'
+import { setTextColor, setBorderColor, setBackgroundColor } from './button.utils'
 
 import { ButtonProps as Props } from './Button'
 
@@ -14,7 +14,7 @@ export const StyledButton = styled.button`
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.25s linear;
-  border: none;
+  border: 1px solid ${setBorderColor};
   background: ${setBackgroundColor};
   color: ${setTextColor};
   height: ${({ customHeight }: Props) => customHeight ? customHeight : 'fit-content'};
@@ -37,6 +37,10 @@ export const StyledButton = styled.button`
 
   &:focus {
     outline: none;
+  }
+
+  &::placeholder {
+    color: red !important;
   }
 
   @media screen and (max-width: 468px) {

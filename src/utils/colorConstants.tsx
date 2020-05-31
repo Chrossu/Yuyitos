@@ -3,12 +3,12 @@
 // Project general LIGHT colors
 // ---------------------------- //
 // ---------------------------- //
-export const LIGHT_PRIMARY_COLOR = '#417cde'
+export const LIGHT_PRIMARY_COLOR = '#225bf7'
 export const LIGHT_SECONDARY_COLOR = '#92b4ed'
 
 // Text colors
 export const LIGHT_TEXT_WITH_PRIMARY = '#ffffff'
-export const LIGHT_TEXT_WITH_SECONDARY = '#ffffff'
+export const LIGHT_TEXT_WITH_SECONDARY = '#f1f1f1'
 export const LIGHT_TEXT_PLACEHOLDER = '#efefef'
 export const LIGHT_TEXT_DISABLED = '#999999'
 
@@ -38,7 +38,7 @@ export const LIGHT_SIDEBAR_HOVER = '#f1f3f7'
 // ---------------------------- //
 // ---------------------------- //
 export const DARK_PRIMARY_COLOR = '#1a3b75'
-export const DARK_SECONDARY_COLOR = '#23365d'
+export const DARK_SECONDARY_COLOR = '#3a3b3c'
 
 // Text colors
 export const DARK_TEXT_WITH_PRIMARY = '#ffffff'

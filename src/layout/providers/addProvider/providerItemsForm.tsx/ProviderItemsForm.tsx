@@ -8,6 +8,7 @@ import { Input } from 'components/inputs'
 import { Button } from 'components/buttons'
 
 import { Product } from 'types/product'
+import { ReactTable } from 'components/tables'
 
 interface ComponentProps {
   productsArray: Product[]
@@ -20,41 +21,29 @@ const ProviderItemsForm: React.FC<ComponentProps> = ({ productsArray }) => {
     setFilterValue(e.currentTarget.value)
   }
 
-  //   const columns = [{
-  //     Header: 'RUT',
-  //     accessor: 'id_number'
-  //   }, {
-  //     Header: 'Nombre',
-  //     accessor: 'client_name'
-  //   }, {
-  //     Header: '¿Es PEP?',
-  //     accessor: 'is_pep',
-  //     Cell: (rowInfo: any) => {
-  //       const is_pep = rowInfo.original.is_pep
-  //       return is_pep ? 'Si' : 'No'
-  //     },
-  //     filterMethod: (filter: any, row: any) => {
-  //       const isPepStr = row.is_pep ? 'Si' : 'No'
-  //       return isPepStr.startsWith(filter.value)
-  //     },
-  //   }, {
-  //     Header: 'Estado',
-  //     accessor: 'state',
-  //     Cell: (rowInfo: any) => {
-  //       const state = rowInfo.original.state
-  //       return state && kycStateOptions[state] ? kycStateOptions[state].desc : ''
-  //     },
-  //     filterMethod: (filter: any, row: any) => {
-  //       const state = kycStateOptions[row.state].desc
-  //       return state.startsWith(filter.value)
-  //     },
-  //   }
-  // ]
+  const columns = [
+    {
+      Header: 'ID',
+      accessor: 'id',
+      width: 50,
+      style: { textAlign: 'center', margin: 'auto' }
+    },
+    {
+      Header: 'Nombre',
+      accessor: 'productName',
+      style: { margin: 'auto' }
+    },
+    {
+      Header: 'Acciones',
+      Cell: (rowInfo: any) => <Button color='primary' width='100%' customHeight='32px'>Seleccionar</Button>,
+      width: 135
+    }
+  ]
   return (
     <FlexContainer marginTop='30px' justifyContent='space-between'>
       <FlexContainer flexDirection='column' width='48%'>
         <CardContainer header>
-          Producto
+          Productos actualmente registrados
         </CardContainer>
         <CardContainer flexDirection='column'>
           <FlexContainer justifyContent='space-between' width='100%' marginBottom='1rem'>
@@ -62,21 +51,25 @@ const ProviderItemsForm: React.FC<ComponentProps> = ({ productsArray }) => {
               value={filterValue}
               id='filter_value'
               placeholder='Filtrar por ID o nombre'
-              width='70%'
+              width='73.5%'
               onChange={handleFilterChange}
             />
-            <Button color='secondary' customHeight='2rem' svg={<RefreshSVG />}>Actualizar</Button>
+            <Button hollow color='primary' customHeight='2rem' svg={<RefreshSVG />}>Actualizar</Button>
           </FlexContainer>
-          <EmptyContainerMsg message='No se han encontrado productos.' />
+          {
+            productsArray.length === 0 ?
+              <EmptyContainerMsg message='No se han encontrado productos.' />
+              :
+              <ReactTable data={productsArray} columns={columns} />
+          }
         </CardContainer>
       </FlexContainer>
       <FlexContainer flexDirection='column' width='48%'>
         <CardContainer header justifyContent='space-between'>
-          <p>Producto</p>
-          <p>Precio</p>
+          Productos a proveer
         </CardContainer>
         <CardContainer>
-          <EmptyContainerMsg />
+          <EmptyContainerMsg message='Aún no se han seleccionado productos' />
         </CardContainer>
       </FlexContainer>
     </FlexContainer>

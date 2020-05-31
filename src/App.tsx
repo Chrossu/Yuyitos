@@ -26,7 +26,7 @@ const App: React.FC<ComponentProps> = ({ theme, user }) => {
   const isUser = !!user.id
 
   return (
-    <ThemeProvider theme={theme !== LIGHT ? lightTheme : darkTheme}>
+    <ThemeProvider theme={theme === LIGHT ? lightTheme : darkTheme}>
       <Sidebar isUser={isUser} />
       <GlobalStyles />
       <MainContainer isUser={isUser}>

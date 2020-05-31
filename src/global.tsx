@@ -34,5 +34,37 @@ export const GlobalStyles = createGlobalStyle`
     box-shadow: 0 0 0.1rem ${({ theme }) => theme.primaryColor}54;
     outline: transparent;
   }
+
+  .ReactTable {
+    .rt-thead.-header {
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+
+    .-pagination .-btn {
+      opacity: 0.9;
+      color: ${({ theme }) => theme.textWithSecondary};
+      background: ${({ theme }: Props) => theme.secondaryColor};
+
+      &:hover, &:not([disabled]):hover {
+        background: ${({ theme }: Props) => theme.secondaryColor};
+        opacity: 1;
+      }
+
+      &.-btn[disabled] {
+        opacity: 0.3;
+        color: ${({ theme }: Props) => theme.textWithPrimary};
+
+        &:hover {
+          opacity: 0.35;
+        }
+      }
+    }
+    
+    .-pagination input, .-pagination select {
+      background: ${({ theme }: Props) => theme.defaultPrimaryBackground};
+      color: ${({ theme }) => theme.defaultText};
+      transition: color 0.25s linear, background 0.25s linear;
+    }
   }
+
 `
