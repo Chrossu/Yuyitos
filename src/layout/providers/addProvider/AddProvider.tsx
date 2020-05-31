@@ -17,16 +17,13 @@ const AddProvider: React.FC<ComponentProps> = props => {
     rut: ''
   })
 
-  // Original items from data fetching request
-  const [productsDataArray, setProductsDataArray] = React.useState<Product[]>([])
-
-  // Items on left table that are filtered depending on user actions
-  const [productsArray, setProductsArray] = React.useState<Product[]>([])
-
-  // Items that provider will provide on right table
-  const [selectedProductsArray, setSelectedProductsArray] = React.useState<Product[]>([])
-
   React.useEffect(() => {
+    getProducts()
+  }, [])
+
+  const getProducts = async () => {
+    // const res = await axios.get('')
+
     const mockData: Product[] = [
       {
         id: '1',
@@ -134,7 +131,7 @@ const AddProvider: React.FC<ComponentProps> = props => {
         }
       },
       {
-        id: '7',
+        id: '8',
         productName: 'Saco de papas 1kg',
         stockQuantity: '18',
         productBuyPrice: '',
@@ -149,7 +146,7 @@ const AddProvider: React.FC<ComponentProps> = props => {
         }
       },
       {
-        id: '7',
+        id: '9',
         productName: 'Saco de papas 1kg',
         stockQuantity: '18',
         productBuyPrice: '',
@@ -164,7 +161,7 @@ const AddProvider: React.FC<ComponentProps> = props => {
         }
       },
       {
-        id: '7',
+        id: '10',
         productName: 'Saco de papas 1kg',
         stockQuantity: '18',
         productBuyPrice: '',
@@ -181,10 +178,20 @@ const AddProvider: React.FC<ComponentProps> = props => {
     ]
 
     setProductsDataArray(mockData)
-  }, [])
+    setProductsArray(mockData)
+  }
+  // Original items from data fetching request
+  const [productsDataArray, setProductsDataArray] = React.useState<Product[]>([])
+
+  // Items on left table that are filtered depending on user actions
+  const [productsArray, setProductsArray] = React.useState<Product[]>([])
+
+  // Items that provider will provide on right table
+  const [selectedProductsArray, setSelectedProductsArray] = React.useState<Product[]>([])
 
   const setSelectedProduct = (selectedProduct: Product) => {
     setSelectedProductsArray([...selectedProductsArray, selectedProduct])
+    setProductsArray(() => productsArray.filter(product => product.id !== selectedProduct.id))
   }
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>, rowInfo: any) => {
@@ -194,12 +201,12 @@ const AddProvider: React.FC<ComponentProps> = props => {
 
     setSelectedProductsArray(newSelectedProductsArray)
   }
-  
+
   return (
     <>
       <ProviderDataForm providerFormState={providerForm} setProviderFormState={setProviderForm} />
       <ProviderItemsForm
-        productsArray={productsDataArray}
+        productsArray={productsArray}
         selectedProductsArray={selectedProductsArray}
         setSelectedProduct={setSelectedProduct}
         handlePriceChange={handlePriceChange}

@@ -93,7 +93,11 @@ const ProviderItemsForm: React.FC<ComponentProps> = props => {
             productsArray.length === 0 ?
               <EmptyContainerMsg message='No se han encontrado productos.' />
               :
-              <ReactTable data={productsArray} columns={leftTableColumns} />
+              <ReactTable
+                data={productsArray}
+                columns={leftTableColumns}
+                defaultPageSize={7}
+              />
           }
         </CardContainer>
       </FlexContainer>
@@ -105,7 +109,7 @@ const ProviderItemsForm: React.FC<ComponentProps> = props => {
           <ReactTable
             data={selectedProductsArray}
             columns={rightTableColumns}
-            defaultPageSize={5}
+            defaultPageSize={7}
             noDataText='Sin productos seleccionados'
           />
         </CardContainer>
