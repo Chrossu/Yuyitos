@@ -2,7 +2,7 @@ import React from 'react'
 import { Redirect, Route, RouteProps } from 'react-router'
 import { useDispatch } from 'react-redux'
 import { setStorageUser } from 'store/actions/user.actions'
-import { User } from 'types/user/User.type'
+import { User } from 'types/user'
 
 export type ComponentProps = RouteProps & {
   isAuthenticated: boolean

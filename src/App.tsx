@@ -7,16 +7,15 @@ import { lightTheme, darkTheme } from './utils/global.theme'
 import { GlobalStyles } from './global'
 import { AppState } from 'store/configureStore'
 
-import { Theme } from 'types/theme/theme.type'
-import { User } from 'types/user/User.type'
-import { LIGHT } from './utils/generalConstants'
-
-import { MainContainer } from 'components/cards'
+import { Theme } from 'types/theme'
+import { User } from 'types/user'
+import { LIGHT } from 'utils/generalConstants'
 import { ProtectedRouteHOC as ProtectedRoute } from 'utils/HOCs'
 
 import Sidebar from 'layout/sidebar/Sidebar'
-import { SellsView, LoginView, ClientsView, ProductsView, ProvidersView } from 'views'
-import StatsView from 'views/Stats.view'
+import { MainContainer } from 'components/cards'
+
+import { SellsView, LoginView, ClientsView, ProductsView, ProvidersView, StatsView } from 'views'
 
 interface ComponentProps {
   theme: Theme

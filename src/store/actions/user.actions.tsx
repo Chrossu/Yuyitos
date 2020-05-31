@@ -1,7 +1,25 @@
-import { SET_USER, SET_STORAGE_USER, CLEAR_USER } from "types/user/user.actions"
-import { LoginUser, User } from "types/user/User.type"
+import { LoginUser, User } from "types/user"
 // import axios from 'axios'
 
+export const SET_USER = 'SET_USER'
+export const SET_STORAGE_USER = 'SET_STORAGE_USER'
+export const CLEAR_USER = 'CLEAR_USER'
+
+export type SetUser = {
+  type: typeof SET_USER,
+  payload: User
+}
+
+export type SetLocalUser = {
+  type: typeof SET_STORAGE_USER,
+  payload: User
+}
+
+export type ClearUser = {
+  type: typeof CLEAR_USER
+}
+
+export type UserActions = | SetUser | ClearUser | SetLocalUser
 
 export const setUser = (user: LoginUser, redirect?: () => void) => async (dispatch: any) => {
   try {

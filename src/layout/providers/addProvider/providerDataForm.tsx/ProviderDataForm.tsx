@@ -1,18 +1,28 @@
 import React from 'react'
 
-// import { } from './addProvider.style'
-
-import { ReactComponent as AddSVG } from 'layout/svg-repo/add.svg'
 import CardContainer from 'components/cards/cardContainer/CardContainer'
 import Input from 'components/inputs/input/Input'
 import FlexContainer from 'components/cards/flexContainer/FlexContainer'
-import Button from 'components/buttons/button/Button'
+
+import { ProviderFormState } from 'types/provider'
 
 interface ComponentProps {
-
+  providerFormState: ProviderFormState
+  setProviderFormState: React.Dispatch<React.SetStateAction<ProviderFormState>>
 }
 
-const AddProvider: React.FC<ComponentProps> = props => {
+const AddProvider: React.FC<ComponentProps> = ({ providerFormState, setProviderFormState }) => {
+
+  const { providerName, address, rut, phoneNumber } = providerFormState
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.currentTarget
+    setProviderFormState({
+      ...providerFormState,
+      [name]: value
+    })
+  }
+
   return (
     <>
       <CardContainer header>
@@ -21,19 +31,46 @@ const AddProvider: React.FC<ComponentProps> = props => {
       <CardContainer flexDirection='column'>
         <FlexContainer>
           <FlexContainer width='25%'>
-            <Input id='productName' label='Nombre proveedor' placeholder='Ingresa nombre proveedor' width='80%' />
+            <Input
+              value={providerName}
+              id='providerName'
+              label='Nombre proveedor'
+              placeholder='Ingresa nombre proveedor'
+              width='80%'
+              onChange={handleChange}
+            />
           </FlexContainer>
           <FlexContainer width='25%'>
-            <Input id='sellPrice' label='Precio de venta' placeholder='Ingresa precio de venta' width='80%' />
+            <Input
+              value={rut}
+              id='rut'
+              label='Rut'
+              placeholder='Ingresa rut de proveedor'
+              width='80%'
+              onChange={handleChange}
+            />
           </FlexContainer>
           <FlexContainer width='25%'>
-            <Input id='sellPrice' label='Dirección' placeholder='Ingresa dirección' width='80%' />
+            <Input
+              value={address}
+              id='address'
+              label='Dirección'
+              placeholder='Ingresa dirección'
+              width='80%'
+              onChange={handleChange}
+            />
           </FlexContainer>
           <FlexContainer width='25%'>
-            <Input id='sellPrice' label='Fono contacto' placeholder='Ingresa fono' width='80%' />
+            <Input
+              value={phoneNumber}
+              id='phoneNumber'
+              label='Fono de contacto'
+              placeholder='Ingresa fono'
+              width='80%'
+              onChange={handleChange}
+            />
           </FlexContainer>
         </FlexContainer>
-        <Button svg={<AddSVG />} color='primary' margin='2rem 0 0' width='fit-content'>Añadir producto</Button>
       </CardContainer>
     </>
   )

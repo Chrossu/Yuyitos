@@ -1,16 +1,25 @@
 import * as React from 'react'
-
-// import {} from './'
+import { ReactComponent as RefreshSVG } from 'layout/svg-repo/refresh.svg'
 
 import CardContainer from 'components/cards/cardContainer/CardContainer'
 import FlexContainer from 'components/cards/flexContainer/FlexContainer'
 import { EmptyContainerMsg } from 'components/cards'
+import { Input } from 'components/inputs'
+import { Button } from 'components/buttons'
+
+import { Product } from 'types/product'
 
 interface ComponentProps {
-
+  productsArray: Product[]
 }
 
-const ProviderItemsForm: React.FC<ComponentProps> = props => {
+const ProviderItemsForm: React.FC<ComponentProps> = ({ productsArray }) => {
+  const [filterValue, setFilterValue] = React.useState<string>('')
+
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterValue(e.currentTarget.value)
+  }
+
   //   const columns = [{
   //     Header: 'RUT',
   //     accessor: 'id_number'
@@ -47,7 +56,17 @@ const ProviderItemsForm: React.FC<ComponentProps> = props => {
         <CardContainer header>
           Producto
         </CardContainer>
-        <CardContainer>
+        <CardContainer flexDirection='column'>
+          <FlexContainer justifyContent='space-between' width='100%' marginBottom='1rem'>
+            <Input
+              value={filterValue}
+              id='filter_value'
+              placeholder='Filtrar por ID o nombre'
+              width='70%'
+              onChange={handleFilterChange}
+            />
+            <Button color='secondary' customHeight='2rem' svg={<RefreshSVG />}>Actualizar</Button>
+          </FlexContainer>
           <EmptyContainerMsg message='No se han encontrado productos.' />
         </CardContainer>
       </FlexContainer>

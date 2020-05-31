@@ -1,10 +1,16 @@
-import { AppActions } from "types/appActions"
-import { SET_LIGHT_THEME, SET_DARK_THEME } from "types/theme/theme.actions"
+export const SET_LIGHT_THEME = 'SET_LIGHT_THEME'
+export const SET_DARK_THEME = 'SET_DARK_THEME'
 
-export const setLightTheme = (): AppActions => ({
+export type SetThemeAction = {
+  type: string
+}
+
+export type ThemeActions = | SetThemeAction
+
+export const setLightTheme = () => ({
   type: SET_LIGHT_THEME
 })
 
-export const setDarkTheme = (): AppActions => ({
+export const setDarkTheme = () => ({
   type: SET_DARK_THEME
 })

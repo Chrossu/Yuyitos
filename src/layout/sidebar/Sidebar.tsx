@@ -7,9 +7,10 @@ import { NAVBAR_ITEMS } from './sidebar.items'
 import { AppState } from 'store/configureStore'
 import { LIGHT, DARK } from 'utils/generalConstants'
 import { setLightTheme, setDarkTheme } from 'store/actions/theme.actions'
-import { Theme } from 'types/theme/theme.type'
 
 import Button from 'components/buttons/button/Button'
+
+import { Theme } from 'types/theme'
 
 interface ComponentProps {
   theme: Theme

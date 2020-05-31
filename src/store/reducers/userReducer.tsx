@@ -1,5 +1,5 @@
-import { User } from "types/user/User.type"
-import { UserActions, SET_USER, SET_STORAGE_USER, CLEAR_USER } from "types/user/user.actions"
+import { User } from "types/user"
+import { UserActions, SET_USER, SET_STORAGE_USER, CLEAR_USER } from "store/actions/user.actions"
 
 const mainState: User = {
   id: '',
@@ -8,7 +8,7 @@ const mainState: User = {
   maternal_last_name: '',
   email: '',
   username: '',
-  user_kind: { }
+  user_kind: {}
 }
 
 const userReducer = (state: User = mainState, action: UserActions) => {

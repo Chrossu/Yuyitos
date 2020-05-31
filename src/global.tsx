@@ -30,7 +30,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   input:focus {
-    border-color: ${({ theme }) => theme.primaryColor};
+    border-color: ${({ theme }) => theme.secondaryColor};
     box-shadow: 0 0 0.1rem ${({ theme }) => theme.primaryColor}54;
     outline: transparent;
   }
