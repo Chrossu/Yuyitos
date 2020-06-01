@@ -16,7 +16,7 @@ export const LIGHT_TEXT_DISABLED = '#999999'
 export const LIGHT_INPUT_BACKGROUND = '#f3f3f3'
 export const LIGHT_INPUT_BORDER = '#dadada'
 export const LIGHT_LIGHT_BORDER = '#f3f3f3'
-export const LIGHT_DISABLED_BACKGROUND = '#f2f2f2'
+export const LIGHT_DISABLED_BACKGROUND = '#d8dde5'
 export const LIGHT_DISABLED_BORDER = '#c5c5c5'
 
 // Defaults colors

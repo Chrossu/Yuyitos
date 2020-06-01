@@ -1,8 +1,5 @@
 // Loading reducer selector
-export const createLoadingSelector = (actions: string[]) => (state: any) => {
-  let asd = actions.some(action => state.loading[action])
-  return asd
-}
+export const createLoadingSelector = (actions: string[]) => (state: any) => actions.some(action => state.loading[action])
 
 // Loading reducer error selector
 export const createErrorMessageSelector = (actions: string[]) => (state: any) => {
