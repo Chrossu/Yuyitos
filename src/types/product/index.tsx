@@ -3,21 +3,27 @@ export type ProductFormState = {
   productName: string
   stockQuantity: string
   productType: ProductType
-  brand: BrandType
+  brand: Brand
   productBuyPrice: string
   productSellPrice: string
   providerID?: string
 }
 
 export type ProductType = {
-  idType: string
+  id: string
   productTypeName: string
 }
 
-export type BrandType = {
-  idBrand: string
+export type Brand = {
+  id: string
   brandName: string
   brandDescription?: string
+}
+
+export type ProductReducer = {
+  products: ProductFormState[]
+  productTypes: ProductType[]
+  productBrands: Brand[]
 }
 
 export type Product = ProductFormState & {

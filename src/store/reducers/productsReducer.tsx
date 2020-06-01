@@ -1,10 +1,29 @@
-import { Product } from "types/product"
-import { ProductsActions, FETCH_PRODUCTS_SUCCESS } from "store/actions/products.action"
+import { ProductReducer } from "types/product"
+import { ProductsActions, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCT_TYPES_SUCCESS, FETCH_BRANDS_SUCCESS } from "store/actions/products.action"
 
-const productsReducer = (state: Product[] = [], action: ProductsActions) => {
+const initialState = {
+  products: [],
+  productTypes: [],
+  productBrands: []
+}
+
+const productsReducer = (state: ProductReducer = initialState, action: ProductsActions) => {
   switch (action.type) {
     case FETCH_PRODUCTS_SUCCESS:
-      return action.payload
+      return {
+        ...state,
+        products: action.payload
+      }
+    case FETCH_PRODUCT_TYPES_SUCCESS:
+      return {
+        ...state,
+        productTypes: action.payload
+      }
+    case FETCH_BRANDS_SUCCESS:
+      return {
+        ...state,
+        productBrands: action.payload
+      }
     default:
       return state
   }

@@ -42,11 +42,11 @@ const AddProvider: React.FC = () => {
         productBuyPrice: '',
         productSellPrice: '900',
         productType: {
-          idType: '1',
+          id: '1',
           productTypeName: 'Abarrote'
         },
         brand: {
-          idBrand: '0',
+          id: '0',
           brandName: ''
         }
       },
@@ -57,11 +57,11 @@ const AddProvider: React.FC = () => {
         productBuyPrice: '',
         productSellPrice: '900',
         productType: {
-          idType: '1',
+          id: '1',
           productTypeName: 'Abarrote'
         },
         brand: {
-          idBrand: '0',
+          id: '0',
           brandName: ''
         }
       },
@@ -72,11 +72,11 @@ const AddProvider: React.FC = () => {
         productBuyPrice: '',
         productSellPrice: '900',
         productType: {
-          idType: '1',
+          id: '1',
           productTypeName: 'Abarrote'
         },
         brand: {
-          idBrand: '0',
+          id: '0',
           brandName: ''
         }
       },
@@ -87,11 +87,11 @@ const AddProvider: React.FC = () => {
         productBuyPrice: '',
         productSellPrice: '900',
         productType: {
-          idType: '1',
+          id: '1',
           productTypeName: 'Abarrote'
         },
         brand: {
-          idBrand: '0',
+          id: '0',
           brandName: ''
         }
       },
@@ -102,11 +102,11 @@ const AddProvider: React.FC = () => {
         productBuyPrice: '',
         productSellPrice: '900',
         productType: {
-          idType: '1',
+          id: '1',
           productTypeName: 'Abarrote'
         },
         brand: {
-          idBrand: '0',
+          id: '0',
           brandName: ''
         }
       },
@@ -117,11 +117,11 @@ const AddProvider: React.FC = () => {
         productBuyPrice: '',
         productSellPrice: '900',
         productType: {
-          idType: '1',
+          id: '1',
           productTypeName: 'Abarrote'
         },
         brand: {
-          idBrand: '0',
+          id: '0',
           brandName: ''
         }
       },
@@ -132,11 +132,11 @@ const AddProvider: React.FC = () => {
         productBuyPrice: '',
         productSellPrice: '900',
         productType: {
-          idType: '1',
+          id: '1',
           productTypeName: 'Abarrote'
         },
         brand: {
-          idBrand: '0',
+          id: '0',
           brandName: ''
         }
       },
@@ -147,11 +147,11 @@ const AddProvider: React.FC = () => {
         productBuyPrice: '',
         productSellPrice: '900',
         productType: {
-          idType: '1',
+          id: '1',
           productTypeName: 'Abarrote'
         },
         brand: {
-          idBrand: '0',
+          id: '0',
           brandName: ''
         }
       },
@@ -162,11 +162,11 @@ const AddProvider: React.FC = () => {
         productBuyPrice: '',
         productSellPrice: '900',
         productType: {
-          idType: '1',
+          id: '1',
           productTypeName: 'Abarrote'
         },
         brand: {
-          idBrand: '0',
+          id: '0',
           brandName: ''
         }
       },
@@ -177,11 +177,11 @@ const AddProvider: React.FC = () => {
         productBuyPrice: '',
         productSellPrice: '900',
         productType: {
-          idType: '1',
+          id: '1',
           productTypeName: 'Abarrote'
         },
         brand: {
-          idBrand: '0',
+          id: '0',
           brandName: ''
         }
       },

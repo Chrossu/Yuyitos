@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import { Route, Switch } from 'react-router-dom'
 
@@ -16,6 +16,7 @@ import Sidebar from 'layout/sidebar/Sidebar'
 import { MainContainer } from 'components/cards'
 
 import { SellsView, LoginView, ClientsView, ProductsView, ProvidersView, StatsView } from 'views'
+import { fetchProductTypes, fetchBrands } from 'store/actions/products.action'
 
 interface ComponentProps {
   theme: Theme
@@ -23,7 +24,14 @@ interface ComponentProps {
 }
 
 const App: React.FC<ComponentProps> = ({ theme, user }) => {
+  const dispatch = useDispatch()
   const isUser = !!user.id
+
+  React.useEffect(() => {
+    dispatch(fetchProductTypes())
+    dispatch(fetchBrands())
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <ThemeProvider theme={theme === LIGHT ? lightTheme : darkTheme}>
