@@ -7,6 +7,10 @@ import CardContainer from 'components/cards/cardContainer/CardContainer'
 import { Input } from 'components/inputs'
 import FlexContainer from 'components/cards/flexContainer/FlexContainer'
 import Button from 'components/buttons/button/Button'
+import { createLoadingSelector } from 'utils/generalFunctions'
+import { useSelector } from 'react-redux'
+import { AppState } from 'store/configureStore'
+import { FETCH_PRODUCTS } from 'utils/generalConstants'
 
 interface ComponentProps {
 
@@ -15,12 +19,14 @@ interface ComponentProps {
 type FormState = {
   productName: string
   sellPrice: string
+  productKind: string
 }
 
 const AddProduct: React.FC<ComponentProps> = props => {
   const [{ productName, sellPrice }, setFormState] = React.useState<FormState>({
     productName: '',
-    sellPrice: ''
+    sellPrice: '',
+    productKind: ''
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,6 +35,9 @@ const AddProduct: React.FC<ComponentProps> = props => {
     setFormState((s) => ({ ...s, [name]: value }))
   }
 
+  const loadingSelector = createLoadingSelector([FETCH_PRODUCTS])
+  const isFetchingProducts = useSelector((state: AppState) => loadingSelector(state))
+  
   return (
     <>
       <CardContainer header>

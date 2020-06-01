@@ -25,7 +25,6 @@ const AddProvider: React.FC<ComponentProps> = ({ providersForSelect }) => {
   })
 
   const onSelectProvider = (selectedOption: any) => {
-    console.log(selectedOption)
     const provider = providers.find(provider => provider.id === selectedOption.value)
 
     if (!provider)
