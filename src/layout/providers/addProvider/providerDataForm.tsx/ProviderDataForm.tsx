@@ -13,20 +13,32 @@ import { SelectOption } from 'types/generals'
 
 interface ComponentProps {
   providersForSelect: SelectOption[]
-  providerFormState: ProviderFormState
-  setProviderFormState: React.Dispatch<React.SetStateAction<ProviderFormState>>
 }
 
-const AddProvider: React.FC<ComponentProps> = ({ providersForSelect, providerFormState, setProviderFormState }) => {
-  const { businessType, address, phoneNumber } = providerFormState
+const AddProvider: React.FC<ComponentProps> = ({ providersForSelect }) => {
+  const providers = useSelector((state: AppState) => state.providers)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.currentTarget
-    setProviderFormState({
-      ...providerFormState,
-      [name]: value
+  const [providerForm, setProviderForm] = React.useState<ProviderFormState>({
+    businessType: '',
+    address: '',
+    phoneNumber: ''
+  })
+
+  const onSelectProvider = (selectedOption: any) => {
+    console.log(selectedOption)
+    const provider = providers.find(provider => provider.id === selectedOption.value)
+
+    if (!provider)
+      return
+
+    setProviderForm({
+      businessType: provider.business.businessType,
+      address: provider.address,
+      phoneNumber: provider.phoneNumber
     })
   }
+
+  const { businessType, address, phoneNumber } = providerForm
 
   const loadingSelector = createLoadingSelector([FETCH_PROVIDERS])
   const isFetchingProviders = useSelector((state: AppState) => loadingSelector(state))
@@ -39,16 +51,14 @@ const AddProvider: React.FC<ComponentProps> = ({ providersForSelect, providerFor
       <CardContainer flexDirection='column'>
         <FlexContainer>
           <FlexContainer width='25%'>
-            {
-              isFetchingProviders ? 'Cargando...'
-              :
-              <SelectInput
-                options={providersForSelect}
-                label='Proveedor'
-                width='80%'
-                placeholder='Seleccione proveedor'
-              />
-            }
+            <SelectInput
+              options={providersForSelect}
+              isLoading={isFetchingProviders}
+              label='Proveedor'
+              width='80%'
+              placeholder='Seleccione proveedor'
+              onChange={onSelectProvider}
+            />
           </FlexContainer>
           <FlexContainer width='25%'>
             <Input
@@ -57,7 +67,6 @@ const AddProvider: React.FC<ComponentProps> = ({ providersForSelect, providerFor
               id='businessType'
               label='Rubro'
               width='80%'
-              onChange={handleChange}
             />
           </FlexContainer>
           <FlexContainer width='25%'>
@@ -67,7 +76,6 @@ const AddProvider: React.FC<ComponentProps> = ({ providersForSelect, providerFor
               id='address'
               label='Dirección'
               width='80%'
-              onChange={handleChange}
             />
           </FlexContainer>
           <FlexContainer width='25%'>
@@ -77,7 +85,6 @@ const AddProvider: React.FC<ComponentProps> = ({ providersForSelect, providerFor
               id='phoneNumber'
               label='Fono contacto'
               width='80%'
-              onChange={handleChange}
             />
           </FlexContainer>
         </FlexContainer>

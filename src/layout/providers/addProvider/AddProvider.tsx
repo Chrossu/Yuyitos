@@ -9,25 +9,17 @@ import { fetchProviders } from 'store/actions/providers.actions'
 import { AppState } from 'store/configureStore'
 import { Product } from 'types/product'
 import { SelectOption } from 'types/generals'
-import { ProviderFormState } from 'types/provider'
 
 const AddProvider: React.FC = () => {
   const dispatch = useDispatch()
   const providers = useSelector((state: AppState) => state.providers)
-
-  const [providerForm, setProviderForm] = React.useState<ProviderFormState>({
-    providerName: '',
-    businessType: '',
-    address: '',
-    phoneNumber: ''
-  }
-  )
 
   const [providersForSelect, setProvidersForSelect] = React.useState<SelectOption[]>([])
 
   React.useEffect(() => {
     dispatch(fetchProviders())
     getProducts()
+    // eslint-disable-next-line
   }, [])
 
   React.useEffect(() => {
@@ -221,11 +213,7 @@ const AddProvider: React.FC = () => {
 
   return (
     <>
-      <ProviderDataForm
-        providersForSelect={providersForSelect}
-        providerFormState={providerForm}
-        setProviderFormState={setProviderForm}
-      />
+      <ProviderDataForm providersForSelect={providersForSelect}/>
       <ProviderItemsForm
         productsArray={productsArray}
         selectedProductsArray={selectedProductsArray}

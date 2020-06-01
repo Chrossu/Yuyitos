@@ -1,5 +1,4 @@
 export type ProviderFormState = {
-  providerName: string
   businessType: string
   address: string
   phoneNumber: string

@@ -13,7 +13,7 @@ type ComponentProps = {
   width?: string
   disabled?: boolean
   autoComplete?: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const Input: React.FC<ComponentProps> = ({ id, name, label, value, placeholder, width, disabled = false, autoComplete = 'off', onChange }) => {

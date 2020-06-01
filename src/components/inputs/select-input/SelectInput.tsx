@@ -6,6 +6,7 @@ import { StyledSelectInput } from './selectInput.style'
 import { SelectOption } from 'types/generals'
 import { FlexContainer } from 'components/cards'
 import { Label } from 'components/texts'
+import { Spinner } from 'components/utilities-components'
 
 interface ComponentProps {
   options: OptionsType<SelectOption>
@@ -13,15 +14,24 @@ interface ComponentProps {
   id?: string
   label?: string
   width?: string
+  isLoading?: boolean
+  onChange: (optin: any) => void
 }
 
-const SelectInput: React.FC<ComponentProps> = ({ options, placeholder, id, label, width }) => {
+const SelectInput: React.FC<ComponentProps> = ({ options, placeholder, id, label, width, isLoading, onChange }) => {
+  const handleChange = (selectedOption: any) => onChange(selectedOption)
+
   return (
     <FlexContainer flexDirection='column' width={width ? width : '100%'}>
       {
         label && <Label id={id} text={label} />
       }
-      <StyledSelectInput id={id} options={options} placeholder={placeholder} />
+      {
+        isLoading ? <Spinner />
+          :
+          <StyledSelectInput id={id} options={options} placeholder={placeholder} onChange={handleChange} />
+
+      }
     </FlexContainer>
   )
 }
