@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { ReactComponent as RefreshSVG } from 'layout/svg-repo/refresh.svg'
 
 import CardContainer from 'components/cards/cardContainer/CardContainer'
@@ -47,7 +47,7 @@ const ProviderItemsForm: React.FC<ComponentProps> = props => {
     {
       Header: 'Acciones',
       Cell: (rowInfo: any) => (
-        <Button color='primary' width='100%' customHeight='32px' onClick={() => handleSelectedProduct(rowInfo)}>
+        <Button color='primary' width='90%' fontSize='0.87rem' margin='auto' customHeight='32px' onClick={() => handleSelectedProduct(rowInfo)}>
           Seleccionar
         </Button>
       ),
@@ -103,7 +103,7 @@ const ProviderItemsForm: React.FC<ComponentProps> = props => {
       </FlexContainer>
       <FlexContainer flexDirection='column' width='48%'>
         <CardContainer header justifyContent='space-between'>
-          Productos a proveer
+          Productos registrados a recibir
         </CardContainer>
         <CardContainer>
           <ReactTable

@@ -5,6 +5,7 @@ import Input from 'components/inputs/input/Input'
 import FlexContainer from 'components/cards/flexContainer/FlexContainer'
 
 import { ProviderFormState } from 'types/provider'
+import { SelectInput } from 'components/inputs'
 
 interface ComponentProps {
   providerFormState: ProviderFormState
@@ -12,7 +13,7 @@ interface ComponentProps {
 }
 
 const AddProvider: React.FC<ComponentProps> = ({ providerFormState, setProviderFormState }) => {
-  const { providerName, address, rut, phoneNumber } = providerFormState
+  const { providerName, business, address, phoneNumber } = providerFormState
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget
@@ -22,6 +23,13 @@ const AddProvider: React.FC<ComponentProps> = ({ providerFormState, setProviderF
     })
   }
 
+  const mockOptions = [
+    {
+      value: '1',
+      label: 'John Doe'
+    }
+  ]
+
   return (
     <>
       <CardContainer header>
@@ -30,41 +38,39 @@ const AddProvider: React.FC<ComponentProps> = ({ providerFormState, setProviderF
       <CardContainer flexDirection='column'>
         <FlexContainer>
           <FlexContainer width='25%'>
+            <SelectInput
+              options={mockOptions}
+              label='Proveedor'
+              width='80%'
+              placeholder='Seleccione proveedor'
+            />
+          </FlexContainer>
+          <FlexContainer width='25%'>
             <Input
-              value={providerName}
-              id='providerName'
-              label='Nombre proveedor'
-              placeholder='Ingresa nombre proveedor'
+              disabled
+              value={business}
+              id='business'
+              label='Rubro'
               width='80%'
               onChange={handleChange}
             />
           </FlexContainer>
           <FlexContainer width='25%'>
             <Input
-              value={rut}
-              id='rut'
-              label='Rut proveedor'
-              placeholder='Ingresa rut de proveedor'
-              width='80%'
-              onChange={handleChange}
-            />
-          </FlexContainer>
-          <FlexContainer width='25%'>
-            <Input
+              disabled
               value={address}
               id='address'
               label='Dirección'
-              placeholder='Ingresa dirección'
               width='80%'
               onChange={handleChange}
             />
           </FlexContainer>
           <FlexContainer width='25%'>
             <Input
+              disabled
               value={phoneNumber}
               id='phoneNumber'
               label='Fono contacto'
-              placeholder='Ingresa fono'
               width='80%'
               onChange={handleChange}
             />

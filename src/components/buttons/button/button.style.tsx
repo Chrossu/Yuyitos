@@ -12,7 +12,7 @@ export const StyledButton = styled.button`
   padding: ${(({ padding }: Props) => padding ? padding : '0.75rem 1rem')};
   border-radius: 3px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: ${(({ fontSize}: Props) => fontSize ? fontSize : '0.9rem')};
   transition: all 0.25s linear;
   border: 1px solid ${setBorderColor};
   background: ${setBackgroundColor};

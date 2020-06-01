@@ -25,8 +25,15 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-size: 15px;
-    font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     transition: all 0.25s linear;
+  }
+
+  input {
+    border: 1px solid ${({ theme }: Props) => theme.lightBorder} !important;
+  }
+
+  body, input {
+    font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
 
   input:focus {
@@ -38,6 +45,14 @@ export const GlobalStyles = createGlobalStyle`
   .ReactTable {
     .rt-thead.-header {
       box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+
+    .rt-noData {
+      background: ${({ theme }: Props) => theme.defaultPrimaryBackground};
+      color: ${({ theme }: Props) => theme.defaultText};
+      border: 2px solid ${({ theme }: Props) => theme.lightBorder};
+      border-radius: 3px;
+      transition: all 0.25s linear;
     }
 
     .-pagination .-btn {

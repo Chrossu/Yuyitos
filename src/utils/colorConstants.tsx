@@ -49,7 +49,7 @@ export const DARK_TEXT_DISABLED = '#999999'
 // Utilities colors
 export const DARK_INPUT_BACKGROUND = '#24232d'
 export const DARK_INPUT_BORDER = '#24324e'
-export const DARK_LIGHT_BORDER = '#172542'
+export const DARK_LIGHT_BORDER = '#203255'
 export const DARK_DISABLED_BACKGROUND = '#171717'
 export const DARK_DISABLED_BORDER = '#c5c5c5'
 

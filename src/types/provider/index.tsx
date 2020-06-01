@@ -1,6 +1,5 @@
 export type ProviderFormState = {
   providerName: string
-  rut: string
   business: string
   address: string
   phoneNumber: string

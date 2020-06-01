@@ -19,10 +19,16 @@ type ComponentProps = {
 const Input: React.FC<ComponentProps> = ({ id, name, label, value, placeholder, width, disabled = false, autoComplete = 'off', onChange }) => {
   return (
     <FlexContainer flexDirection='column' width={width ? width : '100%'}>
-      {
-        label && <Label id={id} text={label} />
-      }
-      <StyledInput id={id} name={name ? name : id} value={value} placeholder={placeholder} disabled={disabled} autoComplete={autoComplete} onChange={onChange} />
+      {label && <Label id={id} text={label} />}
+      <StyledInput
+        id={id}
+        name={name ? name : id}
+        value={value}
+        placeholder={placeholder}
+        disabled={disabled}
+        autoComplete={autoComplete}
+        onChange={onChange}
+      />
     </FlexContainer>
   )
 }

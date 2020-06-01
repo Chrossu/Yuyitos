@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import ProviderDataForm from './providerDataForm.tsx'
 import ProviderItemsForm from './providerItemsForm.tsx'
 import { ProviderFormState } from 'types/provider'
@@ -11,10 +11,9 @@ interface ComponentProps {
 const AddProvider: React.FC<ComponentProps> = props => {
   const [providerForm, setProviderForm] = React.useState<ProviderFormState>({
     providerName: '',
-    address: '',
     business: '',
+    address: '',
     phoneNumber: '',
-    rut: ''
   })
 
   React.useEffect(() => {

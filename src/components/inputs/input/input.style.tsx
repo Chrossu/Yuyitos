@@ -12,6 +12,7 @@ const setBackgroundAndBorder = ({ disabled, theme }: Props) => {
     return `
       background: ${theme.inputTheme.disabledBackground};
       border: 1px solid ${theme.inputTheme.disabledBorder};
+      cursor: not-allowed;
     `
   else return `
     background: ${theme.inputTheme.background};
@@ -21,7 +22,6 @@ const setBackgroundAndBorder = ({ disabled, theme }: Props) => {
 
 export const StyledInput = styled.input`
   padding: 0.5rem 0.25rem;
-  font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   transition: all 0.25s linear;
   font-size: 0.8rem;
   color: ${(({ theme }: Props) => theme.defaultText)};

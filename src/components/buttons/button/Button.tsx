@@ -19,22 +19,23 @@ export type ButtonProps = {
   noWrap?: boolean
   padding?: string
   hollow?: boolean
+  fontSize?: string
   svg?: JSX.Element
 }
 
-const Button: React.FC<ButtonProps> = (props) => {
+const Button: React.FC<ButtonProps> = ({ onClick, style, disabled, svg, children, ...props }) => {
   return (
     <>
       <StyledButton
         color='primary'
         margin='auto 0 0 0'
-        onClick={props.onClick}
-        style={props.style}
-        disabled={props.disabled}
+        onClick={onClick}
+        style={style}
+        disabled={disabled}
         {...props}
       >
-        {props.svg}
-        {props.children}
+        {svg}
+        {children}
       </StyledButton>
     </>
   )
