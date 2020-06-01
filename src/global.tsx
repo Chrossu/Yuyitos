@@ -29,7 +29,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   input {
-    border: 1px solid ${({ theme }: Props) => theme.lightBorder} !important;
+    border: 1px solid ${({ theme }: Props) => theme.inputBorder} !important;
   }
 
   body, input {

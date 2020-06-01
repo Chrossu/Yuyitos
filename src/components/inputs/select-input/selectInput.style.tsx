@@ -8,7 +8,7 @@ type Props = {
   width?: string
 }
 
-const setBackgroundAndBorder = ({ disabled, theme }: Props) => {
+const setBackground = ({ disabled, theme }: Props) => {
   if (disabled)
     return `
       background: ${theme.inputTheme.disabledBackground};
@@ -22,15 +22,14 @@ export const StyledSelectInput = styled(Select)`
   font-size: 0.85rem;
   min-height: 1px;
   color: ${(({ theme }: Props) => theme.defaultText)};
-  transition: background 0.25s linear, color 0.25s linear;
-
+  
   & > div {
     min-height: 33px;
     height: 33px;
     transition: background 0.25s linear, color 0.25s linear, border 0.25s linear;
-    border: 1px solid ${({ theme }: Props) => theme.lightBorder} !important;
-    ${setBackgroundAndBorder}
-
+    border: 1px solid ${({ theme }: Props) => theme.inputBorder};
+    ${setBackground}
+    
     & > div {
       margin-top: -0.2rem;
     }

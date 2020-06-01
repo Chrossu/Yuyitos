@@ -16,7 +16,7 @@ const setBackgroundAndBorder = ({ disabled, theme }: Props) => {
     `
   else return `
     background: ${theme.inputTheme.background};
-    border: 1px solid ${theme.inputTheme.border};
+    border: 1px solid ${theme.inputBorder};
   `
 }
 

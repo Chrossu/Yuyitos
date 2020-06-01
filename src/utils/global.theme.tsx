@@ -15,6 +15,7 @@ export type GlobalTheme = {
   defaultText: string
   textActive: string
   lightBorder: string
+  inputBorder: string
   primaryColor: string
   secondaryColor: string
   textWithPrimary: string
@@ -33,7 +34,6 @@ type ButtonTheme = {
 
 type InputTheme = {
   background: string,
-  border: string,
   disabledBackground: string,
   disabledBorder: string
 }
@@ -52,6 +52,7 @@ export const lightTheme: GlobalTheme = {
   defaultText: LIGHT_DEFAULT_TEXT,
   textActive: LIGHT_DEFAULT_TEXT_ACTIVE,
   lightBorder: LIGHT_LIGHT_BORDER,
+  inputBorder: LIGHT_INPUT_BORDER,
   primaryColor: LIGHT_PRIMARY_COLOR,
   secondaryColor: LIGHT_SECONDARY_COLOR,
   textWithPrimary: LIGHT_TEXT_WITH_PRIMARY,
@@ -66,7 +67,6 @@ export const lightTheme: GlobalTheme = {
   // Input theme
   inputTheme: {
     background: LIGHT_INPUT_BACKGROUND,
-    border: LIGHT_INPUT_BORDER,
     disabledBackground: LIGHT_DISABLED_BACKGROUND,
     disabledBorder: LIGHT_DISABLED_BORDER
   },
@@ -86,6 +86,7 @@ export const darkTheme: GlobalTheme = {
   defaultText: DARK_DEFAULT_TEXT,
   textActive: DARK_DEFAULT_TEXT_ACTIVE,
   lightBorder: DARK_LIGHT_BORDER,
+  inputBorder: DARK_INPUT_BORDER,
   primaryColor: DARK_PRIMARY_COLOR,
   secondaryColor: DARK_SECONDARY_COLOR,
   textWithPrimary: DARK_TEXT_WITH_PRIMARY,
@@ -100,7 +101,6 @@ export const darkTheme: GlobalTheme = {
   // Input theme
   inputTheme: {
     background: DARK_INPUT_BACKGROUND,
-    border: DARK_INPUT_BORDER,
     disabledBackground: DARK_DISABLED_BACKGROUND,
     disabledBorder: DARK_DISABLED_BORDER
   },
