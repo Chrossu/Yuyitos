@@ -4,12 +4,12 @@ export type User = {
   paternal_last_name: string
   maternal_last_name: string
   email: string
-  username: string,
+  username: string
   user_kind: UserKind
 }
 
 type UserKind = {
-  id?: string,
+  id?: string
   kind?: UserKindTypes
 }
 

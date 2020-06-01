@@ -1,8 +1,10 @@
 import React from 'react'
 import { Redirect, Route, RouteProps } from 'react-router'
 import { useDispatch } from 'react-redux'
+
 import { setStorageUser } from 'store/actions/user.actions'
-import { User } from 'types/user'
+
+import { User } from 'types/store/user'
 
 export type ComponentProps = RouteProps & {
   isAuthenticated: boolean

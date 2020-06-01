@@ -1,4 +1,4 @@
-export type ReactSelectOptions = {
+export type SelectOption = {
   value: string
   label: string
 }

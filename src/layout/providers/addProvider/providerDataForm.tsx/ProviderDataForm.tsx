@@ -1,19 +1,24 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
-import CardContainer from 'components/cards/cardContainer/CardContainer'
-import Input from 'components/inputs/input/Input'
-import FlexContainer from 'components/cards/flexContainer/FlexContainer'
+import { FlexContainer, CardContainer } from 'components/cards'
+import { Input, SelectInput } from 'components/inputs'
 
+import { FETCH_PROVIDERS } from 'utils/generalConstants'
+import { createLoadingSelector } from 'utils/generalFunctions'
+
+import { AppState } from 'store/configureStore'
 import { ProviderFormState } from 'types/provider'
-import { SelectInput } from 'components/inputs'
+import { SelectOption } from 'types/generals'
 
 interface ComponentProps {
+  providersForSelect: SelectOption[]
   providerFormState: ProviderFormState
   setProviderFormState: React.Dispatch<React.SetStateAction<ProviderFormState>>
 }
 
-const AddProvider: React.FC<ComponentProps> = ({ providerFormState, setProviderFormState }) => {
-  const { providerName, business, address, phoneNumber } = providerFormState
+const AddProvider: React.FC<ComponentProps> = ({ providersForSelect, providerFormState, setProviderFormState }) => {
+  const { businessType, address, phoneNumber } = providerFormState
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget
@@ -23,12 +28,8 @@ const AddProvider: React.FC<ComponentProps> = ({ providerFormState, setProviderF
     })
   }
 
-  const mockOptions = [
-    {
-      value: '1',
-      label: 'John Doe'
-    }
-  ]
+  const loadingSelector = createLoadingSelector([FETCH_PROVIDERS])
+  const isFetchingProviders = useSelector((state: AppState) => loadingSelector(state))
 
   return (
     <>
@@ -38,18 +39,22 @@ const AddProvider: React.FC<ComponentProps> = ({ providerFormState, setProviderF
       <CardContainer flexDirection='column'>
         <FlexContainer>
           <FlexContainer width='25%'>
-            <SelectInput
-              options={mockOptions}
-              label='Proveedor'
-              width='80%'
-              placeholder='Seleccione proveedor'
-            />
+            {
+              isFetchingProviders ? 'Cargando...'
+              :
+              <SelectInput
+                options={providersForSelect}
+                label='Proveedor'
+                width='80%'
+                placeholder='Seleccione proveedor'
+              />
+            }
           </FlexContainer>
           <FlexContainer width='25%'>
             <Input
               disabled
-              value={business}
-              id='business'
+              value={businessType}
+              id='businessType'
               label='Rubro'
               width='80%'
               onChange={handleChange}

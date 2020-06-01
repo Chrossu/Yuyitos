@@ -3,12 +3,12 @@ import { OptionsType } from 'react-select'
 
 import { StyledSelectInput } from './selectInput.style'
 
-import { ReactSelectOptions } from 'types/generals'
+import { SelectOption } from 'types/generals'
 import { FlexContainer } from 'components/cards'
 import { Label } from 'components/texts'
 
 interface ComponentProps {
-  options: OptionsType<ReactSelectOptions>
+  options: OptionsType<SelectOption>
   placeholder?: string
   id?: string
   label?: string

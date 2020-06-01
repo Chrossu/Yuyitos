@@ -1,4 +1,4 @@
-import { LoginUser, User } from "types/user"
+import { LoginUser, User } from "types/store/user"
 // import axios from 'axios'
 
 export const SET_USER = 'SET_USER'

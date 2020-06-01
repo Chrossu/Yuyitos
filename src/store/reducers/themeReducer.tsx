@@ -1,6 +1,6 @@
 import { LIGHT, DARK } from "utils/generalConstants"
 
-import { Theme } from "types/theme"
+import { Theme } from "types/store/theme"
 import { ThemeActions, SET_LIGHT_THEME, SET_DARK_THEME } from "store/actions/theme.actions"
 
 const mainState: Theme = LIGHT

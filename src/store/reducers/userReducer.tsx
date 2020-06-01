@@ -1,4 +1,4 @@
-import { User } from "types/user"
+import { User } from "types/store/user"
 import { UserActions, SET_USER, SET_STORAGE_USER, CLEAR_USER } from "store/actions/user.actions"
 
 const mainState: User = {

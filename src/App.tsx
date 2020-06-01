@@ -7,8 +7,8 @@ import { lightTheme, darkTheme } from './utils/global.theme'
 import { GlobalStyles } from './global'
 import { AppState } from 'store/configureStore'
 
-import { Theme } from 'types/theme'
-import { User } from 'types/user'
+import { Theme } from 'types/store/theme'
+import { User } from 'types/store/user'
 import { LIGHT } from 'utils/generalConstants'
 import { ProtectedRouteHOC as ProtectedRoute } from 'utils/HOCs'
 

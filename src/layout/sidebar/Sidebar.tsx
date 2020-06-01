@@ -10,7 +10,7 @@ import { setLightTheme, setDarkTheme } from 'store/actions/theme.actions'
 
 import Button from 'components/buttons/button/Button'
 
-import { Theme } from 'types/theme'
+import { Theme } from 'types/store/theme'
 
 interface ComponentProps {
   theme: Theme

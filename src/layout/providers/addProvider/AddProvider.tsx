@@ -1,24 +1,43 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+
 import ProviderDataForm from './providerDataForm.tsx'
 import ProviderItemsForm from './providerItemsForm.tsx'
-import { ProviderFormState } from 'types/provider'
+
+import { fetchProviders } from 'store/actions/providers.actions'
+
+import { AppState } from 'store/configureStore'
 import { Product } from 'types/product'
+import { SelectOption } from 'types/generals'
+import { ProviderFormState } from 'types/provider'
 
-interface ComponentProps {
+const AddProvider: React.FC = () => {
+  const dispatch = useDispatch()
+  const providers = useSelector((state: AppState) => state.providers)
 
-}
-
-const AddProvider: React.FC<ComponentProps> = props => {
   const [providerForm, setProviderForm] = React.useState<ProviderFormState>({
     providerName: '',
-    business: '',
+    businessType: '',
     address: '',
-    phoneNumber: '',
-  })
+    phoneNumber: ''
+  }
+  )
+
+  const [providersForSelect, setProvidersForSelect] = React.useState<SelectOption[]>([])
 
   React.useEffect(() => {
+    dispatch(fetchProviders())
     getProducts()
   }, [])
+
+  React.useEffect(() => {
+    const providersForSelect = providers.map(provider => ({
+      value: provider.id,
+      label: provider.providerName
+    }))
+
+    setProvidersForSelect(providersForSelect)
+  }, [providers])
 
   const getProducts = async () => {
     // const res = await axios.get('')
@@ -193,8 +212,7 @@ const AddProvider: React.FC<ComponentProps> = props => {
     setProductsArray(() => productsArray.filter(product => product.id !== selectedProduct.id))
   }
 
-  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>, rowInfo: any) => {
-    const { index } = rowInfo
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>, { index }: any) => {
     let newSelectedProductsArray = [...selectedProductsArray]
     newSelectedProductsArray[index].productBuyPrice = e.currentTarget.value
 
@@ -203,7 +221,11 @@ const AddProvider: React.FC<ComponentProps> = props => {
 
   return (
     <>
-      <ProviderDataForm providerFormState={providerForm} setProviderFormState={setProviderForm} />
+      <ProviderDataForm
+        providersForSelect={providersForSelect}
+        providerFormState={providerForm}
+        setProviderFormState={setProviderForm}
+      />
       <ProviderItemsForm
         productsArray={productsArray}
         selectedProductsArray={selectedProductsArray}
