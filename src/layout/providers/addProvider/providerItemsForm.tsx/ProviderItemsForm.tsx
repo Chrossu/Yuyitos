@@ -68,7 +68,7 @@ const ProviderItemsForm: React.FC<ComponentProps> = props => {
         <Input value={rowInfo.original.productBuyPrice} onChange={(e: React.ChangeEvent<HTMLInputElement>) => handlePriceChange(e, rowInfo)} />
       ),
       style: { margin: 'auto' },
-      width: 200
+      width: 150
     }
   ]
 

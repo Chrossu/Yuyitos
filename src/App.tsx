@@ -8,7 +8,7 @@ import { GlobalStyles } from './global'
 import { AppState } from 'store/configureStore'
 
 import { Theme } from 'types/store/theme'
-import { User } from 'types/store/user'
+import { Client } from 'types/store/user'
 import { LIGHT } from 'utils/generalConstants'
 import { ProtectedRouteHOC as ProtectedRoute } from 'utils/HOCs'
 
@@ -20,7 +20,7 @@ import { fetchProductTypes, fetchBrands } from 'store/actions/products.action'
 
 interface ComponentProps {
   theme: Theme
-  user: User
+  user: Client
 }
 
 const App: React.FC<ComponentProps> = ({ theme, user }) => {

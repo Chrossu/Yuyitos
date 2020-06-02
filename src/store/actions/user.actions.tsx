@@ -1,4 +1,4 @@
-import { LoginUser, User } from "types/store/user"
+import { LoginUser, Client } from "types/store/user"
 // import axios from 'axios'
 
 export const SET_USER = 'SET_USER'
@@ -7,12 +7,12 @@ export const CLEAR_USER = 'CLEAR_USER'
 
 export type SetUser = {
   type: typeof SET_USER,
-  payload: User
+  payload: Client
 }
 
 export type SetLocalUser = {
   type: typeof SET_STORAGE_USER,
-  payload: User
+  payload: Client
 }
 
 export type ClearUser = {
@@ -30,13 +30,14 @@ export const setUser = (user: LoginUser, redirect?: () => void) => async (dispat
     //   }
     // }
     // const res = await axios.get('/api/v1/login', data)
-    const mockRes: User = {
+    const mockRes: Client = {
       id: '1',
       name: 'Matías',
-      paternal_last_name: 'Medina',
-      maternal_last_name: 'Garrido',
+      paternalLastName: 'Medina',
+      maternalLastName: 'Garrido',
       email: 'matiamed.14@gmail.com',
       username: 'Chross',
+      phone: '945736666',
       user_kind: {
         id: '1',
         kind: 'admin'
@@ -60,7 +61,7 @@ export const setUser = (user: LoginUser, redirect?: () => void) => async (dispat
 }
 
 
-export const setStorageUser = (user: User) => ({
+export const setStorageUser = (user: Client) => ({
   type: SET_STORAGE_USER,
   payload: user
 })

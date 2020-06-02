@@ -1,4 +1,5 @@
 import React from 'react'
+import AddClient from 'layout/clients/addClient'
 
 interface ComponentProps {
   
@@ -6,7 +7,7 @@ interface ComponentProps {
 
 const ClientsView: React.FC<ComponentProps> = props => {
   return (
-    <h1>Clientes</h1>
+   <AddClient />
   )
 }
 

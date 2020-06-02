@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { setStorageUser } from 'store/actions/user.actions'
 
-import { User } from 'types/store/user'
+import { Client } from 'types/store/user'
 
 export type ComponentProps = RouteProps & {
   isAuthenticated: boolean
@@ -22,7 +22,7 @@ export const ProtectedRoute: React.FC<ComponentProps> = ({ isAuthenticated, isAl
     if (!user) {
       redirectPath = '/login'
     } else {
-      const parsedUser: User = JSON.parse(user)
+      const parsedUser: Client = JSON.parse(user)
       dispatch(setStorageUser(parsedUser))
     }
   }

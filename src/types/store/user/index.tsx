@@ -1,9 +1,13 @@
-export type User = {
-  id: string
+export type ClientForm = {
   name: string
-  paternal_last_name: string
-  maternal_last_name: string
+  paternalLastName: string
+  maternalLastName: string
   email: string
+  phone: string
+}
+
+export type Client = ClientForm & {
+  id: string
   username: string
   user_kind: UserKind
 }
