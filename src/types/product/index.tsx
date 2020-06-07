@@ -29,4 +29,5 @@ export type ProductReducer = {
 export type Product = ProductFormState & {
   id: string
   stockQuantity: string
+  stockToSell?: string
 }

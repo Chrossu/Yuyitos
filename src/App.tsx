@@ -16,7 +16,7 @@ import Sidebar from 'layout/sidebar/Sidebar'
 import { MainContainer } from 'components/cards'
 
 import { SellsView, LoginView, ClientsView, ProductsView, ProvidersView, StatsView } from 'views'
-import { fetchProductTypes, fetchBrands } from 'store/actions/products.action'
+import { fetchProductTypes, fetchBrands, fetchProducts } from 'store/actions/products.action'
 
 interface ComponentProps {
   theme: Theme
@@ -29,6 +29,7 @@ const App: React.FC<ComponentProps> = ({ theme, user }) => {
 
   React.useEffect(() => {
     dispatch(fetchProductTypes())
+    dispatch(fetchProducts())
     dispatch(fetchBrands())
     // eslint-disable-next-line
   }, [])

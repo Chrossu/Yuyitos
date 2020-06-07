@@ -12,9 +12,10 @@ interface ComponentProps {
   isLoading?: boolean
   showPageSizeOptions?: boolean
   noDataText?: string
+  onRowClick?: any
 }
 
-const ReactTable: React.FC<ComponentProps> = ({ data, columns, filterable, defaultPageSize, showPageSizeOptions, noDataText }) => {
+const ReactTable: React.FC<ComponentProps> = ({ data, columns, filterable, defaultPageSize, showPageSizeOptions, noDataText, onRowClick }) => {
   return (
     <Table
       style={{ width: '100%' }}
@@ -30,6 +31,7 @@ const ReactTable: React.FC<ComponentProps> = ({ data, columns, filterable, defau
       ofText='de '
       rowsText='filas'
       noDataText={noDataText}
+      getTrProps={onRowClick}
     />
   )
 }

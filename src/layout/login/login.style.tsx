@@ -14,7 +14,7 @@ export const StyledTitle = styled.h1`
   text-align: center;
   font-size: 1.6rem;
   font-weight: 300;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 `
 
 export const StyledInputsContainer = styled.div`
@@ -51,7 +51,7 @@ export const StyledInput = styled.input`
 
     & ~ label {
       outline: none;
-      top: -0.8rem;
+      top: -1.5rem;
       font-size: 14px;
       color: #49d3a9;
     }

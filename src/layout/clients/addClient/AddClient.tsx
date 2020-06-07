@@ -11,8 +11,6 @@ import { Button } from 'components/buttons'
 import { createLoadingSelector } from 'utils/generalFunctions'
 import { AppState } from 'store/configureStore'
 import { FETCH_PRODUCTS } from 'utils/generalConstants'
-import { SelectOption } from 'types/generals'
-import { ProductReducer } from 'types/product'
 import { ClientForm } from 'types/store/user'
 
 interface ComponentProps {
@@ -37,6 +35,7 @@ const AddClient: React.FC<ComponentProps> = props => {
     email: '',
     phone: ''
   })
+
   console.log({ name, paternalLastName, maternalLastName, email, phone, })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +45,7 @@ const AddClient: React.FC<ComponentProps> = props => {
   }
 
   const loadingSelector = createLoadingSelector([FETCH_PRODUCTS])
-  const isFetchingProducts = useSelector((state: AppState) => loadingSelector(state))
+  const isFetchingClients = useSelector((state: AppState) => loadingSelector(state))
 
   return (
     <>
@@ -98,12 +97,12 @@ const AddClient: React.FC<ComponentProps> = props => {
               onChange={handleChange}
             />
           </FlexContainer>
-          <FlexContainer width='19%'>
+          <FlexContainer width='22%'>
             <Input
               value={phone}
               id='phone'
               label='Fono contacto'
-              placeholder='Ingrese fono'
+              placeholder='Ingrese fono de contacto'
               width='80%'
               onChange={handleChange}
             />

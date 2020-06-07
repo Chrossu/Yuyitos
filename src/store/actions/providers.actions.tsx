@@ -58,7 +58,7 @@ export const fetchProviders = () => async (dispatch: any) => {
         type: FETCH_PROVIDERS_SUCCESS,
         payload: providerMock
       })
-    }, 2000)
+    }, 500)
 
   } catch (error) {
     dispatch({

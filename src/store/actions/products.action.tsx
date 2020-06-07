@@ -57,7 +57,7 @@ export const fetchProducts = () => async (dispatch: any) => {
           productName: 'Leche Nestlé',
           stockQuantity: '38',
           productBuyPrice: '',
-          productSellPrice: '900',
+          productSellPrice: '1200',
           productType: {
             id: '1',
             productTypeName: 'Abarrote'
@@ -72,7 +72,7 @@ export const fetchProducts = () => async (dispatch: any) => {
           productName: 'Mantequilla Colún 200g',
           stockQuantity: '9',
           productBuyPrice: '',
-          productSellPrice: '900',
+          productSellPrice: '650',
           productType: {
             id: '1',
             productTypeName: 'Abarrote'
@@ -87,7 +87,7 @@ export const fetchProducts = () => async (dispatch: any) => {
           productName: 'Bebida desechable 1.5 lts. Sprite',
           stockQuantity: '12',
           productBuyPrice: '',
-          productSellPrice: '900',
+          productSellPrice: '1400',
           productType: {
             id: '1',
             productTypeName: 'Abarrote'
@@ -102,7 +102,7 @@ export const fetchProducts = () => async (dispatch: any) => {
           productName: 'Saco de papas 1kg',
           stockQuantity: '18',
           productBuyPrice: '',
-          productSellPrice: '900',
+          productSellPrice: '720',
           productType: {
             id: '1',
             productTypeName: 'Abarrote'
@@ -193,7 +193,7 @@ export const fetchProducts = () => async (dispatch: any) => {
         type: FETCH_PRODUCTS_SUCCESS,
         payload: productsMock
       })
-    }, 1500)
+    }, 500)
 
   } catch (error) {
     dispatch({

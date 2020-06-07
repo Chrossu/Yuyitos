@@ -1,9 +1,13 @@
 import { LoginUser, Client } from "types/store/user"
 // import axios from 'axios'
 
+export const FETCH_USER_REQUEST = 'FETCH_USER_REQUEST'
+export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS'
+export const FETCH_USER_FAILURE = 'FETCH_USER_FAILURE'
+
 export const SET_USER = 'SET_USER'
-export const SET_STORAGE_USER = 'SET_STORAGE_USER'
 export const CLEAR_USER = 'CLEAR_USER'
+export const SET_STORAGE_USER = 'SET_STORAGE_USER'
 
 export type SetUser = {
   type: typeof SET_USER,
@@ -30,13 +34,17 @@ export const setUser = (user: LoginUser, redirect?: () => void) => async (dispat
     //   }
     // }
     // const res = await axios.get('/api/v1/login', data)
+    dispatch({
+      type: FETCH_USER_REQUEST
+    })
+
     const mockRes: Client = {
       id: '1',
       name: 'Matías',
       paternalLastName: 'Medina',
       maternalLastName: 'Garrido',
       email: 'matiamed.14@gmail.com',
-      username: 'Chross',
+      username: 'admin',
       phone: '945736666',
       user_kind: {
         id: '1',
@@ -44,17 +52,19 @@ export const setUser = (user: LoginUser, redirect?: () => void) => async (dispat
       }
     }
 
-    localStorage.setItem('user', JSON.stringify(mockRes))
+    setTimeout(() => {
+      localStorage.setItem('user', JSON.stringify(mockRes))
 
-    dispatch({
-      type: SET_USER,
-      payload: mockRes
-    })
+      dispatch({
+        type: FETCH_USER_SUCCESS,
+        payload: mockRes
+      })
+      redirect && redirect()
+    }, 500)
 
-    redirect && redirect()
   } catch (error) {
     dispatch({
-      type: 'SET_ERROR',
+      type: FETCH_USER_FAILURE,
       payload: error
     })
   }
