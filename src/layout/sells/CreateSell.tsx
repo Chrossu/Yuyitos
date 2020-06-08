@@ -6,20 +6,29 @@ import { ReactComponent as AddSVG } from 'layout/svg-repo/add.svg'
 import { CardContainer, FlexContainer } from 'components/cards'
 import { Button } from 'components/buttons'
 import { OwnProductsTable, SelectedOwnProductsTable } from 'components/tables'
-import { useSelector } from 'react-redux'
-import { Product } from 'types/product'
-import { Input } from 'components/inputs'
+import { useSelector, useDispatch } from 'react-redux'
+import { Product } from 'types/store/product'
+import { Input, Checkbox, SelectInput } from 'components/inputs'
 import { Paragraph } from 'components/texts'
+import { AppState } from 'store/configureStore'
+import { Client } from 'types/store/clients'
+import { fetchClients } from 'store/actions/clients.actions'
+import { SelectOption } from 'types/generals'
 
 interface ComponentProps {
 
 }
 
 const CreateSell: React.FC<ComponentProps> = props => {
+  const dispatch = useDispatch()
+
   const stateProductsArray: any = useSelector((state: any) => state.products.products)
+  const stateClientsArray: any = useSelector((state: AppState) => state.clients)
 
   // Items on left table that are filtered depending on user actions
-  const [productsArray, setProductsArray] = React.useState<Product[]>(stateProductsArray)
+  const [productsArray, setProductsArray] = React.useState<Product[]>([])
+
+  const [clientsForSelect, setClientsForSelect] = React.useState<SelectOption[]>([])
 
   // Items on left table that are filtered depending on user actions
   const [filteredProductsArray, setFilteredProductsArray] = React.useState<Product[]>([])
@@ -28,6 +37,11 @@ const CreateSell: React.FC<ComponentProps> = props => {
   const [selectedProductsArray, setSelectedProductsArray] = React.useState<Product[]>([])
 
   const [totalPrice, setTotalPrice] = React.useState<number>(0)
+  const [isOnCredit, setIsOnCredit] = React.useState<boolean>(false)
+
+  React.useEffect(() => {
+    dispatch(fetchClients())
+  }, [])
 
   React.useEffect(() => {
     setProductsArray(stateProductsArray)
@@ -36,6 +50,11 @@ const CreateSell: React.FC<ComponentProps> = props => {
   React.useEffect(() => {
     setTotalPrice(() => selectedProductsArray.reduce((acc: number, prod: Product) => acc + (Number(prod.productSellPrice) * Number(prod.stockToSell)), 0))
   }, [selectedProductsArray])
+
+  React.useEffect(() => {
+    if (clientsForSelect.length === 0)
+      setClientsForSelect(() => stateClientsArray.map((client: Client) => ({ value: client.id, label: `${client.name} ${client.paternalLastName}` })))
+  }, [stateClientsArray])
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>, { index }: any) => {
     let newSelectedProductsArray: Product[] = [...selectedProductsArray]
@@ -73,14 +92,7 @@ const CreateSell: React.FC<ComponentProps> = props => {
       width: 70,
       accessor: 'stockQuantity',
       style: { textAlign: 'center' }
-    },
-    // {
-    //   Header: 'Acciones',
-    //   Cell: (rowInfo: any) => (
-    //     <Input value={rowInfo.original.productBuyPrice} onChange={(e: React.ChangeEvent<HTMLInputElement>) => handlePriceChange(e, rowInfo)} />
-    //   ),
-    //   width: 135
-    // }
+    }
   ]
 
   const rightTableColumns = [
@@ -106,6 +118,8 @@ const CreateSell: React.FC<ComponentProps> = props => {
     return {}
   }
 
+  const handleOnCredit = () => setIsOnCredit(!isOnCredit)
+
   return (
     <>
       <CardContainer header>
@@ -128,17 +142,27 @@ const CreateSell: React.FC<ComponentProps> = props => {
               padding='0'
             />
             <CardContainer header borderRadius='0' height='fit-content' margin='1rem 0 0'>
-              <Paragraph fontSize='1.2rem'>Total: {totalPrice}</Paragraph>
+              <Paragraph fontSize='1.2rem'>Total: ${totalPrice}</Paragraph>
             </CardContainer>
           </FlexContainer>
         </FlexContainer>
-        <FlexContainer padding='0 1rem 1rem' flexDirection='column'>
-          <Paragraph fontSize='1.05rem'>¿Es fiado?</Paragraph>
-          <Paragraph margin='1rem 0'>Sí/No</Paragraph>
-          
+        <FlexContainer padding='0 1rem 1rem' justifyContent='center' flexDirection='column'>
+          <Checkbox isChecked={isOnCredit} label='¿Es fiado?' onClick={handleOnCredit} />
+          {
+            isOnCredit && (
+              <SelectInput
+                margin='1rem 0'
+                options={clientsForSelect}
+                width='200px'
+                label='Escriba el nombre a ingresar'
+                placeholder='Seleccione cliente'
+                onChange={() => { }}
+              />
+            )
+          }
         </FlexContainer>
         <FlexContainer padding='0 1rem 1rem'>
-          <Button color='primary' width='200px' marginRight='1rem' svg={<AddSVG />} fontSize='1.1rem'>Crear venta</Button>
+          <Button color='primary' width='250px' marginRight='1rem' svg={<AddSVG />} fontSize='1.1rem'>Crear venta</Button>
           <Button hollow color='primary' width='120px' fontSize='1.1rem'>Cancelar</Button>
         </FlexContainer>
       </CardContainer>

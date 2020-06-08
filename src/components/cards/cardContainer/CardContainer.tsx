@@ -3,7 +3,7 @@ import { withTheme } from 'styled-components'
 
 import { StyledCardContainer } from './cardContainer.style'
 import { GlobalTheme } from 'utils/global.theme'
-import { FlexDirectionTypes, AlignItemsTypes, JustifyContentTypes } from 'types/cssTypes'
+import { FlexDirectionTypes, AlignItemsTypes, JustifyContentTypes } from 'types/generals'
 
 export interface CardContainerProps {
   theme: GlobalTheme

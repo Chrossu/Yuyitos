@@ -8,7 +8,7 @@ import { GlobalStyles } from './global'
 import { AppState } from 'store/configureStore'
 
 import { Theme } from 'types/store/theme'
-import { Client } from 'types/store/user'
+import { Client } from 'types/store/clients'
 import { LIGHT } from 'utils/generalConstants'
 import { ProtectedRouteHOC as ProtectedRoute } from 'utils/HOCs'
 
@@ -16,7 +16,7 @@ import Sidebar from 'layout/sidebar/Sidebar'
 import { MainContainer } from 'components/cards'
 
 import { SellsView, LoginView, ClientsView, ProductsView, ProvidersView, StatsView } from 'views'
-import { fetchProductTypes, fetchBrands, fetchProducts } from 'store/actions/products.action'
+import { fetchProductTypes, fetchBrands, fetchProducts } from 'store/actions/products.actions'
 
 interface ComponentProps {
   theme: Theme

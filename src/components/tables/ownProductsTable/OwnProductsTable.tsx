@@ -6,7 +6,7 @@ import { Input } from 'components/inputs'
 import { ReactTable } from 'components/tables'
 import { Button } from 'components/buttons'
 
-import { Product } from 'types/product'
+import { Product } from 'types/store/product'
 
 interface ComponentProps {
   productsArray: Product[]

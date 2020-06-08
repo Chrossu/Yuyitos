@@ -1,5 +1,5 @@
-import { ProductReducer } from "types/product"
-import { ProductsActions, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCT_TYPES_SUCCESS, FETCH_BRANDS_SUCCESS } from "store/actions/products.action"
+import { ProductReducer } from "types/store/product"
+import { ProductsActions, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCT_TYPES_SUCCESS, FETCH_BRANDS_SUCCESS } from "store/actions/products.actions"
 
 const initialState = {
   products: [],

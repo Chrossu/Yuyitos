@@ -1,4 +1,4 @@
-import { Product, Brand, ProductType } from "types/product"
+import { Product, Brand, ProductType } from "types/store/product"
 
 export const FETCH_PRODUCTS_REQUEST = 'FETCH_PRODUCTS_REQUEST'
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS'

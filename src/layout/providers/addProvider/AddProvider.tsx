@@ -7,9 +7,9 @@ import ProviderItemsForm from './providerItemsForm.tsx'
 import { fetchProviders } from 'store/actions/providers.actions'
 
 import { AppState } from 'store/configureStore'
-import { Product } from 'types/product'
+import { Product } from 'types/store/product'
 import { SelectOption } from 'types/generals'
-import { fetchProducts } from 'store/actions/products.action'
+import { fetchProducts } from 'store/actions/products.actions'
 
 const AddProvider: React.FC = () => {
   const dispatch = useDispatch()

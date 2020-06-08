@@ -8,7 +8,7 @@ import { Input } from 'components/inputs'
 import { Button } from 'components/buttons'
 import { ReactTable } from 'components/tables'
 
-import { Product } from 'types/product'
+import { Product } from 'types/store/product'
 
 interface ComponentProps {
 

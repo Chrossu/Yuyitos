@@ -3,7 +3,7 @@ import React from 'react'
 import FlexContainer from 'components/cards/flexContainer/FlexContainer'
 import { Input } from 'components/inputs'
 
-import { Product } from 'types/product'
+import { Product } from 'types/store/product'
 import { OwnProductsTable, SelectedOwnProductsTable } from 'components/tables'
 
 interface ComponentProps {

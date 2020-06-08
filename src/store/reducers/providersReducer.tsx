@@ -1,4 +1,4 @@
-import { Provider } from "types/provider"
+import { Provider } from "types/store/provider"
 import { ProviderActions, FETCH_PROVIDERS_SUCCESS } from "store/actions/providers.actions"
 
 const providersReducer = (state: Provider[] = [], action: ProviderActions) => {

@@ -8,7 +8,7 @@ import { FETCH_PROVIDERS } from 'utils/generalConstants'
 import { createLoadingSelector } from 'utils/generalFunctions'
 
 import { AppState } from 'store/configureStore'
-import { ProviderFormState } from 'types/provider'
+import { ProviderFormState } from 'types/store/provider'
 import { SelectOption } from 'types/generals'
 
 interface ComponentProps {

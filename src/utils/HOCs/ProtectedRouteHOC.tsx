@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { setStorageUser } from 'store/actions/user.actions'
 
-import { Client } from 'types/store/user'
+import { Client } from 'types/store/clients'
 
 export type ComponentProps = RouteProps & {
   isAuthenticated: boolean

@@ -11,7 +11,7 @@ import { Button } from 'components/buttons'
 import { createLoadingSelector } from 'utils/generalFunctions'
 import { AppState } from 'store/configureStore'
 import { FETCH_PRODUCTS } from 'utils/generalConstants'
-import { ClientForm } from 'types/store/user'
+import { ClientForm } from 'types/store/clients'
 
 interface ComponentProps {
 

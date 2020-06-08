@@ -1,4 +1,4 @@
-import { Provider } from "types/provider"
+import { Provider } from "types/store/provider"
 
 export const FETCH_PROVIDERS_REQUEST = 'FETCH_PROVIDERS_REQUEST'
 export const FETCH_PROVIDERS_SUCCESS = 'FETCH_PROVIDERS_SUCCESS'

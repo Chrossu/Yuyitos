@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { CardContainerProps as Props } from './CardContainer'
-import { GlobalTheme } from 'utils/global.theme'
 
 const checkIfHeader = ({ header, theme }: Props) => {
   if (header)

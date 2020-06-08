@@ -1,4 +1,5 @@
-import { LoginUser, Client } from "types/store/user"
+import { LoginUser } from "types/store/user"
+import { Client } from "types/store/clients"
 // import axios from 'axios'
 
 export const FETCH_USER_REQUEST = 'FETCH_USER_REQUEST'
@@ -46,10 +47,7 @@ export const setUser = (user: LoginUser, redirect?: () => void) => async (dispat
       email: 'matiamed.14@gmail.com',
       username: 'admin',
       phone: '945736666',
-      user_kind: {
-        id: '1',
-        kind: 'admin'
-      }
+      user_kind: 0
     }
 
     setTimeout(() => {

@@ -15,14 +15,15 @@ interface ComponentProps {
   label?: string
   width?: string
   isLoading?: boolean
+  margin?: string
   onChange: (optin: any) => void
 }
 
-const SelectInput: React.FC<ComponentProps> = ({ options, placeholder, id, label, width, isLoading, onChange }) => {
+const SelectInput: React.FC<ComponentProps> = ({ options, placeholder, id, label, width, isLoading, margin, onChange }) => {
   const handleChange = (selectedOption: any) => onChange(selectedOption)
 
   return (
-    <FlexContainer flexDirection='column' width={width ? width : '100%'}>
+    <FlexContainer flexDirection='column' width={width ? width : '100%'} margin={margin}>
       {
         label && <Label id={id} text={label} />
       }

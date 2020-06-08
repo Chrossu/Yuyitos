@@ -3,7 +3,7 @@ import React from 'react'
 import { CardContainer } from 'components/cards'
 import { ReactTable } from 'components/tables'
 
-import { Product } from 'types/product'
+import { Product } from 'types/store/product'
 
 interface ComponentProps {
   selectedProductsArray: Product[]

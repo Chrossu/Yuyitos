@@ -1,4 +1,4 @@
-import { Client } from "types/store/user"
+import { Client } from "types/store/clients"
 import { UserActions, SET_USER, SET_STORAGE_USER, CLEAR_USER } from "store/actions/user.actions"
 
 

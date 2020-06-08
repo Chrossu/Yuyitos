@@ -2,7 +2,7 @@ import React from 'react'
 import { withTheme } from 'styled-components'
 
 import { StyledButton } from './button.style'
-import { ColorTypes } from 'types/colorTypes'
+import { ColorTypes } from 'types/generals'
 import { GlobalTheme } from 'utils/global.theme'
 
 export type ButtonProps = {

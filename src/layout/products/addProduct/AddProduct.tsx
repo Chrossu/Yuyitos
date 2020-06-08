@@ -12,7 +12,7 @@ import { createLoadingSelector } from 'utils/generalFunctions'
 import { AppState } from 'store/configureStore'
 import { FETCH_PRODUCTS } from 'utils/generalConstants'
 import { SelectOption } from 'types/generals'
-import { ProductReducer } from 'types/product'
+import { ProductReducer } from 'types/store/product'
 
 interface ComponentProps {
 
