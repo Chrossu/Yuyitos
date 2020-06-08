@@ -15,9 +15,10 @@ interface ComponentProps {
   customColumns?: any[]
   customWidth?: string
   onRowClick?: any
+  padding?: string
 }
 
-const OwnProductsTable: React.FC<ComponentProps> = ({ productsArray, onSelectProduct, headerTitle, customColumns, onRowClick }) => {
+const OwnProductsTable: React.FC<ComponentProps> = ({ productsArray, onSelectProduct, headerTitle, customColumns, onRowClick, padding }) => {
   const [filterValue, setFilterValue] = React.useState<string>('')
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,7 +63,7 @@ const OwnProductsTable: React.FC<ComponentProps> = ({ productsArray, onSelectPro
           </CardContainer>
         )
       }
-      <CardContainer flexDirection='column'>
+      <CardContainer flexDirection='column' padding={padding}>
         <FlexContainer justifyContent='space-between' width='100%' marginBottom='1rem'>
           <Input
             value={filterValue}

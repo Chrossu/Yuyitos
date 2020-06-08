@@ -1,5 +1,7 @@
 import Label from './label'
+import Paragraph from './paragraph'
 
 export {
-  Label
+  Label,
+  Paragraph
 }

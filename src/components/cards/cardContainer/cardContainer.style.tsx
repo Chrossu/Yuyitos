@@ -1,22 +1,6 @@
 import styled from 'styled-components'
+import { CardContainerProps as Props } from './CardContainer'
 import { GlobalTheme } from 'utils/global.theme'
-
-interface Props {
-  theme: GlobalTheme
-  fontSize?: string
-  margin?: string
-  padding?: string
-  borderRadius?: string
-  header?: boolean
-  width?: string
-  height?: string
-  flexDirection?: string
-  alignItems?: string
-  justifyContent?: string
-  minHeight?: string
-  maxHeight?: string
-  mobilePadding?: string
-}
 
 const checkIfHeader = ({ header, theme }: Props) => {
   if (header)
@@ -48,6 +32,7 @@ export const StyledCardContainer = styled.div`
 
   ${checkIfHeader}
 
+  ${(({ borderRadius}: Props) => borderRadius && `border-radius: ${borderRadius};`)}
   @media screen and (max-width: 1024px) {
 
   }

@@ -20,6 +20,7 @@ export const StyledButton = styled.button`
   height: ${({ customHeight }: Props) => customHeight ? customHeight : 'fit-content'};
   margin: ${({ margin }: Props) => margin ? margin : '0'};
   ${({ width }: Props) => width && `width: ${width};`}
+  ${({ marginRight }: Props) => marginRight && `margin-right: ${marginRight ? marginRight : '0.75rem'};`}
   ${({ marginLeft }: Props) => marginLeft && `margin-left: ${marginLeft ? marginLeft : '0.75rem'};`}
   ${({ marginBottom }: Props) => marginBottom && `margin-bottom: ${marginBottom};`}
   ${({ noWrap }: Props) => noWrap && 'white-space: nowrap;'}

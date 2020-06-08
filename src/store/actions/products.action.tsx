@@ -99,10 +99,10 @@ export const fetchProducts = () => async (dispatch: any) => {
         },
         {
           id: '5',
-          productName: 'Saco de papas 1kg',
-          stockQuantity: '18',
+          productName: 'Papas Lays 300g',
+          stockQuantity: '6',
           productBuyPrice: '',
-          productSellPrice: '720',
+          productSellPrice: '650',
           productType: {
             id: '1',
             productTypeName: 'Abarrote'
@@ -129,10 +129,10 @@ export const fetchProducts = () => async (dispatch: any) => {
         },
         {
           id: '7',
-          productName: 'Saco de papas 1kg',
-          stockQuantity: '18',
+          productName: 'Agua mineral 1 litro',
+          stockQuantity: '10',
           productBuyPrice: '',
-          productSellPrice: '900',
+          productSellPrice: '700',
           productType: {
             id: '1',
             productTypeName: 'Abarrote'

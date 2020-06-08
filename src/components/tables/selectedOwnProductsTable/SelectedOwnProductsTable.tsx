@@ -9,23 +9,24 @@ interface ComponentProps {
   selectedProductsArray: Product[]
   columns: any[]
   headerTitle?: string
+  padding?: string
 }
 
-const SelectedOwnProductsTable: React.FC<ComponentProps> = ({ selectedProductsArray, columns, headerTitle }) => (
+const SelectedOwnProductsTable: React.FC<ComponentProps> = ({ selectedProductsArray, columns, headerTitle, padding }) => (
   <>
     {
       headerTitle && (
-        <CardContainer header justifyContent='space-between'>
+        <CardContainer header justifyContent='space-between' padding={padding}>
           {headerTitle}
         </CardContainer>
       )
     }
-    <CardContainer>
+    <CardContainer padding={padding}>
       <ReactTable
         data={selectedProductsArray}
         columns={columns}
         defaultPageSize={7}
-        noDataText='Sin productos seleccionados'
+        noDataText='Sin productos'
       />
     </CardContainer>
   </>

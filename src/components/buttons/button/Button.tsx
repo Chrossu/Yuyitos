@@ -14,6 +14,7 @@ export type ButtonProps = {
   customHeight?: string
   margin?: string
   width?: string
+  marginRight?: string
   marginLeft?: string
   marginBottom?: string
   noWrap?: boolean

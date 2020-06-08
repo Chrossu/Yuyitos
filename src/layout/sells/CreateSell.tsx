@@ -5,12 +5,11 @@ import { } from './'
 import { ReactComponent as AddSVG } from 'layout/svg-repo/add.svg'
 import { CardContainer, FlexContainer } from 'components/cards'
 import { Button } from 'components/buttons'
-import SellsProductsTable from './SellsProductsTable'
 import { OwnProductsTable, SelectedOwnProductsTable } from 'components/tables'
 import { useSelector } from 'react-redux'
-import { AppState } from 'store/configureStore'
 import { Product } from 'types/product'
 import { Input } from 'components/inputs'
+import { Paragraph } from 'components/texts'
 
 interface ComponentProps {
 
@@ -28,12 +27,14 @@ const CreateSell: React.FC<ComponentProps> = props => {
   // Items that provider will provide on right table
   const [selectedProductsArray, setSelectedProductsArray] = React.useState<Product[]>([])
 
+  const [totalPrice, setTotalPrice] = React.useState<number>(0)
+
   React.useEffect(() => {
     setProductsArray(stateProductsArray)
   }, [stateProductsArray])
 
   React.useEffect(() => {
-    console.log(selectedProductsArray.reduce((acc: number, prod: Product) => acc + (Number(prod.productSellPrice) * Number(prod.stockToSell)), 0))
+    setTotalPrice(() => selectedProductsArray.reduce((acc: number, prod: Product) => acc + (Number(prod.productSellPrice) * Number(prod.stockToSell)), 0))
   }, [selectedProductsArray])
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>, { index }: any) => {
@@ -101,11 +102,7 @@ const CreateSell: React.FC<ComponentProps> = props => {
 
   const onRowClick = (_: any, rowInfo: any) => {
     if (rowInfo && rowInfo.row)
-      return {
-        onClick: (e: any) => {
-          setSelectedProduct(productsArray[rowInfo.index])
-        }
-      }
+      return { onClick: () => setSelectedProduct(productsArray[rowInfo.index]) }
     return {}
   }
 
@@ -114,21 +111,35 @@ const CreateSell: React.FC<ComponentProps> = props => {
       <CardContainer header>
         Crear nueva venta
       </CardContainer>
-      <CardContainer justifyContent='space-between' padding='0'>
-        <FlexContainer width='55%'>
-          <OwnProductsTable
-            productsArray={productsArray}
-            customColumns={leftTableColumns}
-            onSelectProduct={() => null}
-            onRowClick={onRowClick}
-          />
+      <CardContainer justifyContent='space-between' padding='0' flexDirection='column'>
+        <FlexContainer>
+          <FlexContainer width='55%'>
+            <OwnProductsTable
+              productsArray={productsArray}
+              customColumns={leftTableColumns}
+              onSelectProduct={() => null}
+              onRowClick={onRowClick}
+            />
+          </FlexContainer>
+          <FlexContainer width='44%' flexDirection='column' alignItems='flex-end' padding='1rem'>
+            <SelectedOwnProductsTable
+              selectedProductsArray={selectedProductsArray}
+              columns={rightTableColumns}
+              padding='0'
+            />
+            <CardContainer header borderRadius='0' height='fit-content' margin='1rem 0 0'>
+              <Paragraph fontSize='1.2rem'>Total: {totalPrice}</Paragraph>
+            </CardContainer>
+          </FlexContainer>
         </FlexContainer>
-        <FlexContainer width='44%' justifyContent='flex-end'>
-          <SelectedOwnProductsTable
-            selectedProductsArray={selectedProductsArray}
-            columns={rightTableColumns}
-          />
+        <FlexContainer padding='0 1rem 1rem' flexDirection='column'>
+          <Paragraph fontSize='1.05rem'>¿Es fiado?</Paragraph>
+          <Paragraph margin='1rem 0'>Sí/No</Paragraph>
           
+        </FlexContainer>
+        <FlexContainer padding='0 1rem 1rem'>
+          <Button color='primary' width='200px' marginRight='1rem' svg={<AddSVG />} fontSize='1.1rem'>Crear venta</Button>
+          <Button hollow color='primary' width='120px' fontSize='1.1rem'>Cancelar</Button>
         </FlexContainer>
       </CardContainer>
     </>

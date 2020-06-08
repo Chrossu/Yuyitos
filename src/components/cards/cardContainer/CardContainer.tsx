@@ -5,7 +5,7 @@ import { StyledCardContainer } from './cardContainer.style'
 import { GlobalTheme } from 'utils/global.theme'
 import { FlexDirectionTypes, AlignItemsTypes, JustifyContentTypes } from 'types/cssTypes'
 
-interface NewCardProps {
+export interface CardContainerProps {
   theme: GlobalTheme
   width?: string
   height?: string
@@ -20,15 +20,14 @@ interface NewCardProps {
   maxHeight?: string
   margin?: string
   mobilePadding?: string
+  borderRadius?: string
   style?: {}
 }
 
-const NewCard: React.FC<NewCardProps> = props => {
-  return (
-    <StyledCardContainer {...props} style={props.style}>
-      {props.children}
-    </StyledCardContainer>
-  )
-}
+const CardContainer: React.FC<CardContainerProps> = ({ style, children, ...props }) => (
+  <StyledCardContainer {...props} style={style}>
+    {children}
+  </StyledCardContainer>
+)
 
-export default withTheme(NewCard)
+export default withTheme(CardContainer)
