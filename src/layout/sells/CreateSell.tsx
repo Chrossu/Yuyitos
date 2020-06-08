@@ -142,7 +142,7 @@ const CreateSell: React.FC<ComponentProps> = props => {
               padding='0'
             />
             <CardContainer header borderRadius='0' height='fit-content' margin='1rem 0 0'>
-              <Paragraph fontSize='1.2rem'>Total: ${totalPrice}</Paragraph>
+              <Paragraph fontSize='1.2rem'>Total: ${totalPrice.toLocaleString('es-CL')}</Paragraph>
             </CardContainer>
           </FlexContainer>
         </FlexContainer>
