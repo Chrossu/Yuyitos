@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { Tabs } from 'components/navigation'
-
 import { AddProduct } from 'layout/products'
 
 

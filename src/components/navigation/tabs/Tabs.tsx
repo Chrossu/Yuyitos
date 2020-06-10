@@ -2,31 +2,31 @@ import React, { useState } from 'react';
 
 import { StyledTabsContainer, StyledTab } from './tabs.style'
 
-const types = ['Cash', 'Credit Card', 'Bitcoin']
+import { Tab } from 'types/generals'
 
 type ComponentProps = {
-  components: any[]
+  components: Tab[]
 }
 
-const Tabs: React.FC<ComponentProps> = () => {
-  const [active, setActive] = useState(types[0])
+const Tabs: React.FC<ComponentProps> = ({ components }) => {
+  const [activeTab, setActiveTab] = useState<Tab>(() => components[0])
 
   return (
     <>
       <StyledTabsContainer>
         {
-          types.map(type => (
+          components.map((component: Tab) => (
             <StyledTab
-              key={type}
-              active={active === type}
-              onClick={() => setActive(type)}
+              key={component.label}
+              activeTab={activeTab.label === component.label}
+              onClick={() => setActiveTab(component)}
             >
-              {type}
+              {component.label}
             </StyledTab>
           ))
         }
       </StyledTabsContainer>
-      {active}
+      {<activeTab.component />}
     </>
   )
 }

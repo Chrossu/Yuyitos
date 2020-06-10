@@ -3,6 +3,11 @@ export type SelectOption = {
   label: string
 }
 
+export type Tab = {
+  label: string
+  component: React.FC
+}
+
 // ColorTypes
 export type ColorTypes = | 'primary' | 'secondary'
 
