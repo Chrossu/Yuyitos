@@ -1,5 +1,3 @@
-import { Tabs, Tab } from './tabs'
-export {
-  Tabs,
-  Tab
-}
+import Tabs from './tabs'
+
+export { Tabs }

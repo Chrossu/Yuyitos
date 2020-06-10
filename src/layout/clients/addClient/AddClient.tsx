@@ -36,8 +36,6 @@ const AddClient: React.FC<ComponentProps> = props => {
     phone: ''
   })
 
-  console.log({ name, paternalLastName, maternalLastName, email, phone, })
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget
 

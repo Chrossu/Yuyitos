@@ -1,5 +1,8 @@
 import React from 'react'
-import AddProduct from 'layout/products/addProduct/AddProduct'
+
+import { Tabs } from 'components/navigation'
+
+import { AddProduct } from 'layout/products'
 
 
 interface ComponentProps {

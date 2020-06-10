@@ -1,7 +1,3 @@
-import Tabs from './tabs'
-import Tab from './tab'
+import Tabs from './Tabs'
 
-export {
-  Tabs,
-  Tab
-}
+export default Tabs
