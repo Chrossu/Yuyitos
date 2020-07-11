@@ -19,9 +19,9 @@ const AddProvider: React.FC<ComponentProps> = ({ providersForSelect }) => {
   const providers = useSelector((state: AppState) => state.providers)
 
   const [providerForm, setProviderForm] = React.useState<ProviderFormState>({
-    businessType: '',
+    business_type: '',
     address: '',
-    phoneNumber: ''
+    phone_number: ''
   })
 
   const onSelectProvider = (selectedOption: any) => {
@@ -31,13 +31,13 @@ const AddProvider: React.FC<ComponentProps> = ({ providersForSelect }) => {
       return
 
     setProviderForm({
-      businessType: provider.business.businessType,
+      business_type: provider.business_type,
       address: provider.address,
-      phoneNumber: provider.phoneNumber
+      phone_number: provider.phone_number
     })
   }
 
-  const { businessType, address, phoneNumber } = providerForm
+  const { business_type, address, phone_number } = providerForm
 
   const loadingSelector = createLoadingSelector([FETCH_PROVIDERS])
   const isFetchingProviders = useSelector((state: AppState) => loadingSelector(state))
@@ -45,7 +45,7 @@ const AddProvider: React.FC<ComponentProps> = ({ providersForSelect }) => {
   return (
     <>
       <CardContainer header>
-        Añadir nuevo proveedor
+        Modificar proveedor
       </CardContainer>
       <CardContainer flexDirection='column'>
         <FlexContainer>
@@ -62,8 +62,8 @@ const AddProvider: React.FC<ComponentProps> = ({ providersForSelect }) => {
           <FlexContainer width='25%'>
             <Input
               disabled
-              value={businessType}
-              id='businessType'
+              value={business_type}
+              id='business_type'
               label='Rubro'
               width='80%'
             />
@@ -80,8 +80,8 @@ const AddProvider: React.FC<ComponentProps> = ({ providersForSelect }) => {
           <FlexContainer width='25%'>
             <Input
               disabled
-              value={phoneNumber}
-              id='phoneNumber'
+              value={phone_number}
+              id='phone_number'
               label='Fono contacto'
               width='80%'
             />

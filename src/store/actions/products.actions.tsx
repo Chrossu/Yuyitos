@@ -1,4 +1,10 @@
-import { Product, Brand, ProductType } from "types/store/product"
+import axios from 'axios'
+import { Product, Brand, ProductType, ProductFormState } from "types/store/product"
+import { AddProductFormState } from 'layout/products/addProduct/AddProduct'
+
+export const ADD_PRODUCT_REQUEST = 'ADD_PRODUCT_REQUEST'
+export const ADD_PRODUCT_SUCCESS = 'ADD_PRODUCT_SUCCESS'
+export const ADD_PRODUCT_FAILURE = 'ADD_PRODUCT_FAILURE'
 
 export const FETCH_PRODUCTS_REQUEST = 'FETCH_PRODUCTS_REQUEST'
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS'
@@ -7,6 +13,10 @@ export const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE'
 export const FETCH_PRODUCT_TYPES_REQUEST = 'FETCH_PRODUCT_TYPES_REQUEST'
 export const FETCH_PRODUCT_TYPES_SUCCESS = 'FETCH_PRODUCT_TYPES_SUCCESS'
 export const FETCH_PRODUCT_TYPES_FAILURE = 'FETCH_PRODUCT_TYPES_FAILURE'
+
+export const FETCH_PRODUCT_FAMILIES_REQUEST = 'FETCH_PRODUCT_FAMILIES_REQUEST'
+export const FETCH_PRODUCT_FAMILIES_SUCCESS = 'FETCH_PRODUCT_FAMILIES_SUCCESS'
+export const FETCH_PRODUCT_FAMILIES_FAILURE = 'FETCH_PRODUCT_FAMILIES_FAILURE'
 
 export const FETCH_BRANDS_REQUEST = 'FETCH_BRANDS_REQUEST'
 export const FETCH_BRANDS_SUCCESS = 'FETCH_BRANDS_SUCCESS'
@@ -29,175 +39,68 @@ export type FetchBrandsAction = {
 
 export type ProductsActions = | FetchProductsAction | FetchProductTypesAction | FetchBrandsAction
 
+export const addProduct = (product: AddProductFormState) => async (dispatch: any) => {
+  try {
+    dispatch({
+      type: ADD_PRODUCT_REQUEST
+    })
+
+    const res = await axios.post('api/products', product)
+
+    dispatch({
+      type: ADD_PRODUCT_SUCCESS
+    })
+
+    dispatch({
+      type: 'PRODUCT_SET_ALERT',
+      payload: res.data.response
+    })
+
+
+  } catch (error) {
+    dispatch({
+      type: FETCH_PRODUCTS_FAILURE,
+      payload: error.response.data.error
+    })
+  }
+}
+
 export const fetchProducts = () => async (dispatch: any) => {
   try {
     dispatch({
       type: FETCH_PRODUCTS_REQUEST
     })
 
-    setTimeout(() => {
-      const productsMock: Product[] = [
-        {
-          id: '1',
-          productName: 'Pan',
-          stockQuantity: '20',
-          productBuyPrice: '',
-          productSellPrice: '900',
-          productType: {
-            id: '1',
-            productTypeName: 'Abarrote'
-          },
-          brand: {
-            id: '0',
-            brandName: ''
-          }
-        },
-        {
-          id: '2',
-          productName: 'Leche Nestlé',
-          stockQuantity: '38',
-          productBuyPrice: '',
-          productSellPrice: '1200',
-          productType: {
-            id: '1',
-            productTypeName: 'Abarrote'
-          },
-          brand: {
-            id: '0',
-            brandName: ''
-          }
-        },
-        {
-          id: '3',
-          productName: 'Mantequilla Colún 200g',
-          stockQuantity: '9',
-          productBuyPrice: '',
-          productSellPrice: '650',
-          productType: {
-            id: '1',
-            productTypeName: 'Abarrote'
-          },
-          brand: {
-            id: '0',
-            brandName: ''
-          }
-        },
-        {
-          id: '4',
-          productName: 'Bebida desechable 1.5 lts. Sprite',
-          stockQuantity: '12',
-          productBuyPrice: '',
-          productSellPrice: '1400',
-          productType: {
-            id: '1',
-            productTypeName: 'Abarrote'
-          },
-          brand: {
-            id: '0',
-            brandName: ''
-          }
-        },
-        {
-          id: '5',
-          productName: 'Papas Lays 300g',
-          stockQuantity: '6',
-          productBuyPrice: '',
-          productSellPrice: '650',
-          productType: {
-            id: '1',
-            productTypeName: 'Abarrote'
-          },
-          brand: {
-            id: '0',
-            brandName: ''
-          }
-        },
-        {
-          id: '6',
-          productName: 'Saco de papas 1kg',
-          stockQuantity: '18',
-          productBuyPrice: '',
-          productSellPrice: '900',
-          productType: {
-            id: '1',
-            productTypeName: 'Abarrote'
-          },
-          brand: {
-            id: '0',
-            brandName: ''
-          }
-        },
-        {
-          id: '7',
-          productName: 'Agua mineral 1 litro',
-          stockQuantity: '10',
-          productBuyPrice: '',
-          productSellPrice: '700',
-          productType: {
-            id: '1',
-            productTypeName: 'Abarrote'
-          },
-          brand: {
-            id: '0',
-            brandName: ''
-          }
-        },
-        {
-          id: '8',
-          productName: 'Saco de papas 1kg',
-          stockQuantity: '18',
-          productBuyPrice: '',
-          productSellPrice: '900',
-          productType: {
-            id: '1',
-            productTypeName: 'Abarrote'
-          },
-          brand: {
-            id: '0',
-            brandName: ''
-          }
-        },
-        {
-          id: '9',
-          productName: 'Saco de papas 1kg',
-          stockQuantity: '18',
-          productBuyPrice: '',
-          productSellPrice: '900',
-          productType: {
-            id: '1',
-            productTypeName: 'Abarrote'
-          },
-          brand: {
-            id: '0',
-            brandName: ''
-          }
-        },
-        {
-          id: '10',
-          productName: 'Saco de papas 1kg',
-          stockQuantity: '18',
-          productBuyPrice: '',
-          productSellPrice: '900',
-          productType: {
-            id: '1',
-            productTypeName: 'Abarrote'
-          },
-          brand: {
-            id: '0',
-            brandName: ''
-          }
-        },
-      ]
+    const res = await axios.get('api/products')
 
-      dispatch({
-        type: FETCH_PRODUCTS_SUCCESS,
-        payload: productsMock
-      })
-    }, 500)
+    dispatch({
+      type: FETCH_PRODUCTS_SUCCESS,
+      payload: res.data.products_list
+    })
 
   } catch (error) {
     dispatch({
       type: FETCH_PRODUCTS_FAILURE
+    })
+  }
+}
+
+export const fetchProductFamilies = () => async (dispatch: any) => {
+  try {
+    dispatch({
+      type: FETCH_PRODUCT_FAMILIES_REQUEST
+    })
+
+    const res = await axios.get('api/product/types')
+
+    dispatch({
+      type: FETCH_PRODUCT_FAMILIES_SUCCESS,
+      payload: res.data.families_list
+    })
+
+  } catch (error) {
+    dispatch({
+      type: FETCH_PRODUCT_FAMILIES_FAILURE
     })
   }
 }
@@ -208,28 +111,11 @@ export const fetchProductTypes = () => async (dispatch: any) => {
       type: FETCH_PRODUCT_TYPES_REQUEST
     })
 
-    const productTypesMock: ProductType[] = [
-      {
-        id: '1',
-        productTypeName: 'Lácteos'
-      },
-      {
-        id: '2',
-        productTypeName: 'Bebidas gaseosas'
-      },
-      {
-        id: '3',
-        productTypeName: 'Verduras'
-      },
-      {
-        id: '4',
-        productTypeName: 'Snacks'
-      }
-    ]
+    const res = await axios.get('api/product/types')
 
     dispatch({
       type: FETCH_PRODUCT_TYPES_SUCCESS,
-      payload: productTypesMock
+      payload: res.data.types_list
     })
 
   } catch (error) {
@@ -245,28 +131,11 @@ export const fetchBrands = () => async (dispatch: any) => {
       type: FETCH_BRANDS_REQUEST
     })
 
-    const brandsMock: Brand[] = [
-      {
-        id: '1',
-        brandName: 'Colún'
-      },
-      {
-        id: '2',
-        brandName: 'Nesté'
-      },
-      {
-        id: '3',
-        brandName: 'Soprole'
-      },
-      {
-        id: '4',
-        brandName: 'Marinela'
-      }
-    ]
+    const res = await axios.get('api/product/brands')
 
     dispatch({
       type: FETCH_BRANDS_SUCCESS,
-      payload: brandsMock
+      payload: res.data.brands_list
     })
 
   } catch (error) {

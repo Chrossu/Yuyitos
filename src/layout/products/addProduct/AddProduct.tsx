@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { } from './addProduct.style'
 
@@ -13,30 +13,29 @@ import { AppState } from 'store/configureStore'
 import { FETCH_PRODUCTS } from 'utils/generalConstants'
 import { SelectOption } from 'types/generals'
 import { ProductReducer } from 'types/store/product'
+import { addProduct } from 'store/actions/products.actions'
 
-interface ComponentProps {
-
+export type AddProductFormState = {
+  name: string
+  sell_price: string
+  critical_stock: string
+  brand_id: number
+  product_family_id: number
 }
 
-type FormState = {
-  productName: string
-  sellPrice: string
-  productKind: string
-  productType: string
-  stockQuantity: string
-}
-
-const AddProduct: React.FC<ComponentProps> = props => {
+const AddProduct: React.FC = props => {
   const productsState: ProductReducer = useSelector((state: AppState) => state.products)
   const { products, productBrands, productTypes } = productsState
-
-  const [{ productName, sellPrice, productKind, stockQuantity }, setFormState] = React.useState<FormState>({
-    productName: '',
-    sellPrice: '',
-    productKind: '',
-    productType: '',
-    stockQuantity: ''
+  const dispatch = useDispatch()
+  const [formState, setFormState] = React.useState<AddProductFormState>({
+    name: '',
+    sell_price: '',
+    critical_stock: '',
+    brand_id: null as unknown as number,
+    product_family_id: null as unknown as number,
   })
+
+  const { name, sell_price, critical_stock, brand_id, product_family_id } = formState
 
   const [productsForSelect, setProductsForSelect] = React.useState<SelectOption[]>([])
   const [productTypesForSelect, setProductTypesForSelect] = React.useState<SelectOption[]>([])
@@ -45,47 +44,55 @@ const AddProduct: React.FC<ComponentProps> = props => {
   React.useEffect(() => {
     setProductsForSelect(() => products.map(product => ({
       value: product.id,
-      label: product.productName
+      label: product.name
     })))
   }, [products])
 
   React.useEffect(() => {
     setProductTypesForSelect(() => productTypes.map(type => ({
       value: type.id,
-      label: type.productTypeName
+      label: type.name
     })))
   }, [productTypes])
 
   React.useEffect(() => {
     setBrandsForSelect(() => productBrands.map(brand => ({
       value: brand.id,
-      label: brand.brandName
+      label: brand.name
     })))
   }, [productBrands])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget
 
-    setFormState((s) => ({ ...s, [name]: value }))
+    setFormState({ ...formState, [name]: value })
   }
 
-  const onSelectProductType = (selectedOption: any) => {
-    const type = productTypes.find(type => type.id === selectedOption.value)
-
-    if (!type)
-      return
-  }
-
-  const onSelectBrand = (selectedOption: any) => {
+  const onSelectProductBrand = (selectedOption: any) => {
     const brand = productBrands.find(brand => brand.id === selectedOption.value)
 
     if (!brand)
       return
+
+    setFormState({ ...formState, brand_id: brand.id })
   }
 
+  const onSelectProductFamily = (selectedOption: any) => {
+    const type = productTypes.find(brand => brand.id === selectedOption.value)
+
+    if (!type)
+      return
+
+    setFormState({ ...formState, product_family_id: type.id })
+  }
+
+  const handleClick = () => {
+    dispatch(addProduct(formState))
+  }
+  
   const loadingSelector = createLoadingSelector([FETCH_PRODUCTS])
   const isFetchingProducts = useSelector((state: AppState) => loadingSelector(state))
-
+  console.log(formState)
   return (
     <>
       <CardContainer header>
@@ -93,58 +100,60 @@ const AddProduct: React.FC<ComponentProps> = props => {
       </CardContainer>
       <CardContainer flexDirection='column'>
         <FlexContainer>
-          <FlexContainer width='25%'>
+          <FlexContainer width='20%'>
             <Input
-              value={productName}
-              id='productName'
+              value={name}
+              id='name'
               label='Nombre producto'
               placeholder='Ingresa nombre de producto'
               width='80%'
               onChange={handleChange}
             />
           </FlexContainer>
-          <FlexContainer width='25%'>
+          <FlexContainer width='20%'>
             <Input
-              value={sellPrice}
-              id='sellPrice'
+              value={sell_price}
+              id='sell_price'
               label='Precio de venta'
               placeholder='Ingresa precio de venta'
               width='80%'
               onChange={handleChange}
             />
           </FlexContainer>
-          <FlexContainer width='25%'>
+          <FlexContainer width='20%'>
+            <Input
+              value={critical_stock}
+              id='critical_stock'
+              label='Stock crítico'
+              placeholder='Ingresa precio de venta'
+              width='80%'
+              onChange={handleChange}
+            />
+          </FlexContainer>
+          <FlexContainer width='20%'>
             <SelectInput
               options={productTypesForSelect}
               id='productType'
               label='Tipo de producto'
               placeholder='Seleccione tipo'
               width='80%'
-              onChange={onSelectProductType}
+              onChange={onSelectProductBrand}
             />
           </FlexContainer>
-          <FlexContainer width='25%'>
+          <FlexContainer width='20%'>
             <SelectInput
               options={brandsForSelect}
               id='stockQuantity'
               label='Marca de producto'
               placeholder='Seleccione marca'
               width='80%'
-              onChange={onSelectBrand}
+              onChange={onSelectProductFamily}
             />
           </FlexContainer>
-          {/* <FlexContainer width='25%'>
-            <Input
-              disabled
-              value={stockQuantity}
-              id='stockQuantity'
-              label='Stock'
-              width='80%'
-              onChange={handleChange}
-            />
-          </FlexContainer> */}
         </FlexContainer>
-        <Button svg={<AddSVG />} color='primary' margin='2rem 0 0' width='fit-content'>Añadir producto</Button>
+        <Button svg={<AddSVG />} color='primary' margin='2rem 0 0' width='fit-content' onClick={handleClick}>
+          Añadir producto
+        </Button>
       </CardContainer>
     </>
   )

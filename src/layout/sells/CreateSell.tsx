@@ -48,12 +48,12 @@ const CreateSell: React.FC<ComponentProps> = props => {
   }, [stateProductsArray])
 
   React.useEffect(() => {
-    setTotalPrice(() => selectedProductsArray.reduce((acc: number, prod: Product) => acc + (Number(prod.productSellPrice) * Number(prod.stockToSell)), 0))
+    setTotalPrice(() => selectedProductsArray.reduce((acc: number, prod: Product) => acc + (Number(prod.sell_price) * Number(prod.stockToSell)), 0))
   }, [selectedProductsArray])
 
   React.useEffect(() => {
     if (clientsForSelect.length === 0)
-      setClientsForSelect(() => stateClientsArray.map((client: Client) => ({ value: client.id, label: `${client.name} ${client.paternalLastName}` })))
+      setClientsForSelect(() => stateClientsArray.map((client: Client) => ({ value: client.id, label: `${client.name} ${client.paternal_surname}` })))
   }, [stateClientsArray])
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>, { index }: any) => {
@@ -78,19 +78,19 @@ const CreateSell: React.FC<ComponentProps> = props => {
     },
     {
       Header: 'Nombre',
-      accessor: 'productName',
+      accessor: 'name',
       style: { margin: 'auto' }
     },
     {
       Header: 'Precio',
       width: 70,
-      accessor: 'productSellPrice',
+      accessor: 'sell_price',
       style: { textAlign: 'center' }
     },
     {
       Header: 'Stock',
       width: 70,
-      accessor: 'stockQuantity',
+      accessor: 'stock',
       style: { textAlign: 'center' }
     }
   ]
@@ -131,7 +131,7 @@ const CreateSell: React.FC<ComponentProps> = props => {
             <OwnProductsTable
               productsArray={productsArray}
               customColumns={leftTableColumns}
-              onSelectProduct={() => null}
+              onSelectProduct={() => console.log('')}
               onRowClick={onRowClick}
             />
           </FlexContainer>
@@ -142,7 +142,7 @@ const CreateSell: React.FC<ComponentProps> = props => {
               padding='0'
             />
             <CardContainer header borderRadius='0' height='fit-content' margin='1rem 0 0'>
-              <Paragraph fontSize='1.2rem'>Total: ${totalPrice.toLocaleString('es-CL')}</Paragraph>
+              <Paragraph customFontSize='1.2rem'>Total: ${totalPrice.toLocaleString('es-CL')}</Paragraph>
             </CardContainer>
           </FlexContainer>
         </FlexContainer>

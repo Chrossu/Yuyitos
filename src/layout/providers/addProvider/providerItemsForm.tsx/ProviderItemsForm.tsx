@@ -19,14 +19,14 @@ const ProviderItemsForm: React.FC<ComponentProps> = props => {
   const rightTableColumns = [
     {
       Header: 'Producto',
-      accessor: 'productName',
+      accessor: 'name',
       style: { margin: 'auto' }
     },
     {
       Header: 'Precio',
-      accessor: 'productBuyPrice',
+      accessor: 'buy_price',
       Cell: (rowInfo: any) => (
-        <Input value={rowInfo.original.productBuyPrice} onChange={(e: React.ChangeEvent<HTMLInputElement>) => handlePriceChange(e, rowInfo)} />
+        <Input value={rowInfo.original.buy_price} onChange={(e: React.ChangeEvent<HTMLInputElement>) => handlePriceChange(e, rowInfo)} />
       ),
       style: { margin: 'auto' },
       width: 150

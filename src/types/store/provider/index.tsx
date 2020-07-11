@@ -1,19 +1,22 @@
 export type ProviderFormState = {
-  businessType: string
+  business_type: string
   address: string
-  phoneNumber: string
+  phone_number: string
 }
 
-type Business = {
-  businessID: string
+export type Business = {
+  businessID: number
   businessType: string
 }
 
 export type Provider = {
-  id: string
+  id: number
+  name: string
+  representer: string
   rut: string
-  providerName: string
-  business: Business
+  email: string
+  phone_number: string
+  business_id: number
+  business_type: string
   address: string
-  phoneNumber: string
 }

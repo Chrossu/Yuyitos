@@ -7,6 +7,8 @@ import { ReactTable } from 'components/tables'
 import { Button } from 'components/buttons'
 
 import { Product } from 'types/store/product'
+import { useDispatch } from 'react-redux'
+import { fetchProducts } from 'store/actions/products.actions'
 
 interface ComponentProps {
   productsArray: Product[]
@@ -19,6 +21,7 @@ interface ComponentProps {
 }
 
 const OwnProductsTable: React.FC<ComponentProps> = ({ productsArray, onSelectProduct, headerTitle, customColumns, onRowClick, padding }) => {
+  const dispatch = useDispatch()
   const [filterValue, setFilterValue] = React.useState<string>('')
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,6 +34,8 @@ const OwnProductsTable: React.FC<ComponentProps> = ({ productsArray, onSelectPro
     onSelectProduct(product)
   }
 
+  const handleRefresh = () => dispatch(fetchProducts())
+
   const columns = [
     {
       Header: 'ID',
@@ -40,7 +45,7 @@ const OwnProductsTable: React.FC<ComponentProps> = ({ productsArray, onSelectPro
     },
     {
       Header: 'Nombre',
-      accessor: 'productName',
+      accessor: 'name',
       style: { margin: 'auto' }
     },
     {
@@ -72,7 +77,9 @@ const OwnProductsTable: React.FC<ComponentProps> = ({ productsArray, onSelectPro
             width='73.5%'
             onChange={handleFilterChange}
           />
-          <Button hollow color='primary' customHeight='2rem' svg={<RefreshSVG />}>Actualizar</Button>
+          <Button hollow color='primary' customHeight='2rem' svg={<RefreshSVG />} onClick={handleRefresh}>
+            Actualizar
+          </Button>
         </FlexContainer>
         {
           productsArray.length === 0 ?

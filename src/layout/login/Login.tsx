@@ -21,13 +21,13 @@ type ComponentState = {
 const Login: React.FC<ComponentProps> = props => {
   const history = useHistory()
 
-  const [{ username, password }, setState] = useState<ComponentState>({
+  const [loginState, setLoginState] = useState<ComponentState>({
     username: '',
     password: ''
   })
-
+  const { username, password } = loginState
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState((s) => ({ ...s, [event.currentTarget.name]: event.currentTarget.value }))
+    setLoginState({ ...loginState, [event.currentTarget.name]: event.currentTarget.value })
   }
 
   const dispatch = useDispatch()
@@ -65,8 +65,8 @@ const Login: React.FC<ComponentProps> = props => {
       </StyledInputGroup>
       {
         isFetchingProviders ? <Spinner />
-        :
-        <Button color='primary' width='100%' padding='1rem' onClick={handleLoginSubmit}>Iniciar sesión</Button>
+          :
+          <Button color='primary' width='100%' padding='1rem' onClick={handleLoginSubmit}>Iniciar sesión</Button>
       }
     </StyledFormContainer>
   )

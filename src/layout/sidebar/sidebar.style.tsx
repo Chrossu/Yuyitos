@@ -11,7 +11,7 @@ export const StyledSidebarContainer = styled.aside`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   max-width: 250px;

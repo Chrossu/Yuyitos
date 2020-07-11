@@ -1,5 +1,5 @@
 export type SelectOption = {
-  value: string
+  value: number
   label: string
 }
 
@@ -10,6 +10,7 @@ export type Tab = {
 
 // ColorTypes
 export type ColorTypes = | 'primary' | 'secondary'
+export type AlertColorTypes = | 'success' | 'danger'
 
 // Flex types
 export type FlexDirectionTypes = | 'row' | 'column' | 'row-reverse' | 'column-reverse'

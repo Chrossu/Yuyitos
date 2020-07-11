@@ -4,13 +4,13 @@ import { GlobalTheme } from 'utils/global.theme'
 type Props = {
   theme: GlobalTheme
   margin?: string
-  fontSize?: string
+  customFontSize?: string
 }
 
 const Paragraph = styled.p`
   margin: ${(({ margin }: Props) => margin ? margin : '0')};
   color: ${(({ theme }: Props) => theme.defaultText)};
-  ${(({ fontSize }: Props) => fontSize && `font-size: ${fontSize}`)}
+  ${(({ customFontSize }: Props) => customFontSize && `font-size: ${customFontSize}`)}
 `
 
 export default Paragraph

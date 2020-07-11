@@ -28,10 +28,10 @@ type FormState = {
 const AddClient: React.FC<ComponentProps> = props => {
   // const productsState: ProductReducer = useSelector((state: AppState) => state.user)
 
-  const [{ name, paternalLastName, maternalLastName, email, phone }, setFormState] = React.useState<ClientForm>({
+  const [{ name, paternal_surname, maternal_surname, email, phone }, setFormState] = React.useState<ClientForm>({
     name: '',
-    paternalLastName: '',
-    maternalLastName: '',
+    paternal_surname: '',
+    maternal_surname: '',
     email: '',
     phone: ''
   })
@@ -64,7 +64,7 @@ const AddClient: React.FC<ComponentProps> = props => {
           </FlexContainer>
           <FlexContainer width='33%'>
             <Input
-              value={paternalLastName}
+              value={paternal_surname}
               id='paternalLastName'
               label='Apellido paterno'
               placeholder='Ingrese apellido paterno'
@@ -74,7 +74,7 @@ const AddClient: React.FC<ComponentProps> = props => {
           </FlexContainer>
           <FlexContainer width='33%'>
             <Input
-              value={maternalLastName}
+              value={maternal_surname}
               id='maternalLastName'
               label='Apellido materno'
               placeholder='Ingrese apellido materno'

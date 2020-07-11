@@ -9,6 +9,7 @@ import { Button } from 'components/buttons'
 import { ReactTable } from 'components/tables'
 
 import { Product } from 'types/store/product'
+import { useSelector } from 'react-redux'
 
 interface ComponentProps {
 
@@ -21,158 +22,7 @@ const SellsProductsTable: React.FC<ComponentProps> = props => {
     setFilterValue(e.currentTarget.value)
   }
   
-  const productsArray: Product[] = [
-    {
-      id: '1',
-      productName: 'Pan',
-      stockQuantity: '20',
-      productBuyPrice: '',
-      productSellPrice: '900',
-      productType: {
-        id: '1',
-        productTypeName: 'Abarrote'
-      },
-      brand: {
-        id: '0',
-        brandName: ''
-      }
-    },
-    {
-      id: '2',
-      productName: 'Leche Nestlé',
-      stockQuantity: '38',
-      productBuyPrice: '',
-      productSellPrice: '900',
-      productType: {
-        id: '1',
-        productTypeName: 'Abarrote'
-      },
-      brand: {
-        id: '0',
-        brandName: ''
-      }
-    },
-    {
-      id: '3',
-      productName: 'Mantequilla Colún 200g',
-      stockQuantity: '9',
-      productBuyPrice: '',
-      productSellPrice: '900',
-      productType: {
-        id: '1',
-        productTypeName: 'Abarrote'
-      },
-      brand: {
-        id: '0',
-        brandName: ''
-      }
-    },
-    {
-      id: '4',
-      productName: 'Bebida desechable 1.5 lts. Sprite',
-      stockQuantity: '12',
-      productBuyPrice: '',
-      productSellPrice: '900',
-      productType: {
-        id: '1',
-        productTypeName: 'Abarrote'
-      },
-      brand: {
-        id: '0',
-        brandName: ''
-      }
-    },
-    {
-      id: '5',
-      productName: 'Saco de papas 1kg',
-      stockQuantity: '18',
-      productBuyPrice: '',
-      productSellPrice: '900',
-      productType: {
-        id: '1',
-        productTypeName: 'Abarrote'
-      },
-      brand: {
-        id: '0',
-        brandName: ''
-      }
-    },
-    {
-      id: '6',
-      productName: 'Saco de papas 1kg',
-      stockQuantity: '18',
-      productBuyPrice: '',
-      productSellPrice: '900',
-      productType: {
-        id: '1',
-        productTypeName: 'Abarrote'
-      },
-      brand: {
-        id: '0',
-        brandName: ''
-      }
-    },
-    {
-      id: '7',
-      productName: 'Saco de papas 1kg',
-      stockQuantity: '18',
-      productBuyPrice: '',
-      productSellPrice: '900',
-      productType: {
-        id: '1',
-        productTypeName: 'Abarrote'
-      },
-      brand: {
-        id: '0',
-        brandName: ''
-      }
-    },
-    {
-      id: '8',
-      productName: 'Saco de papas 1kg',
-      stockQuantity: '18',
-      productBuyPrice: '',
-      productSellPrice: '900',
-      productType: {
-        id: '1',
-        productTypeName: 'Abarrote'
-      },
-      brand: {
-        id: '0',
-        brandName: ''
-      }
-    },
-    {
-      id: '9',
-      productName: 'Saco de papas 1kg',
-      stockQuantity: '18',
-      productBuyPrice: '',
-      productSellPrice: '900',
-      productType: {
-        id: '1',
-        productTypeName: 'Abarrote'
-      },
-      brand: {
-        id: '0',
-        brandName: ''
-      }
-    },
-    {
-      id: '10',
-      productName: 'Saco de papas 1kg',
-      stockQuantity: '18',
-      productBuyPrice: '',
-      productSellPrice: '900',
-      productType: {
-        id: '1',
-        productTypeName: 'Abarrote'
-      },
-      brand: {
-        id: '0',
-        brandName: ''
-      }
-    },
-  ]
+  const productsData = useSelector((state: any) => state.products.products)
   const leftTableColumns = [
     {
       Header: 'ID',
@@ -209,11 +59,11 @@ const SellsProductsTable: React.FC<ComponentProps> = props => {
         <Button hollow color='primary' customHeight='2rem' svg={<RefreshSVG />}>Actualizar</Button>
       </FlexContainer>
       {
-        productsArray.length === 0 ?
+        productsData.length === 0 ?
           <EmptyContainerMsg message='No se han encontrado productos.' />
           :
           <ReactTable
-            data={productsArray}
+            data={productsData}
             columns={leftTableColumns}
             defaultPageSize={7}
           />

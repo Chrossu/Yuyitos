@@ -33,7 +33,7 @@ const AddProvider: React.FC = () => {
   React.useEffect(() => {
     const providersForSelect = providers.map(provider => ({
       value: provider.id,
-      label: provider.providerName
+      label: provider.name
     }))
 
     setProvidersForSelect(providersForSelect)
@@ -45,7 +45,7 @@ const AddProvider: React.FC = () => {
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>, { index }: any) => {
     let newSelectedProductsArray = [...selectedProductsArray]
-    newSelectedProductsArray[index].productBuyPrice = e.currentTarget.value
+    newSelectedProductsArray[index].buy_price = e.currentTarget.value
 
     setSelectedProductsArray(newSelectedProductsArray)
   }

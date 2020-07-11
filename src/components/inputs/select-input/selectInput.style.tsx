@@ -25,7 +25,6 @@ export const StyledSelectInput = styled(Select)`
   
   & > div {
     min-height: 33px;
-    height: 33px;
     transition: background 0.25s linear, color 0.25s linear, border 0.25s linear;
     border: 1px solid ${({ theme }: Props) => theme.inputBorder};
     ${setBackground}

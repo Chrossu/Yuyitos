@@ -23,6 +23,7 @@ export const ProtectedRoute: React.FC<ComponentProps> = ({ isAuthenticated, isAl
       redirectPath = '/login'
     } else {
       const parsedUser: Client = JSON.parse(user)
+      console.log(parsedUser)
       dispatch(setStorageUser(parsedUser))
     }
   }

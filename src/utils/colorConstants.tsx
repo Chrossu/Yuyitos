@@ -18,6 +18,8 @@ export const LIGHT_INPUT_BORDER = '#dadada'
 export const LIGHT_LIGHT_BORDER = '#f3f3f3'
 export const LIGHT_DISABLED_BACKGROUND = '#e8ebf1'
 export const LIGHT_DISABLED_BORDER = '#c5c5c5'
+export const DANGER_COLOR = '#dc3647'
+export const SUCCESS_COLOR = '#49d3a9'
 
 // Defaults colors
 export const LIGHT_DEFAULT_PRIMARY_BACKGROUND = '#ffffff'

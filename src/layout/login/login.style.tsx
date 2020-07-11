@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const StyledFormContainer = styled.div`
+export const StyledFormContainer = styled.form`
   padding: 2rem;
   width: 40%;
   margin: 2rem auto;
@@ -38,9 +38,9 @@ export const StyledInput = styled.input`
   padding-left: 5px;
   display: block;
   width: 100%;
-  border: none;
+  border: none !important;
   border-radius: 0;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid grey !important;
   margin: 25px 0;
 
 

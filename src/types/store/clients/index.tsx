@@ -1,13 +1,14 @@
 export type ClientForm = {
+  id?: number
   name: string
-  paternalLastName: string
-  maternalLastName: string
+  paternal_surname: string
+  maternal_surname: string
   email: string
   phone: string
 }
 
 export type Client = ClientForm & {
-  id: string
+  id: number
   username: string
   user_kind: number
 }

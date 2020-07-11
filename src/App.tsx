@@ -17,13 +17,17 @@ import { MainContainer } from 'components/cards'
 
 import { SellsView, LoginView, ClientsView, ProductsView, ProvidersView, StatsView } from 'views'
 import { fetchProductTypes, fetchBrands, fetchProducts } from 'store/actions/products.actions'
+import { Alert } from 'components/utilities-components'
+
+import { AlertReducer } from 'store/reducers/alertReducer'
 
 interface ComponentProps {
   theme: Theme
   user: Client
+  alert: AlertReducer
 }
 
-const App: React.FC<ComponentProps> = ({ theme, user }) => {
+const App: React.FC<ComponentProps> = ({ theme, user, alert }) => {
   const dispatch = useDispatch()
   const isUser = !!user.id
 
@@ -34,8 +38,17 @@ const App: React.FC<ComponentProps> = ({ theme, user }) => {
     // eslint-disable-next-line
   }, [])
 
+  React.useEffect(() => {
+    if (alert.showAlert)
+    setTimeout(() => dispatch({ type: 'ALERT_UNSET_ALERT'}), 3500);
+    // eslint-disable-next-line
+  }, [alert.showAlert])
+
   return (
     <ThemeProvider theme={theme === LIGHT ? lightTheme : darkTheme}>
+      {
+        alert.showAlert && <Alert color={alert.color} message={alert.message} />
+      }
       <Sidebar isUser={isUser} />
       <GlobalStyles />
       <MainContainer isUser={isUser}>
@@ -54,7 +67,8 @@ const App: React.FC<ComponentProps> = ({ theme, user }) => {
 
 const mapStateToProps = (state: AppState) => ({
   theme: state.theme,
-  user: state.user
+  user: state.user,
+  alert: state.alert
 })
 
 export default connect(mapStateToProps)(App)
