@@ -1,9 +1,10 @@
 import { ProductReducer } from "types/store/product"
-import { ProductsActions, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCT_TYPES_SUCCESS, FETCH_BRANDS_SUCCESS } from "store/actions/products.actions"
+import { ProductsActions, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCT_TYPES_SUCCESS, FETCH_BRANDS_SUCCESS, FETCH_PRODUCT_FAMILIES_SUCCESS } from "store/actions/products.actions"
 
 const initialState = {
   products: [],
   productTypes: [],
+  productFamilies: [],
   productBrands: []
 }
 
@@ -13,6 +14,11 @@ const productsReducer = (state: ProductReducer = initialState, action: ProductsA
       return {
         ...state,
         products: action.payload
+      }
+    case FETCH_PRODUCT_FAMILIES_SUCCESS:
+      return {
+        ...state,
+        productFamilies: action.payload
       }
     case FETCH_PRODUCT_TYPES_SUCCESS:
       return {

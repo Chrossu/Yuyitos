@@ -91,7 +91,7 @@ export const fetchProductFamilies = () => async (dispatch: any) => {
       type: FETCH_PRODUCT_FAMILIES_REQUEST
     })
 
-    const res = await axios.get('api/product/types')
+    const res = await axios.get('api/product/families')
 
     dispatch({
       type: FETCH_PRODUCT_FAMILIES_SUCCESS,

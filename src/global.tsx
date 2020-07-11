@@ -32,6 +32,10 @@ export const GlobalStyles = createGlobalStyle`
     border: 1px solid ${({ theme }: Props) => theme.inputBorder} !important;
   }
 
+  hr {
+    border-color: ${({ theme }: Props) => theme.lightBorder};
+  }
+
   body, input {
     font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }

@@ -16,7 +16,7 @@ import Sidebar from 'layout/sidebar/Sidebar'
 import { MainContainer } from 'components/cards'
 
 import { SellsView, LoginView, ClientsView, ProductsView, ProvidersView, StatsView } from 'views'
-import { fetchProductTypes, fetchBrands, fetchProducts } from 'store/actions/products.actions'
+import { fetchProductTypes, fetchBrands, fetchProducts, fetchProductFamilies } from 'store/actions/products.actions'
 import { Alert } from 'components/utilities-components'
 
 import { AlertReducer } from 'store/reducers/alertReducer'
@@ -33,8 +33,10 @@ const App: React.FC<ComponentProps> = ({ theme, user, alert }) => {
 
   React.useEffect(() => {
     dispatch(fetchProductTypes())
-    dispatch(fetchProducts())
     dispatch(fetchBrands())
+    dispatch(fetchProductFamilies())
+
+    dispatch(fetchProducts())
     // eslint-disable-next-line
   }, [])
 

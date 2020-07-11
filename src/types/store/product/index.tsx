@@ -15,6 +15,12 @@ export type ProductType = {
   name: string
 }
 
+export type ProductFamilies = {
+  id: number
+  type_id: number
+  name: string
+}
+
 export type Brand = {
   id: number
   name: string
@@ -23,6 +29,7 @@ export type Brand = {
 export type ProductReducer = {
   products: ProductFormState[]
   productTypes: ProductType[]
+  productFamilies: ProductFamilies[]
   productBrands: Brand[]
 }
 

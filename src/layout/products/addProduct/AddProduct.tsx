@@ -25,7 +25,7 @@ export type AddProductFormState = {
 
 const AddProduct: React.FC = props => {
   const productsState: ProductReducer = useSelector((state: AppState) => state.products)
-  const { products, productBrands, productTypes } = productsState
+  const { products, productBrands, productTypes, productFamilies } = productsState
   const dispatch = useDispatch()
   const [formState, setFormState] = React.useState<AddProductFormState>({
     name: '',
@@ -38,8 +38,9 @@ const AddProduct: React.FC = props => {
   const { name, sell_price, critical_stock, brand_id, product_family_id } = formState
 
   const [productsForSelect, setProductsForSelect] = React.useState<SelectOption[]>([])
-  const [productTypesForSelect, setProductTypesForSelect] = React.useState<SelectOption[]>([])
+  const [productFamiliesForSelect, setProductFamiliesForSelect] = React.useState<SelectOption[]>([])
   const [brandsForSelect, setBrandsForSelect] = React.useState<SelectOption[]>([])
+  const [productType, setProductType] = React.useState<string>('')
 
   React.useEffect(() => {
     setProductsForSelect(() => products.map(product => ({
@@ -49,11 +50,11 @@ const AddProduct: React.FC = props => {
   }, [products])
 
   React.useEffect(() => {
-    setProductTypesForSelect(() => productTypes.map(type => ({
+    setProductFamiliesForSelect(() => productFamilies.map(type => ({
       value: type.id,
       label: type.name
     })))
-  }, [productTypes])
+  }, [productFamilies])
 
   React.useEffect(() => {
     setBrandsForSelect(() => productBrands.map(brand => ({
@@ -78,29 +79,34 @@ const AddProduct: React.FC = props => {
   }
 
   const onSelectProductFamily = (selectedOption: any) => {
-    const type = productTypes.find(brand => brand.id === selectedOption.value)
-
-    if (!type)
+    const productFamily = productFamilies.find(familie => familie.id === selectedOption.value)
+    debugger
+    if (!productFamily)
       return
 
-    setFormState({ ...formState, product_family_id: type.id })
+    setFormState({ ...formState, product_family_id: productFamily.id })
+
+    const productType = productTypes.find(type => type.id === productFamily.type_id)
+    console.log(productType)
+    if (productType)
+      setProductType(productType.name)
   }
 
   const handleClick = () => {
     dispatch(addProduct(formState))
   }
-  
+
   const loadingSelector = createLoadingSelector([FETCH_PRODUCTS])
   const isFetchingProducts = useSelector((state: AppState) => loadingSelector(state))
-  console.log(formState)
+
   return (
     <>
       <CardContainer header>
         Añadir nuevo producto
       </CardContainer>
       <CardContainer flexDirection='column'>
-        <FlexContainer>
-          <FlexContainer width='20%'>
+        <FlexContainer marginBottom='1rem'>
+          <FlexContainer width='25%'>
             <Input
               value={name}
               id='name'
@@ -110,7 +116,7 @@ const AddProduct: React.FC = props => {
               onChange={handleChange}
             />
           </FlexContainer>
-          <FlexContainer width='20%'>
+          <FlexContainer width='25%'>
             <Input
               value={sell_price}
               id='sell_price'
@@ -120,7 +126,7 @@ const AddProduct: React.FC = props => {
               onChange={handleChange}
             />
           </FlexContainer>
-          <FlexContainer width='20%'>
+          <FlexContainer width='25%'>
             <Input
               value={critical_stock}
               id='critical_stock'
@@ -130,17 +136,30 @@ const AddProduct: React.FC = props => {
               onChange={handleChange}
             />
           </FlexContainer>
-          <FlexContainer width='20%'>
+        </FlexContainer>
+        <hr />
+        <FlexContainer marginTop='1rem'>
+          <FlexContainer width='25%'>
             <SelectInput
-              options={productTypesForSelect}
-              id='productType'
-              label='Tipo de producto'
-              placeholder='Seleccione tipo'
+              options={productFamiliesForSelect}
+              id='productFamily'
+              label='Familia de producto'
+              placeholder='Seleccione familia'
               width='80%'
-              onChange={onSelectProductBrand}
+              onChange={onSelectProductFamily}
             />
           </FlexContainer>
-          <FlexContainer width='20%'>
+          <FlexContainer width='25%'>
+            <Input
+              disabled
+              value={productType}
+              id='productType'
+              label='Tipo de producto'
+              placeholder='...'
+              width='80%'
+            />
+          </FlexContainer>
+          <FlexContainer width='25%'>
             <SelectInput
               options={brandsForSelect}
               id='stockQuantity'
