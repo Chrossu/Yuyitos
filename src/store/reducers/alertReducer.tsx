@@ -26,7 +26,7 @@ const alertReducer = (state: AlertReducer = INITIAL_STATE, action: Actions): Ale
     return state
 
   const [,, requestState] = matches
-  console.log(matches)
+  
   switch (requestState) {
     case 'SET_ALERT':
     case 'FAILURE':

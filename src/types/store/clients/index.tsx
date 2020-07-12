@@ -1,5 +1,6 @@
 export type ClientForm = {
   id?: number
+  rut: string
   name: string
   paternal_surname: string
   maternal_surname: string

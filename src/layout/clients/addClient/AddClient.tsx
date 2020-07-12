@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { } from './addClient.style'
 
@@ -12,6 +12,7 @@ import { createLoadingSelector } from 'utils/generalFunctions'
 import { AppState } from 'store/configureStore'
 import { FETCH_PRODUCTS } from 'utils/generalConstants'
 import { ClientForm } from 'types/store/clients'
+import { addClient } from 'store/actions/clients.actions'
 
 interface ComponentProps {
 
@@ -28,7 +29,8 @@ type FormState = {
 const AddClient: React.FC<ComponentProps> = props => {
   // const productsState: ProductReducer = useSelector((state: AppState) => state.user)
 
-  const [{ name, paternal_surname, maternal_surname, email, phone }, setFormState] = React.useState<ClientForm>({
+  const [formState, setFormState] = React.useState<ClientForm>({
+    rut: '',
     name: '',
     paternal_surname: '',
     maternal_surname: '',
@@ -36,14 +38,29 @@ const AddClient: React.FC<ComponentProps> = props => {
     phone: ''
   })
 
+  const dispatch = useDispatch()
+  const { rut, name, paternal_surname, maternal_surname, email, phone } = formState
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget
 
-    setFormState((s) => ({ ...s, [name]: value }))
+    setFormState({ ...formState, [name]: value })
   }
 
   const loadingSelector = createLoadingSelector([FETCH_PRODUCTS])
   const isFetchingClients = useSelector((state: AppState) => loadingSelector(state))
+
+  const handleAddButton = () => {
+    dispatch(addClient(formState))
+    setFormState({
+      rut: '',
+      name: '',
+      paternal_surname: '',
+      maternal_surname: '',
+      email: '',
+      phone: ''
+    })
+  }
 
   return (
     <>
@@ -52,7 +69,17 @@ const AddClient: React.FC<ComponentProps> = props => {
       </CardContainer>
       <CardContainer flexDirection='column'>
         <FlexContainer>
-          <FlexContainer width='33%'>
+          <FlexContainer width='25%'>
+            <Input
+              value={rut}
+              id='rut'
+              label='Rut cliente'
+              placeholder='Ingresa rut de cliente'
+              width='80%'
+              onChange={handleChange}
+            />
+          </FlexContainer>
+          <FlexContainer width='25%'>
             <Input
               value={name}
               id='name'
@@ -62,20 +89,20 @@ const AddClient: React.FC<ComponentProps> = props => {
               onChange={handleChange}
             />
           </FlexContainer>
-          <FlexContainer width='33%'>
+          <FlexContainer width='25%'>
             <Input
               value={paternal_surname}
-              id='paternalLastName'
+              id='paternal_surname'
               label='Apellido paterno'
               placeholder='Ingrese apellido paterno'
               width='80%'
               onChange={handleChange}
             />
           </FlexContainer>
-          <FlexContainer width='33%'>
+          <FlexContainer width='25%'>
             <Input
               value={maternal_surname}
-              id='maternalLastName'
+              id='maternal_surname'
               label='Apellido materno'
               placeholder='Ingrese apellido materno'
               width='80%'
@@ -85,7 +112,7 @@ const AddClient: React.FC<ComponentProps> = props => {
         </FlexContainer>
 
         <FlexContainer marginTop='2rem'>
-          <FlexContainer width='33%'>
+          <FlexContainer width='25%'>
             <Input
               value={email}
               id='email'
@@ -106,7 +133,9 @@ const AddClient: React.FC<ComponentProps> = props => {
             />
           </FlexContainer>
         </FlexContainer>
-        <Button svg={<AddSVG />} color='primary' margin='2rem 0 0' width='fit-content'>Crear nuevo cliente</Button>
+        <Button svg={<AddSVG />} color='primary' margin='2rem 0 0' width='fit-content' onClick={handleAddButton}>
+          Crear nuevo cliente
+        </Button>
       </CardContainer>
     </>
   )

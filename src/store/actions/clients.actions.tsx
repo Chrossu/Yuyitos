@@ -1,8 +1,16 @@
-import { Client } from "types/store/clients"
+import axios from "axios"
+import { Client, ClientForm } from "types/store/clients"
+import { SET_ALERT } from "./alert.actions"
+
+export const ADD_CLIENT_REQUEST = 'ADD_CLIENT_REQUEST'
+export const ADD_CLIENT_SUCCESS = 'ADD_CLIENT_SUCCESS'
+export const ADD_CLIENT_FAILURE = 'ADD_CLIENT_FAILURE'
 
 export const FETCH_CLIENTS_REQUEST = 'FETCH_CLIENTS_REQUEST'
 export const FETCH_CLIENTS_SUCCESS = 'FETCH_CLIENTS_SUCCESS'
 export const FETCH_CLIENTS_FAILURE = 'FETCH_CLIENTS_FAILURE'
+
+export const CLIENT_SET_ALERT = 'CLIENT_SET_ALERT'
 
 export type FetchClientsAction = {
   type: string
@@ -11,52 +19,42 @@ export type FetchClientsAction = {
 
 export type ClientsActions = | FetchClientsAction
 
+export const addClient = (clientForm: ClientForm) => async (dispatch: any) => {
+  try {
+    dispatch({
+      type: ADD_CLIENT_REQUEST
+    })
+
+    const res = await axios.post('api/clients', clientForm)
+
+    dispatch({
+      type: ADD_CLIENT_SUCCESS,
+      payload: res.data.clients_list
+    })
+
+    dispatch({
+      type: CLIENT_SET_ALERT,
+      payload: 'Se ha agregado exitosamente un usuario al sistema'
+    })
+  } catch (error) {
+    dispatch({
+      type: ADD_CLIENT_FAILURE
+    })
+  }
+}
+
 export const fetchClients = () => async (dispatch: any) => {
   try {
     dispatch({
       type: FETCH_CLIENTS_REQUEST
     })
 
-    setTimeout(() => {
-      const clientsMock: Client[] = [
-        {
-          id: 1,
-          username: '',
-          user_kind: 1,
-          name: 'Matías',
-          paternal_surname: 'Medina',
-          maternal_surname: 'Garrido',
-          email: 'matiam@gmail.com',
-          phone: '942731327',
-        },
-        {
-          id: 2,
-          username: 'jxperez',
-          user_kind: 1,
-          name: 'Juan',
-          paternal_surname: 'Perez',
-          maternal_surname: 'Alalas',
-          email: 'juanlala@gmail.com',
-          phone: '123123',
-        },
-        {
-          id: 3,
-          username: 'lele',
-          user_kind: 1,
-          name: 'John',
-          paternal_surname: 'Doe',
-          maternal_surname: 'Lolez',
-          email: 'johndoe@gmail.com',
-          phone: '1133223',
-        },
-      ]
+    const res = await axios.get('api/clients')
 
-      dispatch({
-        type: FETCH_CLIENTS_SUCCESS,
-        payload: clientsMock
-      })
-    }, 500)
-
+    dispatch({
+      type: FETCH_CLIENTS_SUCCESS,
+      payload: res.data.clients_list
+    })
   } catch (error) {
     dispatch({
       type: FETCH_CLIENTS_FAILURE

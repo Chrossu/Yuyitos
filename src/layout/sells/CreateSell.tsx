@@ -14,6 +14,7 @@ import { AppState } from 'store/configureStore'
 import { Client } from 'types/store/clients'
 import { fetchClients } from 'store/actions/clients.actions'
 import { SelectOption } from 'types/generals'
+import { addSell } from 'store/actions/sells.actions'
 
 interface ComponentProps {
 
@@ -36,7 +37,7 @@ const CreateSell: React.FC<ComponentProps> = props => {
   // Items that provider will provide on right table
   const [selectedProductsArray, setSelectedProductsArray] = React.useState<Product[]>([])
 
-  const [totalPrice, setTotalPrice] = React.useState<number>(0)
+  const [totalValue, setTotalValue] = React.useState<number>(0)
   const [isOnCredit, setIsOnCredit] = React.useState<boolean>(false)
 
   React.useEffect(() => {
@@ -48,7 +49,7 @@ const CreateSell: React.FC<ComponentProps> = props => {
   }, [stateProductsArray])
 
   React.useEffect(() => {
-    setTotalPrice(() => selectedProductsArray.reduce((acc: number, prod: Product) => acc + (Number(prod.sell_price) * Number(prod.stockToSell)), 0))
+    setTotalValue(() => selectedProductsArray.reduce((acc: number, prod: Product) => acc + (Number(prod.sell_price) * Number(prod.stockToSell)), 0))
   }, [selectedProductsArray])
 
   React.useEffect(() => {
@@ -98,7 +99,7 @@ const CreateSell: React.FC<ComponentProps> = props => {
   const rightTableColumns = [
     {
       Header: 'Producto',
-      accessor: 'productName',
+      accessor: 'name',
       style: { margin: 'auto' }
     },
     {
@@ -119,7 +120,12 @@ const CreateSell: React.FC<ComponentProps> = props => {
   }
 
   const handleOnCredit = () => setIsOnCredit(!isOnCredit)
+  const [clientID, setClientID] = React.useState<number | null>(null)
 
+  const handleCreateSellButton = () => dispatch(addSell(totalValue, clientID))
+
+  const onSelectClient = (selectedOption: any) => setClientID(selectedOption.value)
+  
   return (
     <>
       <CardContainer header>
@@ -142,7 +148,7 @@ const CreateSell: React.FC<ComponentProps> = props => {
               padding='0'
             />
             <CardContainer header borderRadius='0' height='fit-content' margin='1rem 0 0'>
-              <Paragraph customFontSize='1.2rem'>Total: ${totalPrice.toLocaleString('es-CL')}</Paragraph>
+              <Paragraph customFontSize='1.2rem'>Total: ${totalValue.toLocaleString('es-CL')}</Paragraph>
             </CardContainer>
           </FlexContainer>
         </FlexContainer>
@@ -156,13 +162,15 @@ const CreateSell: React.FC<ComponentProps> = props => {
                 width='200px'
                 label='Escriba el nombre a ingresar'
                 placeholder='Seleccione cliente'
-                onChange={() => { }}
+                onChange={onSelectClient}
               />
             )
           }
         </FlexContainer>
         <FlexContainer padding='0 1rem 1rem'>
-          <Button color='primary' width='250px' marginRight='1rem' svg={<AddSVG />} fontSize='1.1rem'>Crear venta</Button>
+          <Button color='primary' width='250px' marginRight='1rem' svg={<AddSVG />} fontSize='1.1rem' onClick={handleCreateSellButton}>
+            Crear venta
+          </Button>
           <Button hollow color='primary' width='120px' fontSize='1.1rem'>Cancelar</Button>
         </FlexContainer>
       </CardContainer>
