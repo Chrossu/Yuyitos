@@ -16,11 +16,7 @@ import { fetchClients } from 'store/actions/clients.actions'
 import { SelectOption } from 'types/generals'
 import { addSell } from 'store/actions/sells.actions'
 
-interface ComponentProps {
-
-}
-
-const CreateSell: React.FC<ComponentProps> = props => {
+const CreateSell: React.FC = () => {
   const dispatch = useDispatch()
 
   const stateProductsArray: any = useSelector((state: any) => state.products.products)
@@ -42,6 +38,7 @@ const CreateSell: React.FC<ComponentProps> = props => {
 
   React.useEffect(() => {
     dispatch(fetchClients())
+    // eslint-disable-next-line
   }, [])
 
   React.useEffect(() => {
@@ -49,23 +46,24 @@ const CreateSell: React.FC<ComponentProps> = props => {
   }, [stateProductsArray])
 
   React.useEffect(() => {
-    setTotalValue(() => selectedProductsArray.reduce((acc: number, prod: Product) => acc + (Number(prod.sell_price) * Number(prod.stockToSell)), 0))
+    setTotalValue(() => selectedProductsArray.reduce((acc: number, prod: Product) => acc + (Number(prod.sell_price) * Number(prod.stock_to_sell)), 0))
   }, [selectedProductsArray])
 
   React.useEffect(() => {
     if (clientsForSelect.length === 0)
       setClientsForSelect(() => stateClientsArray.map((client: Client) => ({ value: client.id, label: `${client.name} ${client.paternal_surname}` })))
+    // eslint-disable-next-line
   }, [stateClientsArray])
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>, { index }: any) => {
     let newSelectedProductsArray: Product[] = [...selectedProductsArray]
-    newSelectedProductsArray[index].stockToSell = e.currentTarget.value
+    newSelectedProductsArray[index].stock_to_sell = e.currentTarget.value
 
     setSelectedProductsArray(newSelectedProductsArray)
   }
 
   const setSelectedProduct = (selectedProduct: Product) => {
-    const setSelectedProduct: Product = { ...selectedProduct, stockToSell: '1' }
+    const setSelectedProduct: Product = { ...selectedProduct, stock_to_sell: '1' }
     setSelectedProductsArray([...selectedProductsArray, setSelectedProduct])
     setProductsArray(() => productsArray.filter(product => product.id !== selectedProduct.id))
   }
@@ -106,7 +104,7 @@ const CreateSell: React.FC<ComponentProps> = props => {
       Header: 'Cantidad',
       id: 'quantity',
       Cell: (rowInfo: any) => (
-        <Input value={rowInfo.original.stockToSell} onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleQuantityChange(e, rowInfo)} />
+        <Input value={rowInfo.original.stock_to_sell} onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleQuantityChange(e, rowInfo)} />
       ),
       style: { margin: 'auto' },
       width: 150
@@ -122,10 +120,10 @@ const CreateSell: React.FC<ComponentProps> = props => {
   const handleOnCredit = () => setIsOnCredit(!isOnCredit)
   const [clientID, setClientID] = React.useState<number | null>(null)
 
-  const handleCreateSellButton = () => dispatch(addSell(totalValue, clientID))
+  const handleCreateSellButton = () => dispatch(addSell(totalValue, selectedProductsArray, clientID))
 
   const onSelectClient = (selectedOption: any) => setClientID(selectedOption.value)
-  
+
   return (
     <>
       <CardContainer header>

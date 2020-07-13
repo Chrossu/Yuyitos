@@ -1,13 +1,14 @@
-export type ProductFormState = {
+export type Product = {
   id: number
   name: string
   sell_price: string
   critical_stock: string
   stock: string
-  status_id: ProductType
-  brand_id: Brand
+  status_id: number
+  brand_id: number
   product_family_id: number
-  buy_price?: string
+  buy_value?: string
+  stock_to_sell?: string
 }
 
 export type ProductType = {
@@ -27,14 +28,8 @@ export type Brand = {
 }
 
 export type ProductReducer = {
-  products: ProductFormState[]
+  products: Product[]
   productTypes: ProductType[]
   productFamilies: ProductFamilies[]
   productBrands: Brand[]
-}
-
-export type Product = ProductFormState & {
-  id: number
-  stockQuantity: string
-  stockToSell?: string
 }

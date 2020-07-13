@@ -1,10 +1,11 @@
 import React from 'react'
-import { CardContainer, FlexContainer } from 'components/cards'
-import { SelectInput, Input, Checkbox } from 'components/inputs'
-import { SelectOption } from 'types/generals'
+import { CardContainer } from 'components/cards'
+import { Checkbox } from 'components/inputs'
 import { AppState } from 'store/configureStore'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { ReactTable } from 'components/tables'
+import { updateClientStatus } from 'store/actions/clients.actions'
+import { Spinner } from 'components/utilities-components'
 
 type ComponentProps = {
 
@@ -12,25 +13,37 @@ type ComponentProps = {
 
 const ClientsManagement: React.FC<ComponentProps> = props => {
   const clients = useSelector((state: AppState) => state.clients)
+  const dispatch = useDispatch()
 
-  const onToggleClient = (selectedOption: any) => {
+  const [fetchingID, setFetchingID] = React.useState<number | null>(null)
 
+  const onToggleClient = async (rowInfo: any) => {
+    const { id, status_id } = rowInfo.original
+    const newStatus = status_id === 1 ? 2 : 1
+
+    setFetchingID(id)
+    dispatch(updateClientStatus(id, newStatus, setFetchingID))
   }
 
   const columns = [
     {
       Header: 'ID',
       accessor: 'id',
-      style: { margin: 'auto' },
+      style: { textAlign: 'center' },
       width: 80,
       maxWidth: '10'
     },
     {
+      Header: 'RUT',
+      accessor: 'rut',
+      Cell: (rowInfo: any) => rowInfo.original.rut,
+      style: { textAlign: 'left' },
+    },
+    {
       Header: 'Nombre',
       accessor: 'name',
-      Cell: (rowInfo: any) => `${rowInfo.original.name} ${rowInfo.original.paternalLastName}`,
+      Cell: (rowInfo: any) => `${rowInfo.original.name} ${rowInfo.original.paternal_surname}`,
       style: { textAlign: 'left' },
-      width: 250
     },
     {
       Header: 'Deuda',
@@ -48,8 +61,8 @@ const ClientsManagement: React.FC<ComponentProps> = props => {
     {
       Header: '¿Habilitado para fiar?',
       id: 'permission',
-      Cell: (rowInfo: any) => (
-        <Checkbox isChecked={true} onClick={(e: React.ChangeEvent<HTMLInputElement>) => {}} />
+      Cell: (rowInfo: any) => fetchingID === rowInfo.original.id ? <Spinner /> : (
+        <Checkbox isChecked={rowInfo.original.status_id === 1} onClick={() => onToggleClient(rowInfo)} />
       ),
       style: { margin: 'auto' },
       width: 200

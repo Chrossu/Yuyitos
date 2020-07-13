@@ -1,5 +1,5 @@
 import React from 'react'
-import { AddProvider } from 'layout/providers'
+import { ModifyProvider } from 'layout/providers'
 
 interface ComponentProps {
 
@@ -7,7 +7,7 @@ interface ComponentProps {
 
 const ProvidersView: React.FC<ComponentProps> = props => {
   return (
-    <AddProvider />
+    <ModifyProvider />
   )
 }
 

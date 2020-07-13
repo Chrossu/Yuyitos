@@ -80,14 +80,14 @@ const AddProduct: React.FC = props => {
 
   const onSelectProductFamily = (selectedOption: any) => {
     const productFamily = productFamilies.find(familie => familie.id === selectedOption.value)
-    debugger
+
     if (!productFamily)
       return
 
     setFormState({ ...formState, product_family_id: productFamily.id })
 
     const productType = productTypes.find(type => type.id === productFamily.type_id)
-    console.log(productType)
+
     if (productType)
       setProductType(productType.name)
   }
@@ -95,7 +95,7 @@ const AddProduct: React.FC = props => {
   const handleClick = () => {
     dispatch(addProduct(formState))
   }
-
+  
   const loadingSelector = createLoadingSelector([FETCH_PRODUCTS])
   const isFetchingProducts = useSelector((state: AppState) => loadingSelector(state))
 
@@ -166,7 +166,7 @@ const AddProduct: React.FC = props => {
               label='Marca de producto'
               placeholder='Seleccione marca'
               width='80%'
-              onChange={onSelectProductFamily}
+              onChange={onSelectProductBrand}
             />
           </FlexContainer>
         </FlexContainer>

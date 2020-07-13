@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { useSelector } from 'react-redux'
 
 import { FlexContainer, CardContainer } from 'components/cards'
@@ -13,9 +14,11 @@ import { SelectOption } from 'types/generals'
 
 interface ComponentProps {
   providersForSelect: SelectOption[]
+  setSelectedProductsArray: any
+  setProviderID: any
 }
 
-const AddProvider: React.FC<ComponentProps> = ({ providersForSelect }) => {
+const ModifyProvider: React.FC<ComponentProps> = ({ providersForSelect, setSelectedProductsArray, setProviderID }) => {
   const providers = useSelector((state: AppState) => state.providers)
 
   const [providerForm, setProviderForm] = React.useState<ProviderFormState>({
@@ -24,7 +27,7 @@ const AddProvider: React.FC<ComponentProps> = ({ providersForSelect }) => {
     phone_number: ''
   })
 
-  const onSelectProvider = (selectedOption: any) => {
+  const onSelectProvider = async (selectedOption: any) => {
     const provider = providers.find(provider => provider.id === selectedOption.value)
 
     if (!provider)
@@ -35,6 +38,10 @@ const AddProvider: React.FC<ComponentProps> = ({ providersForSelect }) => {
       address: provider.address,
       phone_number: provider.phone_number
     })
+    setProviderID(provider.id)
+
+    const res = await axios.get(`api/providers/${selectedOption.value}`)
+    setSelectedProductsArray(res.data.product_list)
   }
 
   const { business_type, address, phone_number } = providerForm
@@ -92,4 +99,4 @@ const AddProvider: React.FC<ComponentProps> = ({ providersForSelect }) => {
   )
 }
 
-export default AddProvider
+export default ModifyProvider

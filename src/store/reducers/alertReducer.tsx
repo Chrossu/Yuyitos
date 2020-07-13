@@ -34,7 +34,7 @@ const alertReducer = (state: AlertReducer = INITIAL_STATE, action: Actions): Ale
         ...state,
         showAlert: true,
         message: action.payload,
-        color: requestState === 'SET_ALERT' ? 'success' : 'danger'
+        color: requestState === 'FAILURE' ? 'danger' : 'success'
       }
     case 'UNSET_ALERT':
       return INITIAL_STATE

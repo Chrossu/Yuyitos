@@ -21,6 +21,10 @@ const ReactTable: React.FC<ComponentProps> = ({ data, columns, filterable, defau
       style={{ width: '100%' }}
       filterable={filterable}
       data={data}
+      defaultSorted={[{
+        id: 'id',
+        desc: false,
+      }]}
       columns={columns}
       defaultPageSize={defaultPageSize ? defaultPageSize : data.length > 8 ? 8 : data.length + 1}
       showPageSizeOptions={!!showPageSizeOptions}

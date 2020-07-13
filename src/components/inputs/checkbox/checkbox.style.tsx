@@ -8,7 +8,7 @@ export const StyledContainer = styled.div`
   padding: 0.3rem;
   width: fit-content;
   border-radius: 5px;
-  transition: background 0.2s ease-in;
+  transition: background 0.25s ease-in;
 
   &:hover {
     background: ${(({ theme }: Props) => theme.defaultHollowBackground)};

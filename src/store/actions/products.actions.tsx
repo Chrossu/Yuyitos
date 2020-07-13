@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Product, Brand, ProductType, ProductFormState } from "types/store/product"
+import { Product, Brand, ProductType } from "types/store/product"
 import { AddProductFormState } from 'layout/products/addProduct/AddProduct'
 
 export const ADD_PRODUCT_REQUEST = 'ADD_PRODUCT_REQUEST'
@@ -50,7 +50,7 @@ export const addProduct = (product: AddProductFormState) => async (dispatch: any
     dispatch({
       type: ADD_PRODUCT_SUCCESS
     })
-
+    fetchProducts()
     dispatch({
       type: 'PRODUCT_SET_ALERT',
       payload: res.data.response

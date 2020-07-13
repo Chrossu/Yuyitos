@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { } from './addClient.style'
 
@@ -9,7 +9,6 @@ import { Input } from 'components/inputs'
 import { Button } from 'components/buttons'
 
 import { createLoadingSelector } from 'utils/generalFunctions'
-import { AppState } from 'store/configureStore'
 import { FETCH_PRODUCTS } from 'utils/generalConstants'
 import { ClientForm } from 'types/store/clients'
 import { addClient } from 'store/actions/clients.actions'
@@ -18,15 +17,7 @@ interface ComponentProps {
 
 }
 
-type FormState = {
-  productName: string
-  sellPrice: string
-  productKind: string
-  productType: string
-  stockQuantity: string
-}
-
-const AddClient: React.FC<ComponentProps> = props => {
+const AddClient: React.FC<ComponentProps> = () => {
   // const productsState: ProductReducer = useSelector((state: AppState) => state.user)
 
   const [formState, setFormState] = React.useState<ClientForm>({
@@ -48,7 +39,7 @@ const AddClient: React.FC<ComponentProps> = props => {
   }
 
   const loadingSelector = createLoadingSelector([FETCH_PRODUCTS])
-  const isFetchingClients = useSelector((state: AppState) => loadingSelector(state))
+  // const isFetchingClients = useSelector((state: AppState) => loadingSelector(state))
 
   const handleAddButton = () => {
     dispatch(addClient(formState))

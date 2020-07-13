@@ -1,18 +1,22 @@
 import React from 'react'
+import axios from 'axios'
+import { useSelector, useDispatch } from 'react-redux'
+
 import { CardContainer, FlexContainer } from 'components/cards'
 import { SelectInput, Input } from 'components/inputs'
-import { SelectOption } from 'types/generals'
+import { Button } from 'components/buttons'
+import { ReactComponent as AddSVG } from 'layout/svg-repo/add.svg'
+
 import { AppState } from 'store/configureStore'
-import { useSelector } from 'react-redux'
+import { SelectOption } from 'types/generals'
 
-type ComponentProps = {
-
-}
-
-const ClientsPaymentCredit: React.FC<ComponentProps> = props => {
+const ClientsPaymentCredit: React.FC = props => {
+  const dispatch = useDispatch()
   const clients = useSelector((state: AppState) => state.clients)
 
   const [clientsForSelect, setClientsForSelect] = React.useState<SelectOption[]>([])
+  const [clientID, setClientID] = React.useState<number | null>(null)
+  const [creditID, setCreditID] = React.useState<number | null>(null)
   const [debt, setDebt] = React.useState<string>('')
   const [paymentCredit, setPaymentCredit] = React.useState<string>('')
 
@@ -20,18 +24,37 @@ const ClientsPaymentCredit: React.FC<ComponentProps> = props => {
   React.useEffect(() => {
     if (clientsForSelect.length === 0)
       setClientsForSelect(clients.map(client => ({ value: client.id, label: client.name })))
+    // eslint-disable-next-line
   }, [clients])
 
-  const onSelectClient = (selectedOption: any) => {
-    const client = clients.find(client => client.id === selectedOption.value)
+  const onSelectClient = async (selectedOption: any) => {
+    const res = await axios.get(`api/credit/${selectedOption.value}`)
 
-    if (!client)
-      return
-
-    setDebt('10')
+    setDebt(res.data.debt)
+    setCreditID(res.data.credit_id)
+    setClientID(selectedOption.value)
   }
 
   const handlePaymentCreditChange = (e: React.ChangeEvent<HTMLInputElement>) => setPaymentCredit(e.currentTarget.value)
+  const handleAddPaymentButton = async () => {
+    if (Number(debt) - Number(paymentCredit) < 0)
+      return dispatch({
+        type: 'PAYMENT_FAILURE',
+        payload: 'El valor a pagar no puede ser mayor al monto actual'
+      })
+
+    const data = {
+      payment_credit: paymentCredit,
+      credit_id: creditID
+    }
+
+    const res = await axios.post(`api/payments/${clientID}`, data)
+
+    dispatch({
+      type: 'PAYMENT_SET_ALERT',
+      payload: res.data.response
+    })
+  }
 
   return (
     <>
@@ -68,6 +91,9 @@ const ClientsPaymentCredit: React.FC<ComponentProps> = props => {
             />
           </FlexContainer>
         </FlexContainer>
+        <Button svg={<AddSVG />} color='primary' margin='2rem 0 0' width='fit-content' onClick={handleAddPaymentButton}>
+          Abonar deuda fiado
+        </Button>
       </CardContainer>
     </>
   )

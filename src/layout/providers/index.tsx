@@ -1,5 +1,5 @@
-import AddProvider from './addProvider'
+import ModifyProvider from './modifyProvider'
 
 export {
-  AddProvider
+  ModifyProvider
 }

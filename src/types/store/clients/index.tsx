@@ -12,4 +12,5 @@ export type Client = ClientForm & {
   id: number
   username: string
   user_kind: number
+  status_id: number
 }

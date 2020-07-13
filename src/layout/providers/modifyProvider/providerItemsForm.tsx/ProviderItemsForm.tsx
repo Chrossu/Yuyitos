@@ -23,10 +23,10 @@ const ProviderItemsForm: React.FC<ComponentProps> = props => {
       style: { margin: 'auto' }
     },
     {
-      Header: 'Precio',
-      accessor: 'buy_price',
+      Header: 'Precio compra',
+      accessor: 'buy_value',
       Cell: (rowInfo: any) => (
-        <Input value={rowInfo.original.buy_price} onChange={(e: React.ChangeEvent<HTMLInputElement>) => handlePriceChange(e, rowInfo)} />
+        <Input value={rowInfo.original.buy_value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => handlePriceChange(e, rowInfo)} />
       ),
       style: { margin: 'auto' },
       width: 150
