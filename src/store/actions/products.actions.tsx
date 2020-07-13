@@ -48,19 +48,14 @@ export const addProduct = (product: AddProductFormState) => async (dispatch: any
     const res = await axios.post('api/products', product)
 
     dispatch({
-      type: ADD_PRODUCT_SUCCESS
-    })
-    fetchProducts()
-    dispatch({
       type: 'PRODUCT_SET_ALERT',
       payload: res.data.response
     })
 
-
   } catch (error) {
     dispatch({
       type: FETCH_PRODUCTS_FAILURE,
-      payload: error.response.data.error
+      payload: error.response?.data?.error || 'Errorr'
     })
   }
 }

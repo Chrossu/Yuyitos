@@ -13,7 +13,7 @@ import { AppState } from 'store/configureStore'
 import { FETCH_PRODUCTS } from 'utils/generalConstants'
 import { SelectOption } from 'types/generals'
 import { ProductReducer } from 'types/store/product'
-import { addProduct } from 'store/actions/products.actions'
+import { addProduct, fetchProducts } from 'store/actions/products.actions'
 
 export type AddProductFormState = {
   name: string
@@ -94,10 +94,10 @@ const AddProduct: React.FC = props => {
 
   const handleClick = () => {
     dispatch(addProduct(formState))
+    setTimeout(() => {
+      dispatch(fetchProducts())
+    }, 1000);
   }
-  
-  const loadingSelector = createLoadingSelector([FETCH_PRODUCTS])
-  const isFetchingProducts = useSelector((state: AppState) => loadingSelector(state))
 
   return (
     <>

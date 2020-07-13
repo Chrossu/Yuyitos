@@ -19,16 +19,13 @@ import { addSell } from 'store/actions/sells.actions'
 const CreateSell: React.FC = () => {
   const dispatch = useDispatch()
 
-  const stateProductsArray: any = useSelector((state: any) => state.products.products)
-  const stateClientsArray: any = useSelector((state: AppState) => state.clients)
+  const stateProductsArray = useSelector((state: AppState) => state.products.products)
+  const stateClientsArray = useSelector((state: AppState) => state.clients)
 
   // Items on left table that are filtered depending on user actions
   const [productsArray, setProductsArray] = React.useState<Product[]>([])
 
   const [clientsForSelect, setClientsForSelect] = React.useState<SelectOption[]>([])
-
-  // Items on left table that are filtered depending on user actions
-  const [filteredProductsArray, setFilteredProductsArray] = React.useState<Product[]>([])
 
   // Items that provider will provide on right table
   const [selectedProductsArray, setSelectedProductsArray] = React.useState<Product[]>([])
@@ -55,10 +52,16 @@ const CreateSell: React.FC = () => {
     // eslint-disable-next-line
   }, [stateClientsArray])
 
-  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>, { index }: any) => {
-    let newSelectedProductsArray: Product[] = [...selectedProductsArray]
-    newSelectedProductsArray[index].stock_to_sell = e.currentTarget.value
+  React.useEffect(() => {
+    setProductsArray(stateProductsArray.filter(product => !selectedProductsArray.some(selected => selected.id === product.id)))
+  }, [selectedProductsArray])
 
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>, rowInfo: any) => {
+    let newSelectedProductsArray: Product[] = [...selectedProductsArray]
+    const stockValue = Number(e.currentTarget.value) > rowInfo.original.stock ? rowInfo.original.stock : e.currentTarget.value
+    newSelectedProductsArray[rowInfo.index].stock_to_sell = stockValue
+    
     setSelectedProductsArray(newSelectedProductsArray)
   }
 
@@ -120,7 +123,10 @@ const CreateSell: React.FC = () => {
   const handleOnCredit = () => setIsOnCredit(!isOnCredit)
   const [clientID, setClientID] = React.useState<number | null>(null)
 
-  const handleCreateSellButton = () => dispatch(addSell(totalValue, selectedProductsArray, clientID))
+  const handleCreateSellButton = () => {
+    dispatch(addSell(totalValue, selectedProductsArray, clientID))
+    setSelectedProductsArray([])
+  }
 
   const onSelectClient = (selectedOption: any) => setClientID(selectedOption.value)
 
@@ -135,7 +141,7 @@ const CreateSell: React.FC = () => {
             <OwnProductsTable
               productsArray={productsArray}
               customColumns={leftTableColumns}
-              onSelectProduct={() => console.log('')}
+              onSelectProduct={() => {}}
               onRowClick={onRowClick}
             />
           </FlexContainer>
@@ -158,7 +164,7 @@ const CreateSell: React.FC = () => {
                 margin='1rem 0'
                 options={clientsForSelect}
                 width='200px'
-                label='Escriba el nombre a ingresar'
+                label='Seleccione o filtre cliente'
                 placeholder='Seleccione cliente'
                 onChange={onSelectClient}
               />
@@ -169,7 +175,9 @@ const CreateSell: React.FC = () => {
           <Button color='primary' width='250px' marginRight='1rem' svg={<AddSVG />} fontSize='1.1rem' onClick={handleCreateSellButton}>
             Crear venta
           </Button>
-          <Button hollow color='primary' width='120px' fontSize='1.1rem'>Cancelar</Button>
+          <Button hollow color='primary' width='120px' fontSize='1.1rem' onClick={() => setSelectedProductsArray([])}>
+            Cancelar
+          </Button>
         </FlexContainer>
       </CardContainer>
     </>

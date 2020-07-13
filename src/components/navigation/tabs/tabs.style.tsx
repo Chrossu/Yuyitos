@@ -27,5 +27,6 @@ export const StyledTab = styled.button`
   background: ${({ theme }: Props) => theme.defaultHollowBackground};
   border: 0;
   outline: 0;
+  transition: all ease 0.25s;
   ${activeStyle}
 `

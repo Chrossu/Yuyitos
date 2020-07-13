@@ -7,8 +7,12 @@ import { ReactTable } from 'components/tables'
 import { Button } from 'components/buttons'
 
 import { Product } from 'types/store/product'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchProducts } from 'store/actions/products.actions'
+import { createLoadingSelector } from 'utils/generalFunctions'
+import { FETCH_PRODUCTS } from 'utils/generalConstants'
+import { AppState } from 'store/configureStore'
+import { Spinner } from 'components/utilities-components'
 
 interface ComponentProps {
   productsArray: Product[]
@@ -23,6 +27,19 @@ interface ComponentProps {
 const OwnProductsTable: React.FC<ComponentProps> = ({ productsArray, onSelectProduct, headerTitle, customColumns, onRowClick, padding }) => {
   const dispatch = useDispatch()
   const [filterValue, setFilterValue] = React.useState<string>('')
+  // Items on left table that are filtered depending on user actions
+  const [filteredProductsArray, setFilteredProductsArray] = React.useState<Product[]>([])
+
+  const loadingSelector = createLoadingSelector([FETCH_PRODUCTS])
+  const isFetchingProducts = useSelector((state: AppState) => loadingSelector(state))
+
+  React.useEffect(() => {
+    if (!!filterValue)
+      setFilteredProductsArray(productsArray.filter(product => {
+        const regex = new RegExp(`${filterValue}`, 'gi')
+        return product.name.match(regex) || product.id.toString().match(regex)
+      }))
+  }, [filterValue])
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilterValue(e.currentTarget.value)
@@ -77,16 +94,19 @@ const OwnProductsTable: React.FC<ComponentProps> = ({ productsArray, onSelectPro
             width='73.5%'
             onChange={handleFilterChange}
           />
-          <Button hollow color='primary' customHeight='2rem' svg={<RefreshSVG />} onClick={handleRefresh}>
-            Actualizar
-          </Button>
+          {
+            isFetchingProducts ? <Spinner /> :
+              <Button hollow color='primary' customHeight='2rem' svg={<RefreshSVG />} onClick={handleRefresh}>
+                Actualizar
+              </Button>
+          }
         </FlexContainer>
         {
           productsArray.length === 0 ?
             <EmptyContainerMsg message='No se han encontrado productos.' />
             :
             <ReactTable
-              data={productsArray}
+              data={!!filteredProductsArray.length ? filteredProductsArray : productsArray}
               columns={customColumns ? customColumns : columns}
               defaultPageSize={7}
               onRowClick={onRowClick}

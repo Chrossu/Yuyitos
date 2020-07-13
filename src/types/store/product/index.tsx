@@ -9,6 +9,7 @@ export type Product = {
   product_family_id: number
   buy_value?: string
   stock_to_sell?: string
+  original_id?: number
 }
 
 export type ProductType = {

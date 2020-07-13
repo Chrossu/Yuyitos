@@ -17,7 +17,7 @@ import { Button } from 'components/buttons'
 const ModifyProvider: React.FC = () => {
   const dispatch = useDispatch()
   const providers = useSelector((state: AppState) => state.providers)
-  const productsData = useSelector((state: any) => state.products.products)
+  const productsData = useSelector((state: AppState) => state.products.products)
 
   const [providersForSelect, setProvidersForSelect] = React.useState<SelectOption[]>([])
   const [providerID, setProviderID] = React.useState<number | null>(null)
@@ -33,6 +33,10 @@ const ModifyProvider: React.FC = () => {
     dispatch(fetchProducts())
     // eslint-disable-next-line
   }, [])
+
+  React.useEffect(() => {
+    setProductsArray(productsData.filter(product => !selectedProductsArray.some(selected => selected.original_id === product.id)))
+  }, [selectedProductsArray])
 
   React.useEffect(() => {
     const providersForSelect = providers.map(provider => ({

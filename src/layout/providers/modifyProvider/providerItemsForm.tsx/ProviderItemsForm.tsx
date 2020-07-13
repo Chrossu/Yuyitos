@@ -16,6 +16,8 @@ interface ComponentProps {
 const ProviderItemsForm: React.FC<ComponentProps> = props => {
   const { productsArray, selectedProductsArray, setSelectedProduct, handlePriceChange } = props
 
+  const [filterValue, setFilterValue] = React.useState<string>('')
+
   const rightTableColumns = [
     {
       Header: 'Producto',

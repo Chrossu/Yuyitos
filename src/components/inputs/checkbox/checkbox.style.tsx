@@ -17,6 +17,12 @@ export const StyledContainer = styled.div`
 
 export const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
   cursor: pointer;
+  -ms-transform: scale(1.25); /* IE */
+  -moz-transform: scale(1.25); /* FF */
+  -webkit-transform: scale(1.25); /* Safari and Chrome */
+  -o-transform: scale(1.25); /* Opera */
+  transform: scale(1.25);
+  padding: 10px;
 `
 
 export const StyledLabel = styled.label`
